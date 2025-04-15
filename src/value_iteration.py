@@ -5,25 +5,55 @@ import pandas as pd
 import numpy as np
 
 # Constants
-SLIPPERY = False
+SLIPPERY = True
 T_MAX = 15
 NUM_EPISODES = 5
 GAMMA = 0.95
 REWARD_THRESHOLD = 0.9
 
 class ValueIterationAgent:
+    """
+    A Value Iteration agent implementation for the CliffWalking environment.
+    Learns the optimal policy through iterative value function updates.
+    """
     def __init__(self, env, gamma):
+        """
+        Initialize the Value Iteration agent.
+
+        Args:
+            env: Gymnasium environment instance
+            gamma (float): Discount factor for future rewards
+        """
         self.env = env
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
         
     def calc_action_value(self, state, action):
+        """
+        Calculate the value of taking an action in a given state.
+
+        Args:
+            state (int): Current state index
+            action (int): Action to evaluate
+
+        Returns:
+            float: Expected value of taking the action in the state
+        """
         action_value = sum([prob * (reward + self.gamma * self.V[next_state])
                             for prob, next_state, reward, _ 
                             in self.env.unwrapped.P[state][action]]) 
         return action_value
 
     def select_action(self, state):
+        """
+        Select the best action for a given state based on current value estimates.
+
+        Args:
+            state (int): Current state index
+
+        Returns:
+            int: Best action to take
+        """
         best_action = best_value = None
         for action in range(self.env.action_space.n):
             action_value = self.calc_action_value(state, action)
@@ -33,6 +63,13 @@ class ValueIterationAgent:
         return best_action
 
     def value_iteration(self):
+        """
+        Perform one iteration of the value iteration algorithm.
+        Updates state values based on the Bellman equation.
+
+        Returns:
+            tuple: (Updated value function array, Maximum value difference)
+        """
         max_diff = 0
         for state in range(self.env.observation_space.n):
             state_values = []
@@ -46,6 +83,12 @@ class ValueIterationAgent:
         return self.V, max_diff
     
     def policy(self):   
+        """
+        Extract the optimal policy from the learned value function.
+
+        Returns:
+            numpy.ndarray: Array of optimal actions for each state
+        """
         policy = np.zeros(self.env.observation_space.n) 
         for s in range(self.env.observation_space.n):
             Q_values = [self.calc_action_value(s,a) for a in range(self.env.action_space.n)] 
@@ -54,6 +97,12 @@ class ValueIterationAgent:
     
 
 def check_improvements():
+    """
+    Test the current agent policy over multiple episodes.
+
+    Returns:
+        float: Average reward across test episodes
+    """
     reward_test = 0.0
     for i in range(NUM_EPISODES):
         total_reward = 0.0
@@ -70,6 +119,15 @@ def check_improvements():
     return reward_avg
 
 def train(agent): 
+    """
+    Train the agent using value iteration until convergence.
+
+    Args:
+        agent (ValueIterationAgent): The agent to train
+
+    Returns:
+        tuple: (List of rewards during training, List of maximum differences per iteration)
+    """
     rewards = []
     max_diffs = []
     t = 0
@@ -92,11 +150,27 @@ def train(agent):
     return rewards, max_diffs
 
 def print_policy(policy):
+    """
+    Print a visual representation of the policy using arrows.
+
+    Args:
+        policy (numpy.ndarray): Array of actions representing the policy
+    """
     visual_help = {0:'<', 1:'v', 2:'>', 3:'^'}
     policy_arrows = [visual_help[x] for x in policy]
     print(np.array(policy_arrows).reshape([-1, 4]))
 
 def test_episode(agent, env):
+    """
+    Run a single test episode with the trained agent.
+
+    Args:
+        agent (ValueIterationAgent): The trained agent
+        env: Gymnasium environment instance
+
+    Returns:
+        tuple: Final (state, reward, is_done, truncated, info)
+    """
     env.reset()
     is_done = False
     t = 0
@@ -108,6 +182,12 @@ def test_episode(agent, env):
     return state, reward, is_done, truncated, info
 
 def draw_rewards(rewards):
+    """
+    Plot the rewards obtained during training/testing.
+
+    Args:
+        rewards (list): List of rewards to plot
+    """
     data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
     plt.figure(figsize=(10, 6))
     sns.lineplot(x='Episode', y='Reward', data=data)
@@ -120,15 +200,20 @@ def draw_rewards(rewards):
 
     plt.show()
 
-env = gym.make('CliffWalking-v1', desc=None, render_mode="human", is_slippery=SLIPPERY)
+
+# Initialize the environment
+env = gym.make("CliffWalking-v1", render_mode="human", is_slippery=SLIPPERY)
 env.unwrapped.P
 
+# Initialize and train the agent
 agent = ValueIterationAgent(env, gamma=GAMMA)
 rewards, max_diffs = train(agent)
 
+# Compute and print agent's policy
 policy = agent.policy()
 print_policy(policy)
 
+# Test the agent once it is trained
 is_done = False
 rewards = []
 for n_ep in range(NUM_EPISODES):
