@@ -3,6 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import collections
 
 # Constants
 SLIPPERY = True
@@ -11,12 +12,8 @@ NUM_EPISODES = 5
 GAMMA = 0.95
 REWARD_THRESHOLD = 0.9
 
-class ValueIterationAgent:
-    """
-    A Value Iteration agent implementation for the CliffWalking environment.
-    Learns the optimal policy through iterative value function updates.
-    """
-    def __init__(self, env, gamma):
+class DirectEstimationAgent:
+    def __init__(self, env, gamma, num_trajectories):
         """
         Initialize the Value Iteration agent.
 
@@ -25,9 +22,32 @@ class ValueIterationAgent:
             gamma (float): Discount factor for future rewards
         """
         self.env = env
+        self.state, _ = self.env.reset()
+        self.rewards = collections.defaultdict(float)
+        self.transits = collections.defaultdict(collections.Counter)
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
-        
+        self.num_trajectories = num_trajectories
+
+    def play_n_random_steps(self, count):
+        """
+        Play random steps in the environment to gather experience.
+
+        Args:
+            count (int): Number of random steps to take
+
+        Updates the rewards and transitions dictionaries with observed data.
+        """
+        for _ in range(count):
+            action = self.env.action_space.sample()
+            new_state, reward, is_done, truncated, _ = self.env.step(action)
+            self.rewards[(self.state, action, new_state)] = reward
+            self.transits[(self.state, action)][new_state] += 1
+            if is_done:
+                self.state, _ = self.env.reset() 
+            else: 
+                self.state = new_state
+
     def calc_action_value(self, state, action):
         """
         Calculate the value of taking an action in a given state.
@@ -39,9 +59,13 @@ class ValueIterationAgent:
         Returns:
             float: Expected value of taking the action in the state
         """
-        action_value = sum([prob * (reward + self.gamma * self.V[next_state])
-                            for prob, next_state, reward, _ 
-                            in self.env.unwrapped.P[state][action]]) 
+        target_counts = self.transits[(state, action)]
+        total = sum(target_counts.values())
+        action_value = 0.0
+        for s_, count in target_counts.items():
+            r = self.rewards[(state, action, s_)]
+            prob = (count / total)
+            action_value += prob*(r + self.gamma * self.V[s_])
         return action_value
 
     def select_action(self, state):
@@ -54,10 +78,10 @@ class ValueIterationAgent:
         Returns:
             int: Best action to take
         """
-        best_action = best_value = None
+        best_action, best_value = None, None
         for action in range(self.env.action_space.n):
             action_value = self.calc_action_value(state, action)
-            if not best_value or best_value < action_value:
+            if best_value is None or best_value < action_value:
                 best_value = action_value
                 best_action = action
         return best_action
@@ -70,11 +94,13 @@ class ValueIterationAgent:
         Returns:
             tuple: (Updated value function array, Maximum value difference)
         """
+        self.play_n_random_steps(self.num_trajectories)
         max_diff = 0
         for state in range(self.env.observation_space.n):
-            state_values = []
-            for action in range(self.env.action_space.n):  
-                state_values.append(self.calc_action_value(state, action))
+            state_values = [
+                self.calc_action_value(state, action)
+                for action in range(self.env.action_space.n)
+            ]
             new_V = max(state_values)
             diff = abs(new_V - self.V[state])
             if diff > max_diff:
@@ -82,20 +108,20 @@ class ValueIterationAgent:
             self.V[state] = new_V
         return self.V, max_diff
     
-    def policy(self):   
+    def policy(self):
         """
         Extract the optimal policy from the learned value function.
 
         Returns:
             numpy.ndarray: Array of optimal actions for each state
-        """
+        """   
         policy = np.zeros(self.env.observation_space.n) 
         for s in range(self.env.observation_space.n):
             Q_values = [self.calc_action_value(s,a) for a in range(self.env.action_space.n)] 
             policy[s] = np.argmax(np.array(Q_values))        
         return policy
-    
 
+    
 def check_improvements():
     """
     Test the current agent policy over multiple episodes.
@@ -132,12 +158,10 @@ def train(agent):
     max_diffs = []
     t = 0
     best_reward = 0.0
-    max_diff = 1.0
      
-    while max_diff > 0.0:
+    while best_reward < REWARD_THRESHOLD:
         _, max_diff = agent.value_iteration()
         max_diffs.append(max_diff)
-        max_diffb = max_diff
         print("After value iteration, max_diff = " + str(max_diff))
         t += 1
         reward_test = check_improvements()
@@ -200,13 +224,12 @@ def draw_rewards(rewards):
 
     plt.show()
 
-
 # Initialize the environment
 env = gym.make("CliffWalking-v0", render_mode="human", is_slippery=SLIPPERY)
 env.unwrapped.P
 
 # Initialize and train the agent
-agent = ValueIterationAgent(env, gamma=GAMMA)
+agent = DirectEstimationAgent(env, gamma=GAMMA, num_trajectories=10)
 rewards, max_diffs = train(agent)
 
 # Compute and print agent's policy
