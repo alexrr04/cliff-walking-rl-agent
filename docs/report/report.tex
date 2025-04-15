@@ -1,0 +1,104 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fix-cm}
+
+\usepackage[utf8]{inputenc}  % Character encoding
+\usepackage[spanish]{babel}  % Language set to Catalan
+\usepackage{amsmath, amssymb}  % Mathematical packages
+\usepackage{graphicx}  % For including images
+\usepackage{fancyhdr}  % Package for customizing headers and footers
+\usepackage[hidelinks]{hyperref}  % For links and references
+\usepackage{lipsum}  % For generating test text
+\usepackage{geometry}  % For defining margins and document geometry
+\usepackage{tocloft}  % For customizing the table of contents
+\usepackage{booktabs}  % For better looking tables
+\usepackage{listings}  % For displaying code
+\usepackage{algorithm}  % For algorithm environments
+\usepackage{algpseudocode}  % For pseudocode
+\usepackage{array}  % For custom column specifiers in tables
+\usepackage{tabularx}  % For tables that occupy the full document width
+\usepackage{caption}  % For using \captionof
+\usepackage{enumitem}
+\usepackage{emoji}
+\usepackage{alltt}
+\usepackage{titlesec}
+\usepackage{algorithmicx}
+\usepackage{tikz}
+% \usepackage{shellesc}
+
+% \ShellEscape{mkdir -p build}
+% \newcommand{\jobnamebase}{\jobname}
+% \edef\jobnamebuild{build/\jobnamebase}
+% \let\jobname\jobnamebuild
+%aquesta part dona error no se perque
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+% Margin configuration
+\geometry{left=3cm, right=3cm, top=3cm, bottom=3cm}
+
+\setlength{\parindent}{0pt}
+
+% Command to create new line with spacing
+\newcommand{\spacednewline}{\newline\vspace{0.10cm}}
+
+% Page numbering configuration (except title page)
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\portada}{
+    \begin{titlepage}
+        \centering
+        \makebox[0pt][c]{
+            \includegraphics[width=0.15\textwidth]{images/Logo_UPC.png}  
+            \hspace{-0.5pt}  
+            \includegraphics[width=0.9\textwidth]{images/FIB.png}  
+        }
+        \vspace{2cm} 
+
+        {\fontsize{23}{52}\selectfont Sistemas Inteligentes Distribuidos}\\[2cm]
+
+        {\fontsize{32pt}{48pt}\selectfont \textbf{Agente de aprendizaje por refuerzo}} \\[0.3cm]
+        {\fontsize{32pt}{48pt}\selectfont \textbf{para el entorno}} \\[0.4cm]
+        {\fontsize{32pt}{48pt}\selectfont \textbf{Cliff Walking}} \\[7.3cm]
+
+        {\large Lluc Martínez Busquets}\\[0.2cm]
+        {\large Eric Medina León}\\[0.2cm]
+        {\large Àlex Rodríguez Rodríguez}\\[2cm]
+
+        {\large 2024/2025 Q2}\\[2cm]
+    \end{titlepage}
+}
+
+
+% For automatic table of contents generation
+\setcounter{tocdepth}{4}  % Index depth (sections and subsections)
+
+% Dotted line in table of contents
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+\begin{document}
+
+% Title page without numbering
+\portada
+\thispagestyle{empty}  
+\newpage
+
+\renewcommand{\contentsname}{Índice}
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/introduction}
+\input{sections/conclusions}
+\input{sections/bibliography}
+\input{sections/appendices}
+
+\end{document}
