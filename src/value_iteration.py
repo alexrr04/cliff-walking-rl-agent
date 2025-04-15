@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+# Constants
+SLIPPERY = False
+T_MAX = 15
+NUM_EPISODES = 5
+GAMMA = 0.95
+REWARD_THRESHOLD = 0.9
+
 class ValueIterationAgent:
     def __init__(self, env, gamma):
         self.env = env
@@ -44,3 +51,96 @@ class ValueIterationAgent:
             Q_values = [self.calc_action_value(s,a) for a in range(self.env.action_space.n)] 
             policy[s] = np.argmax(np.array(Q_values))        
         return policy
+    
+
+def check_improvements():
+    reward_test = 0.0
+    for i in range(NUM_EPISODES):
+        total_reward = 0.0
+        state, _ = env.reset()
+        for i in range(T_MAX):
+            action = agent.select_action(state)
+            new_state, new_reward, is_done, truncated, _ = env.step(action)
+            total_reward += new_reward
+            if is_done: 
+                break
+            state = new_state
+        reward_test += total_reward
+    reward_avg = reward_test / NUM_EPISODES
+    return reward_avg
+
+def train(agent): 
+    rewards = []
+    max_diffs = []
+    t = 0
+    best_reward = 0.0
+    max_diff = 1.0
+     
+    while max_diff > 0.0:
+        _, max_diff = agent.value_iteration()
+        max_diffs.append(max_diff)
+        max_diffb = max_diff
+        print("After value iteration, max_diff = " + str(max_diff))
+        t += 1
+        reward_test = check_improvements()
+        rewards.append(reward_test)
+               
+        if reward_test > best_reward:
+            print(f"Best reward updated {reward_test:.2f} at iteration {t}") 
+            best_reward = reward_test
+    
+    return rewards, max_diffs
+
+def print_policy(policy):
+    visual_help = {0:'<', 1:'v', 2:'>', 3:'^'}
+    policy_arrows = [visual_help[x] for x in policy]
+    print(np.array(policy_arrows).reshape([-1, 4]))
+
+def test_episode(agent, env):
+    env.reset()
+    is_done = False
+    t = 0
+
+    while not is_done:
+        action = agent.select_action()
+        state, reward, is_done, truncated, info = env.step(action)
+        t += 1
+    return state, reward, is_done, truncated, info
+
+def draw_rewards(rewards):
+    data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(x='Episode', y='Reward', data=data)
+
+    plt.title('Rewards Over Episodes')
+    plt.xlabel('Episode')
+    plt.ylabel('Reward')
+    plt.grid(True)
+    plt.tight_layout()
+
+    plt.show()
+
+env = gym.make('CliffWalking-v1', desc=None, render_mode="human", is_slippery=SLIPPERY)
+env.unwrapped.P
+
+agent = ValueIterationAgent(env, gamma=GAMMA)
+rewards, max_diffs = train(agent)
+
+policy = agent.policy()
+print_policy(policy)
+
+is_done = False
+rewards = []
+for n_ep in range(NUM_EPISODES):
+    state, _ = env.reset()
+    print('Episode: ', n_ep)
+    total_reward = 0
+    for i in range(T_MAX):
+        action = agent.select_action(state)
+        state, reward, is_done, truncated, _ = env.step(action)
+        total_reward = total_reward + reward
+        env.render()
+        if is_done:
+            break
+    rewards.append(total_reward)
+draw_rewards(rewards)
