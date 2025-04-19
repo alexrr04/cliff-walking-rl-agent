@@ -8,9 +8,8 @@ import numpy as np
 SLIPPERY = True
 T_MAX = 100
 NUM_EPISODES = 100
-GAMMA = 0.99
+GAMMA = 0.95
 EPSILON = 1e-8
-REWARD_THRESHOLD = 0.9
 RENDER_MODE = "ansi"
 
 class ValueIterationAgent:
@@ -42,8 +41,8 @@ class ValueIterationAgent:
             float: Expected value of taking the action in the state
         """
         value = 0.0
-        for prob, next_state, reward, terminated in self.env.unwrapped.P[state][action]:
-            bootstrap = 0.0 if terminated else self.gamma * self.V[next_state]
+        for prob, next_state, reward, is_done in self.env.unwrapped.P[state][action]:
+            bootstrap = 0.0 if is_done else self.gamma * self.V[next_state]
             value += prob * (reward + bootstrap)
         return value
 
@@ -62,8 +61,7 @@ class ValueIterationAgent:
         Returns:
             int: Best action to take
         """
-        # if hasattr(self, "_policy"):
-        #     return int(self._policy[state])
+        
         q = [self.calc_action_value(state, a) for a in range(self.env.action_space.n)]
         return int(np.argmax(q)) 
     
@@ -105,7 +103,7 @@ class ValueIterationAgent:
         self._policy = np.zeros(self.env.observation_space.n) 
         for s in range(self.env.observation_space.n):
             Q_values = [self.calc_action_value(s,a) for a in range(self.env.action_space.n)] 
-            self._policy[s] = np.argmax(np.array(Q_values))        
+            self._policy[s] = np.argmax(Q_values)   
         return self._policy
     
 
@@ -122,7 +120,7 @@ def check_improvements():
         state, _ = env.reset()
         for i in range(T_MAX):
             action = agent.select_action(state)
-            new_state, new_reward, is_done, truncated, _ = env.step(action)
+            new_state, new_reward, is_done, *_ = env.step(action)
             total_reward += new_reward
             if is_done: 
                 break
@@ -173,27 +171,6 @@ def print_policy(policy):
     policy_arrows = [visual_help[x] for x in policy]
     print(np.array(policy_arrows).reshape([-1, 4]))
 
-def test_episode(agent, env):
-    """
-    Run a single test episode with the trained agent.
-
-    Args:
-        agent (ValueIterationAgent): The trained agent
-        env: Gymnasium environment instance
-
-    Returns:
-        tuple: Final (state, reward, is_done, truncated, info)
-    """
-    env.reset()
-    is_done = False
-    t = 0
-
-    while not is_done:
-        action = agent.select_action()
-        state, reward, is_done, truncated, info = env.step(action)
-        t += 1
-    return state, reward, is_done, truncated, info
-
 def draw_rewards(rewards):
     """
     Plot the rewards obtained during training/testing.
@@ -213,7 +190,7 @@ def draw_rewards(rewards):
 
     plt.show()
 
-def rollout(agent, env, policy, max_steps=300):
+def rollout(env, policy, max_steps=300):
     """
     Execute one episode with the greedy policy.
 
@@ -231,10 +208,10 @@ def rollout(agent, env, policy, max_steps=300):
         # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
 
         action = policy[state]
-        state, reward, terminated, truncated, _ = env.step(action)
+        state, reward, is_done, truncated, _ = env.step(action)
         total_return += reward
 
-        if terminated:                        # reached [3,11]
+        if is_done:                        # reached [3,11]
             print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
             return True, t, total_return
         if truncated:                         # hit the TimeLimit wrapper
@@ -246,7 +223,6 @@ def rollout(agent, env, policy, max_steps=300):
 
 # Initialize the environment
 env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
-env.unwrapped.P
 
 # Initialize and train the agent
 agent = ValueIterationAgent(env, gamma=GAMMA)
@@ -275,11 +251,11 @@ draw_rewards(rewards)
 
 successes = 0
 steps_mean = 0
-episodes  = 100
+episodes = NUM_EPISODES
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
-    reached_goal, steps, G = rollout(agent, env, policy)
+    reached_goal, steps, G = rollout(env, policy)
     successes += int(reached_goal)
     steps_mean += steps
 
