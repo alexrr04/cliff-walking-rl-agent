@@ -23,4 +23,7 @@ docs/report/*.synctex
 # Ignore VS Code settings
 .vscode/
 
+# Ignore practice statement
+Enunciat.pdf
+
 
