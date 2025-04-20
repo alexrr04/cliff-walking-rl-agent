@@ -1,0 +1,12 @@
+# This file is used to install the required packages for the project.
+# You can install the packages using the following command:
+# pip install -r requirements.txt
+# If you are using a virtual environment, make sure to activate it before running the command.
+# If you are using Anaconda, you can create a new environment and install the packages using the following command:
+# conda create --name <env_name> --file requirements.txt
+
+gymnasium
+numpy
+seaborn
+matplotlib
+pandas
