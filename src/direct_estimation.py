@@ -9,8 +9,10 @@ import collections
 SLIPPERY = True
 T_MAX = 15
 NUM_EPISODES = 5
+NUM_TRAJECTORIES = 10
 GAMMA = 0.95
-REWARD_THRESHOLD = 0.9
+EPSILON = 1e-8
+RENDER_MODE = "ansi"
 
 class DirectEstimationAgent:
     def __init__(self, env, gamma, num_trajectories):
@@ -145,21 +147,13 @@ def check_improvements():
     return reward_avg
 
 def train(agent): 
-    """
-    Train the agent using value iteration until convergence.
-
-    Args:
-        agent (ValueIterationAgent): The agent to train
-
-    Returns:
-        tuple: (List of rewards during training, List of maximum differences per iteration)
-    """
     rewards = []
     max_diffs = []
     t = 0
     best_reward = 0.0
-     
-    while best_reward < REWARD_THRESHOLD:
+    max_diff = 1.0
+
+    while max_diff > EPSILON:
         _, max_diff = agent.value_iteration()
         max_diffs.append(max_diff)
         print("After value iteration, max_diff = " + str(max_diff))
@@ -180,30 +174,9 @@ def print_policy(policy):
     Args:
         policy (numpy.ndarray): Array of actions representing the policy
     """
-    visual_help = {0:'<', 1:'v', 2:'>', 3:'^'}
+    visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
     print(np.array(policy_arrows).reshape([-1, 4]))
-
-def test_episode(agent, env):
-    """
-    Run a single test episode with the trained agent.
-
-    Args:
-        agent (ValueIterationAgent): The trained agent
-        env: Gymnasium environment instance
-
-    Returns:
-        tuple: Final (state, reward, is_done, truncated, info)
-    """
-    env.reset()
-    is_done = False
-    t = 0
-
-    while not is_done:
-        action = agent.select_action()
-        state, reward, is_done, truncated, info = env.step(action)
-        t += 1
-    return state, reward, is_done, truncated, info
 
 def draw_rewards(rewards):
     """
@@ -224,12 +197,41 @@ def draw_rewards(rewards):
 
     plt.show()
 
+def rollout(env, policy, max_steps=300):
+    """
+    Execute one episode with the greedy policy.
+
+    Returns
+    -------
+    reached_goal : bool
+    steps        : int
+    total_return : float
+    """
+    state, _ = env.reset()
+    total_return = 0.0
+    for t in range(1, max_steps + 1):
+        # print(env.render())               # returns an ASCII string
+        # r, c = divmod(state, 12)
+        # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
+
+        action = policy[state]
+        state, reward, is_done, truncated, _ = env.step(action)
+        total_return += reward
+
+        if is_done:                        # reached [3,11]
+            print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
+            return True, t, total_return
+        if truncated:                         # hit the TimeLimit wrapper
+            break
+
+    print("\n💥  Episode ended without reaching the goal\n")
+    return False, t, total_return
+
 # Initialize the environment
-env = gym.make("CliffWalking-v0", render_mode="human", is_slippery=SLIPPERY)
-env.unwrapped.P
+env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
 
 # Initialize and train the agent
-agent = DirectEstimationAgent(env, gamma=GAMMA, num_trajectories=10)
+agent = DirectEstimationAgent(env, gamma=GAMMA, num_trajectories=NUM_TRAJECTORIES)
 rewards, max_diffs = train(agent)
 
 # Compute and print agent's policy
@@ -252,3 +254,16 @@ for n_ep in range(NUM_EPISODES):
             break
     rewards.append(total_reward)
 draw_rewards(rewards)
+
+successes = 0
+steps_mean = 0
+episodes = NUM_EPISODES
+
+for ep in range(episodes):
+    print(f"\n=== Episode {ep} ===")
+    reached_goal, steps, G = rollout(env, policy)
+    successes += int(reached_goal)
+    steps_mean += steps
+
+steps_mean /= episodes
+print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}")
