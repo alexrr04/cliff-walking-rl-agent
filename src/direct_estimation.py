@@ -7,12 +7,13 @@ import collections
 
 # Constants
 SLIPPERY = True
-T_MAX = 15
-NUM_EPISODES = 5
-NUM_TRAJECTORIES = 10
+T_MAX = 100
+NUM_EPISODES = 100
+NUM_TRAJECTORIES = 500
 GAMMA = 0.95
-EPSILON = 1e-8
+EPSILON = 1e-4
 RENDER_MODE = "ansi"
+MAX_ITERS = 1000
 
 class DirectEstimationAgent:
     def __init__(self, env, gamma, num_trajectories):
@@ -63,6 +64,8 @@ class DirectEstimationAgent:
         """
         target_counts = self.transits[(state, action)]
         total = sum(target_counts.values())
+        if total == 0:
+            return 0.0
         action_value = 0.0
         for s_, count in target_counts.items():
             r = self.rewards[(state, action, s_)]
@@ -153,7 +156,7 @@ def train(agent):
     best_reward = 0.0
     max_diff = 1.0
 
-    while max_diff > EPSILON:
+    while max_diff > EPSILON and t < MAX_ITERS:
         _, max_diff = agent.value_iteration()
         max_diffs.append(max_diff)
         print("After value iteration, max_diff = " + str(max_diff))
@@ -176,7 +179,7 @@ def print_policy(policy):
     """
     visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([-1, 4]))
+    print(np.array(policy_arrows).reshape([4, 12]))
 
 def draw_rewards(rewards):
     """
@@ -214,7 +217,7 @@ def rollout(env, policy, max_steps=300):
         # r, c = divmod(state, 12)
         # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
 
-        action = policy[state]
+        action = int(policy[state])
         state, reward, is_done, truncated, _ = env.step(action)
         total_return += reward
 
@@ -257,6 +260,7 @@ draw_rewards(rewards)
 
 successes = 0
 steps_mean = 0
+rewards_count = 0
 episodes = NUM_EPISODES
 
 for ep in range(episodes):
@@ -264,6 +268,7 @@ for ep in range(episodes):
     reached_goal, steps, G = rollout(env, policy)
     successes += int(reached_goal)
     steps_mean += steps
+    rewards_count += G
 
 steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}")
+print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")

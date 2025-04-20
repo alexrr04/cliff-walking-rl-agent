@@ -251,13 +251,15 @@ draw_rewards(rewards)
 successes = 0
 steps_mean = 0
 episodes = NUM_EPISODES
+rewatds_count = 0
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
     reached_goal, steps, G = rollout(env, policy)
     successes += int(reached_goal)
     steps_mean += steps
+    rewards_count += G
 
 steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}")
+print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")
 
