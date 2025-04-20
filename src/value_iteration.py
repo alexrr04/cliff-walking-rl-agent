@@ -148,7 +148,6 @@ def train(agent):
     while max_diff > EPSILON:
         _, max_diff = agent.value_iteration()
         max_diffs.append(max_diff)
-        max_diffb = max_diff
         print("After value iteration, max_diff = " + str(max_diff))
         t += 1
         reward_test = check_improvements()
