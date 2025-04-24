@@ -251,7 +251,7 @@ draw_rewards(rewards)
 successes = 0
 steps_mean = 0
 episodes = NUM_EPISODES
-rewatds_count = 0
+rewards_count = 0
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")

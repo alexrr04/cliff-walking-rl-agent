@@ -8,12 +8,14 @@ from gymnasium import Wrapper
 
 # Constants
 SLIPPERY = True
-T_MAX = 20
-NUM_EPISODES = 5
+T_MAX = 200
+NUM_EPISODES = 500
 GAMMA = 0.95
-REWARD_THRESHOLD = 0.9
 LEARNING_RATE = 0.5
 EPSILON = 0.9
+RENDER_MODE = "ansi"
+MIN_EPSILON = 0.2
+DECAY = 0.9
 
 class QLearningAgent:
     """
@@ -76,6 +78,7 @@ class QLearningAgent:
         Returns:
             float: Total reward accumulated in the episode
         """
+        
         state, _ = self.env.reset()
         total_reward = 0
         for i in range(self.t_max):
@@ -101,9 +104,9 @@ class QLearningAgent:
         return policy
     
 
-class CustomFrozenLakeWrapper(Wrapper):
+class CustomCliffWalkingWrapper(Wrapper):
     """
-    A custom wrapper for the FrozenLake environment that modifies the reward structure.
+    A custom wrapper for the Cliff Walking environment that modifies the reward structure.
     """
     def __init__(self, env):
         """
@@ -124,36 +127,10 @@ class CustomFrozenLakeWrapper(Wrapper):
         Returns:
             tuple: (state, reward, is_done, truncated, info)
         """
-        prev_state = self.env.s
         state, reward, is_done, truncated, info = self.env.step(action)
-        # Bonificar, penalizar (PENALIZAR CAIDAS(estado final sin recompensa)/PENALIZAR MOVIMIENTOS)
-        if state == prev_state:
-            reward = -0.1
-        if reward == 0:
-            reward = -0.2
+        if action == 3:
+            reward = -2
         return state, reward, is_done, truncated, info
-    
-
-def test_episode(agent, env):
-    """
-    Run a single test episode with the trained agent.
-
-    Args:
-        agent (QLearningAgent): The trained agent
-        env: Gymnasium environment instance
-
-    Returns:
-        tuple: Final (state, reward, is_done, truncated, info)
-    """
-    env.reset()
-    is_done = False
-    t = 0
-
-    while not is_done:
-        action = agent.select_action()
-        state, reward, is_done, truncated, info = env.step(action)
-        t += 1
-    return state, reward, is_done, truncated, info
 
 def draw_rewards(rewards):
     """
@@ -181,20 +158,51 @@ def print_policy(policy):
     Args:
         policy (numpy.ndarray): Array of actions representing the policy
     """
-    visual_help = {0:'<', 1:'v', 2:'>', 3:'^'}
+    visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
     print(np.array(policy_arrows).reshape([-1, 4]))
 
-env = gym.make("CliffWalking-v0", render_mode="human", is_slippery=SLIPPERY)
+def rollout(env, policy, max_steps=300):
+    """
+    Execute one episode with the greedy policy.
 
-fixed_env = CustomFrozenLakeWrapper(env)
-agent = QLearningAgent(fixed_env, gamma=GAMMA, learning_rate=LEARNING_RATE, epsilon=EPSILON, t_max=100)
+    Returns
+    -------
+    reached_goal : bool
+    steps        : int
+    total_return : float
+    """
+    state, _ = env.reset()
+    total_return = 0.0
+    for t in range(1, max_steps + 1):
+        # print(env.render())               # returns an ASCII string
+        # r, c = divmod(state, 12)
+        # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
+
+        action = int(policy[state])
+        state, reward, is_done, truncated, _ = env.step(action)
+        total_return += reward
+
+        if is_done:                        # reached [3,11]
+            print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
+            return True, t, total_return
+        if truncated:                         # hit the TimeLimit wrapper
+            break
+
+    print("\n💥  Episode ended without reaching the goal\n")
+    return False, t, total_return
+
+env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
+
+env = CustomCliffWalkingWrapper(env)
+agent = QLearningAgent(env, gamma=GAMMA, learning_rate=LEARNING_RATE, epsilon=EPSILON, t_max=T_MAX)
 rewards = []
 for i in range(100):
+    agent.epsilon = max(MIN_EPSILON, EPSILON * (DECAY ** i))
     reward = agent.learn_from_episode()
     print("New reward: " + str(reward))
     rewards.append(reward)
-draw_rewards(rewards)
+# draw_rewards(rewards)
 
 policy = agent.policy()
 print_policy(policy)
@@ -214,3 +222,18 @@ for n_ep in range(NUM_EPISODES):
             break
     rewards.append(total_reward)
 draw_rewards(rewards)
+
+successes = 0
+steps_mean = 0
+rewards_count = 0
+episodes = NUM_EPISODES
+
+for ep in range(episodes):
+    print(f"\n=== Episode {ep} ===")
+    reached_goal, steps, G = rollout(env, policy)
+    successes += int(reached_goal)
+    steps_mean += steps
+    rewards_count += G
+
+steps_mean /= episodes
+print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")
