@@ -7,13 +7,13 @@ import collections
 
 # Constants
 SLIPPERY = True
-T_MAX = 100
+T_MAX = 200
 NUM_EPISODES = 100
 NUM_TRAJECTORIES = 500
 GAMMA = 0.95
-EPSILON = 1e-4
 RENDER_MODE = "ansi"
-MAX_ITERS = 1000
+MAX_ITERS = 500
+PATIENCE = 100    # iteraciones sin mejora para parar
 
 class DirectEstimationAgent:
     def __init__(self, env, gamma, num_trajectories):
@@ -26,8 +26,14 @@ class DirectEstimationAgent:
         """
         self.env = env
         self.state, _ = self.env.reset()
-        self.rewards = collections.defaultdict(float)
+
+        # Para R(s,a,s')
+        self.rewards_sum = collections.defaultdict(float)
+        self.rewards_count = collections.defaultdict(int)
+
+        # Para T(s,a,s')
         self.transits = collections.defaultdict(collections.Counter)
+
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
         self.num_trajectories = num_trajectories
@@ -41,12 +47,15 @@ class DirectEstimationAgent:
 
         Updates the rewards and transitions dictionaries with observed data.
         """
+        self.state, _ = self.env.reset()
+
         for _ in range(count):
             action = self.env.action_space.sample()
             new_state, reward, is_done, truncated, _ = self.env.step(action)
-            self.rewards[(self.state, action, new_state)] = reward
+            self.rewards_sum[(self.state, action, new_state)] += reward
+            self.rewards_count[(self.state, action, new_state)] += 1
             self.transits[(self.state, action)][new_state] += 1
-            if is_done:
+            if is_done or truncated:
                 self.state, _ = self.env.reset() 
             else: 
                 self.state = new_state
@@ -68,7 +77,7 @@ class DirectEstimationAgent:
             return 0.0
         action_value = 0.0
         for s_, count in target_counts.items():
-            r = self.rewards[(state, action, s_)]
+            r = self.rewards_sum[(state, action, s_)] / self.rewards_count[(state, action, s_)]
             prob = (count / total)
             action_value += prob*(r + self.gamma * self.V[s_])
         return action_value
@@ -153,10 +162,11 @@ def train(agent):
     rewards = []
     max_diffs = []
     t = 0
-    best_reward = 0.0
+    best_reward = -np.inf
     max_diff = 1.0
+    no_improve = 0
 
-    while max_diff > EPSILON and t < MAX_ITERS:
+    while t < MAX_ITERS:
         _, max_diff = agent.value_iteration()
         max_diffs.append(max_diff)
         print("After value iteration, max_diff = " + str(max_diff))
@@ -167,7 +177,14 @@ def train(agent):
         if reward_test > best_reward:
             print(f"Best reward updated {reward_test:.2f} at iteration {t}") 
             best_reward = reward_test
-    
+            no_improve = 0
+        else:
+            no_improve += 1
+
+        if no_improve >= PATIENCE:
+            print(f"Sin mejora en {PATIENCE} iteraciones. Parando.")
+            break
+
     return rewards, max_diffs
 
 def print_policy(policy):
@@ -242,33 +259,29 @@ policy = agent.policy()
 print_policy(policy)
 
 # Test the agent once it is trained
-is_done = False
-rewards = []
-for n_ep in range(NUM_EPISODES):
-    state, _ = env.reset()
-    print('Episode: ', n_ep)
-    total_reward = 0
-    for i in range(T_MAX):
-        action = agent.select_action(state)
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_reward = total_reward + reward
-        env.render()
-        if is_done:
-            break
-    rewards.append(total_reward)
-draw_rewards(rewards)
-
+test_rewards = []
 successes = 0
-steps_mean = 0
-rewards_count = 0
+total_steps = 0
+total_reward = 0
 episodes = NUM_EPISODES
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
-    reached_goal, steps, G = rollout(env, policy)
-    successes += int(reached_goal)
-    steps_mean += steps
-    rewards_count += G
+    render_episode = ep == 0
+    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
 
-steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")
+    test_rewards.append(G)
+    successes += int(reached_goal)
+    total_steps += steps
+    total_reward += G
+
+success_rate = successes / episodes
+mean_steps = total_steps / episodes
+mean_return = total_reward / episodes
+
+print(f"\n✅ Evaluación completa:")
+print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+print(f"Mean steps per episode: {mean_steps:.2f}")
+print(f"Mean return per episode: {mean_return:.2f}")
+
+draw_rewards(test_rewards)
