@@ -6,7 +6,7 @@ import numpy as np
 
 # Constants
 SLIPPERY = True
-T_MAX = 100
+T_MAX = 200
 NUM_EPISODES = 100
 GAMMA = 0.95
 EPSILON = 1e-8
@@ -232,34 +232,30 @@ policy = agent.policy()
 print_policy(policy)
 
 # Test the agent once it is trained
-is_done = False
-rewards = []
-for n_ep in range(NUM_EPISODES):
-    state, _ = env.reset()
-    print('Episode: ', n_ep)
-    total_reward = 0
-    for i in range(T_MAX):
-        action = int(policy[state])
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_reward = total_reward + reward
-        env.render()
-        if is_done:
-            break
-    rewards.append(total_reward)
-draw_rewards(rewards)
-
+test_rewards = []
 successes = 0
-steps_mean = 0
+total_steps = 0
+total_reward = 0
 episodes = NUM_EPISODES
-rewards_count = 0
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
-    reached_goal, steps, G = rollout(env, policy)
+    render_episode = ep == 0  
+    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+    
+    test_rewards.append(G)
     successes += int(reached_goal)
-    steps_mean += steps
-    rewards_count += G
+    total_steps += steps
+    total_reward += G
 
-steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")
+success_rate = successes / episodes
+mean_steps = total_steps / episodes
+mean_return = total_reward / episodes
+
+print(f"\n✅ Evaluación completa:")
+print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+print(f"Mean steps per episode: {mean_steps:.2f}")
+print(f"Mean return per episode: {mean_return:.2f}")
+
+draw_rewards(test_rewards)
 
