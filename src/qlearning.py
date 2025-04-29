@@ -8,14 +8,14 @@ from gymnasium import Wrapper
 
 # Constants
 SLIPPERY = True
-T_MAX = 200
-NUM_EPISODES = 500
+T_MAX = 250
+NUM_EPISODES = 2000
 GAMMA = 0.95
-LEARNING_RATE = 0.5
+LEARNING_RATE = 0.1
 EPSILON = 0.9
 RENDER_MODE = "ansi"
-MIN_EPSILON = 0.2
-DECAY = 0.9
+MIN_EPSILON = 0.1
+DECAY = 0.95
 
 class QLearningAgent:
     """
@@ -71,14 +71,14 @@ class QLearningAgent:
         td_error = td_target - self.Q[state, action]
         self.Q[state, action] += self.learning_rate * td_error
         
-    def learn_from_episode(self):
+    def learn_from_episode(self, num_episode):
         """
         Run one episode of learning, updating Q-values based on experience.
 
         Returns:
             float: Total reward accumulated in the episode
         """
-        
+        self.epsilon = max(MIN_EPSILON, EPSILON * (DECAY ** num_episode))
         state, _ = self.env.reset()
         total_reward = 0
         for i in range(self.t_max):
@@ -160,7 +160,7 @@ def print_policy(policy):
     """
     visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([-1, 4]))
+    print(np.array(policy_arrows).reshape([4, 12]))
 
 def rollout(env, policy, max_steps=300):
     """
@@ -192,14 +192,16 @@ def rollout(env, policy, max_steps=300):
     print("\n💥  Episode ended without reaching the goal\n")
     return False, t, total_return
 
+
 env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
 
 env = CustomCliffWalkingWrapper(env)
 agent = QLearningAgent(env, gamma=GAMMA, learning_rate=LEARNING_RATE, epsilon=EPSILON, t_max=T_MAX)
 rewards = []
-for i in range(100):
-    agent.epsilon = max(MIN_EPSILON, EPSILON * (DECAY ** i))
-    reward = agent.learn_from_episode()
+
+# Train the agent
+for i in range(NUM_EPISODES):
+    reward = agent.learn_from_episode(i)
     print("New reward: " + str(reward))
     rewards.append(reward)
 # draw_rewards(rewards)
@@ -207,33 +209,31 @@ for i in range(100):
 policy = agent.policy()
 print_policy(policy)
 
-is_done = False
-rewards = []
-for n_ep in range(NUM_EPISODES):
-    state, _ = env.reset()
-    print('Episode: ', n_ep)
-    total_reward = 0
-    for i in range(T_MAX):
-        action = agent.select_action(state, training=False)
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_reward = total_reward + reward
-        env.render()
-        if is_done:
-            break
-    rewards.append(total_reward)
-draw_rewards(rewards)
 
+# Test the agent once it is trained
+test_rewards = []
 successes = 0
-steps_mean = 0
-rewards_count = 0
+total_steps = 0
+total_reward = 0
 episodes = NUM_EPISODES
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
-    reached_goal, steps, G = rollout(env, policy)
+    render_episode = ep == 0  
+    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+    
+    test_rewards.append(G)
     successes += int(reached_goal)
-    steps_mean += steps
-    rewards_count += G
+    total_steps += steps
+    total_reward += G
 
-steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}, Mean return: {rewards_count/episodes:.2f}")
+success_rate = successes / episodes
+mean_steps = total_steps / episodes
+mean_return = total_reward / episodes
+
+print(f"\n✅ Evaluación completa:")
+print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+print(f"Mean steps per episode: {mean_steps:.2f}")
+print(f"Mean return per episode: {mean_return:.2f}")
+
+draw_rewards(test_rewards)
