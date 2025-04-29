@@ -168,7 +168,7 @@ def print_policy(policy):
     """
     visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([-1, 4]))
+    print(np.array(policy_arrows).reshape([4, 12]))
 
 def draw_rewards(rewards):
     """

@@ -7,13 +7,13 @@ import collections
 
 # Constants
 SLIPPERY = True
-T_MAX = 100
+T_MAX = 200
 NUM_EPISODES = 100
 NUM_TRAJECTORIES = 500
 GAMMA = 0.95
-EPSILON = 1e-4
+EPSILON = 1e-3
 RENDER_MODE = "ansi"
-MAX_ITERS = 1000
+MAX_ITERS = 500
 
 class DirectEstimationAgent:
     def __init__(self, env, gamma, num_trajectories):
@@ -26,8 +26,14 @@ class DirectEstimationAgent:
         """
         self.env = env
         self.state, _ = self.env.reset()
-        self.rewards = collections.defaultdict(float)
+
+        # Para R(s,a,s')
+        self.rewards_sum = collections.defaultdict(float)
+        self.rewards_count = collections.defaultdict(int)
+
+        # Para T(s,a,s')
         self.transits = collections.defaultdict(collections.Counter)
+
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
         self.num_trajectories = num_trajectories
@@ -41,12 +47,15 @@ class DirectEstimationAgent:
 
         Updates the rewards and transitions dictionaries with observed data.
         """
+        self.state, _ = self.env.reset()
+
         for _ in range(count):
             action = self.env.action_space.sample()
             new_state, reward, is_done, truncated, _ = self.env.step(action)
-            self.rewards[(self.state, action, new_state)] = reward
+            self.rewards_sum[(self.state, action, new_state)] += reward
+            self.rewards_count[(self.state, action, new_state)] += 1
             self.transits[(self.state, action)][new_state] += 1
-            if is_done:
+            if is_done or truncated:
                 self.state, _ = self.env.reset() 
             else: 
                 self.state = new_state
@@ -68,7 +77,7 @@ class DirectEstimationAgent:
             return 0.0
         action_value = 0.0
         for s_, count in target_counts.items():
-            r = self.rewards[(state, action, s_)]
+            r = self.rewards_sum[(state, action, s_)] / self.rewards_count[(state, action, s_)]
             prob = (count / total)
             action_value += prob*(r + self.gamma * self.V[s_])
         return action_value
@@ -153,7 +162,7 @@ def train(agent):
     rewards = []
     max_diffs = []
     t = 0
-    best_reward = 0.0
+    best_reward = -np.inf
     max_diff = 1.0
 
     while max_diff > EPSILON and t < MAX_ITERS:
