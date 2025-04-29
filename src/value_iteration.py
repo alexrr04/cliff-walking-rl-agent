@@ -6,7 +6,7 @@ import numpy as np
 
 # Constants
 SLIPPERY = True
-T_MAX = 100
+T_MAX = 200
 NUM_EPISODES = 100
 GAMMA = 0.95
 EPSILON = 1e-8
@@ -46,11 +46,6 @@ class ValueIterationAgent:
             value += prob * (reward + bootstrap)
         return value
 
-        # action_value = sum([prob * (reward + self.gamma * self.V[next_state])
-        #                     for prob, next_state, reward, _ 
-        #                     in self.env.unwrapped.P[state][action]]) 
-        # return action_value
-
     def select_action(self, state):
         """
         Select the best action for a given state based on current value estimates.
@@ -64,14 +59,6 @@ class ValueIterationAgent:
         
         q = [self.calc_action_value(state, a) for a in range(self.env.action_space.n)]
         return int(np.argmax(q)) 
-    
-        # best_action = best_value = None
-        # for action in range(self.env.action_space.n):
-        #     action_value = self.calc_action_value(state, action)
-        #     if not best_value or best_value < action_value:
-        #         best_value = action_value
-        #         best_action = action
-        # return best_action
 
     def value_iteration(self):
         """
@@ -142,7 +129,7 @@ def train(agent):
     rewards = []
     max_diffs = []
     t = 0
-    best_reward = 0.0
+    best_reward = -np.inf
     max_diff = 1.0
      
     while max_diff > EPSILON:
@@ -168,7 +155,7 @@ def print_policy(policy):
     """
     visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
     policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([-1, 4]))
+    print(np.array(policy_arrows).reshape([4, 12]))
 
 def draw_rewards(rewards):
     """
@@ -232,32 +219,30 @@ policy = agent.policy()
 print_policy(policy)
 
 # Test the agent once it is trained
-is_done = False
-rewards = []
-for n_ep in range(NUM_EPISODES):
-    state, _ = env.reset()
-    print('Episode: ', n_ep)
-    total_reward = 0
-    for i in range(T_MAX):
-        action = int(policy[state])
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_reward = total_reward + reward
-        env.render()
-        if is_done:
-            break
-    rewards.append(total_reward)
-draw_rewards(rewards)
-
+test_rewards = []
 successes = 0
-steps_mean = 0
+total_steps = 0
+total_reward = 0
 episodes = NUM_EPISODES
 
 for ep in range(episodes):
     print(f"\n=== Episode {ep} ===")
-    reached_goal, steps, G = rollout(env, policy)
+    render_episode = ep == 0  
+    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+    
+    test_rewards.append(G)
     successes += int(reached_goal)
-    steps_mean += steps
+    total_steps += steps
+    total_reward += G
 
-steps_mean /= episodes
-print(f"\nSuccess rate: {successes}/{episodes}, Mean steps: {steps_mean:.2f}")
+success_rate = successes / episodes
+mean_steps = total_steps / episodes
+mean_return = total_reward / episodes
+
+print(f"\n✅ Evaluación completa:")
+print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+print(f"Mean steps per episode: {mean_steps:.2f}")
+print(f"Mean return per episode: {mean_return:.2f}")
+
+draw_rewards(test_rewards)
 
