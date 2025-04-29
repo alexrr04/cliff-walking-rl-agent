@@ -46,11 +46,6 @@ class ValueIterationAgent:
             value += prob * (reward + bootstrap)
         return value
 
-        # action_value = sum([prob * (reward + self.gamma * self.V[next_state])
-        #                     for prob, next_state, reward, _ 
-        #                     in self.env.unwrapped.P[state][action]]) 
-        # return action_value
-
     def select_action(self, state):
         """
         Select the best action for a given state based on current value estimates.
@@ -64,14 +59,6 @@ class ValueIterationAgent:
         
         q = [self.calc_action_value(state, a) for a in range(self.env.action_space.n)]
         return int(np.argmax(q)) 
-    
-        # best_action = best_value = None
-        # for action in range(self.env.action_space.n):
-        #     action_value = self.calc_action_value(state, action)
-        #     if not best_value or best_value < action_value:
-        #         best_value = action_value
-        #         best_action = action
-        # return best_action
 
     def value_iteration(self):
         """
