@@ -142,7 +142,7 @@ def train(agent):
     rewards = []
     max_diffs = []
     t = 0
-    best_reward = 0.0
+    best_reward = -np.inf
     max_diff = 1.0
      
     while max_diff > EPSILON:
