@@ -6,7 +6,7 @@ import numpy as np
 from gymnasium import Wrapper
 
 SLIPPERY = False
-TRAINING_EPISODES = 5000
+TRAINING_EPISODES = 1000
 NUM_EPISODES = 500
 GAMMA = 0.9
 T_MAX = 200
