@@ -6,11 +6,11 @@ import numpy as np
 from gymnasium import Wrapper
 
 SLIPPERY = False
-TRAINING_EPISODES = 1000
+TRAINING_EPISODES = 5000
 NUM_EPISODES = 500
 GAMMA = 0.9
 T_MAX = 200
-LEARNING_RATE = 0.01    
+LEARNING_RATE = 0.99    
 LEARNING_RATE_DECAY = 0.99
 RENDER_MODE = "ansi"
 
