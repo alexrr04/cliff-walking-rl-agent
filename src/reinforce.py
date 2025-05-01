@@ -7,10 +7,10 @@ from gymnasium import Wrapper
 
 SLIPPERY = False
 TRAINING_EPISODES = 1000
-NUM_EPISODES = 1000
+NUM_EPISODES = 500
 GAMMA = 0.9
 T_MAX = 200
-LEARNING_RATE = 0.1
+LEARNING_RATE = 0.01    
 LEARNING_RATE_DECAY = 0.99
 RENDER_MODE = "ansi"
 
@@ -43,28 +43,41 @@ class ReinforceAgent:
             discounted_rewards[t] = running_add
         loss = -np.sum(np.log(self.policy_table[states, actions]) * discounted_rewards) / len(states)
 
-        policy_logits = np.log(self.policy_table)
+        # policy_logits = np.log(self.policy_table)
         for t in range(len(states)):
+
+            s, a = states[t], actions[t]
 
             G_t = discounted_rewards[t]
 
-            # reconstrucción de π(a|s;θ) desde los logits
-            action_probs = np.exp(policy_logits[states[t]])
-            action_probs /= np.sum(action_probs)
+            probs = self.policy_table[s]
 
-            # ∇ log π(aₜ|sₜ) para softmax es (1 - π(aₜ|sₜ))
-            policy_gradient = G_t * (1 - action_probs[actions[t]])
+            # Move every action logit a bit down …
+            self.policy_table[s] += self.learning_rate * G_t * (-probs)
+            # … and the chosen action a bit up (+1 in the one-hot)
+            self.policy_table[s, a] += self.learning_rate * G_t
 
-            # ascenso de gradiente:
-            policy_logits[states[t], actions[t]] += self.learning_rate * policy_gradient
+            # numerical safety & renormalisation
+            self.policy_table[s] = np.clip(self.policy_table[s], 1e-8, None)
+            self.policy_table[s] /= self.policy_table[s].sum()
+
+            # # reconstrucción de π(a|s;θ) desde los logits
+            # action_probs = np.exp(policy_logits[states[t]])
+            # action_probs /= np.sum(action_probs)
+
+            # # ∇ log π(aₜ|sₜ) para softmax es (1 - π(aₜ|sₜ))
+            # policy_gradient = G_t * (1 - action_probs[actions[t]])
+
+            # # ascenso de gradiente:
+            # policy_logits[states[t], actions[t]] += self.learning_rate * policy_gradient
 
             # Alternativa:
             # policy_gradient = 1.0 / action_probs[actions[t]]
             # policy_logits[states[t], actions[t]] += self.learning_rate * G_t * policy_gradient
 
-        # re-normalización a probabilidades
-        exp_logits = np.exp(policy_logits)
-        self.policy_table = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
+        # # re-normalización a probabilidades
+        # exp_logits = np.exp(policy_logits)
+        # self.policy_table = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
         return loss
 
     def learn_from_episode(self):
@@ -75,11 +88,11 @@ class ReinforceAgent:
         total_reward = 0
         while not done and step < T_MAX:
             action = self.select_action(state)
-            next_state, reward, done, terminated, _ = self.env.step(action)
+            next_state, reward, done, truncated, _ = self.env.step(action)
             episode.append((state, action, reward))
             state = next_state
-            total_reward = total_reward + reward
-            step = step + 1
+            total_reward += reward
+            step += 1
         loss = self.update_policy(zip(*episode))
         self.learning_rate = self.learning_rate * self.lr_decay
         return total_reward, loss
