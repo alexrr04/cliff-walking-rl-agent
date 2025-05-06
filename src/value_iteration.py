@@ -207,42 +207,84 @@ def rollout(env, policy, max_steps=300):
     return False, t, total_return
 
 
-# Initialize the environment
-env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
-
-# Initialize and train the agent
-agent = ValueIterationAgent(env, gamma=GAMMA)
-rewards, max_diffs = train(agent)
-
-# Compute and print agent's policy
-policy = agent.policy()
-print_policy(policy)
-
-# Test the agent once it is trained
-test_rewards = []
-successes = 0
-total_steps = 0
-total_reward = 0
-episodes = NUM_EPISODES
-
-for ep in range(episodes):
-    print(f"\n=== Episode {ep} ===")
-    render_episode = ep == 0  
-    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+def run_value_iteration():
+    """
+    Run the Value Iteration algorithm on the CliffWalking environment.
+    """
+    # Set up the environment
+    env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
     
-    test_rewards.append(G)
-    successes += int(reached_goal)
-    total_steps += steps
-    total_reward += G
+    # Initialize and train the agent
+    agent = ValueIterationAgent(env, gamma=GAMMA)
+    rewards, max_diffs = train(agent)
 
-success_rate = successes / episodes
-mean_steps = total_steps / episodes
-mean_return = total_reward / episodes
+    # Compute and print agent's policy
+    policy = agent.policy()
+    print_policy(policy)
 
-print(f"\n✅ Evaluación completa:")
-print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
-print(f"Mean steps per episode: {mean_steps:.2f}")
-print(f"Mean return per episode: {mean_return:.2f}")
+    # Test the agent once it is trained
+    test_rewards = []
+    successes = 0
+    total_steps = 0
+    total_reward = 0
+    episodes = NUM_EPISODES
 
-draw_rewards(test_rewards)
+    for ep in range(episodes):
+        print(f"\n=== Episode {ep} ===")
+        render_episode = ep == 0  
+        reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+        
+        test_rewards.append(G)
+        successes += int(reached_goal)
+        total_steps += steps
+        total_reward += G
+
+    success_rate = successes / episodes
+    mean_steps = total_steps / episodes
+    mean_return = total_reward / episodes
+
+    print(f"\n✅ Evaluación completa:")
+    print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+    print(f"Mean steps per episode: {mean_steps:.2f}")
+    print(f"Mean return per episode: {mean_return:.2f}")
+
+
+# # Initialize the environment
+# env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
+
+# # Initialize and train the agent
+# agent = ValueIterationAgent(env, gamma=GAMMA)
+# rewards, max_diffs = train(agent)
+
+# # Compute and print agent's policy
+# policy = agent.policy()
+# print_policy(policy)
+
+# # Test the agent once it is trained
+# test_rewards = []
+# successes = 0
+# total_steps = 0
+# total_reward = 0
+# episodes = NUM_EPISODES
+
+# for ep in range(episodes):
+#     print(f"\n=== Episode {ep} ===")
+#     render_episode = ep == 0  
+#     reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+    
+#     test_rewards.append(G)
+#     successes += int(reached_goal)
+#     total_steps += steps
+#     total_reward += G
+
+# success_rate = successes / episodes
+# mean_steps = total_steps / episodes
+# mean_return = total_reward / episodes
+
+# print(f"\n✅ Evaluación completa:")
+# print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+# print(f"Mean steps per episode: {mean_steps:.2f}")
+# print(f"Mean return per episode: {mean_return:.2f}")
+
+# draw_rewards(test_rewards)
 
