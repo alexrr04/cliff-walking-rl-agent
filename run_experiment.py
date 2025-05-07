@@ -10,6 +10,7 @@ from datetime import datetime
 from src.value_iteration import ValueIterationAgent
 from src.direct_estimation import DirectEstimationAgent
 from src.qlearning import QLearningAgent
+from src.reinforce import ReinforceAgent
 from src.utils.evaluator import evaluate_policy
 from src.utils.plotter import draw_rewards
 
@@ -147,23 +148,6 @@ def run_direct_estimation_experiment(exp_dir):
     plot_path = os.path.join(exp_dir, "rewards_plot.png")
     draw_rewards(results['rewards'], plot_path)
 
-def clear_files():
-    experiments_dir = "experiments"
-    if os.path.exists(experiments_dir):
-        for algo_dir in ["valueIteration", "directEstimation", "qlearning"]:
-            algo_path = os.path.join(experiments_dir, algo_dir)
-            if os.path.exists(algo_path):
-                for exp_dir in os.listdir(algo_path):
-                    exp_path = os.path.join(algo_path, exp_dir)
-                    if os.path.isdir(exp_path):
-                        for file in os.listdir(exp_path):
-                            os.remove(os.path.join(exp_path, file))
-                        os.rmdir(exp_path)
-                os.rmdir(algo_path)
-        print("🧹 All experiment files have been cleared!")
-    else:
-        print("📂 No experiment files found.")
-
 def run_qlearning_experiment(exp_dir):
     print("\n--------------------------")
     print("  🤖 Q-Learning 🤖 ")
@@ -228,17 +212,100 @@ def run_qlearning_experiment(exp_dir):
     plot_path = os.path.join(exp_dir, "rewards_plot.png")
     draw_rewards(results['rewards'], plot_path)
 
+def run_reinforce_experiment(exp_dir):
+    print("\n--------------------------")
+    print("  🤖 REINFORCE 🤖 ")
+    print("--------------------------\n")
+
+    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.9]: "))
+    learning_rate = float(input("Enter learning rate [e.g. 0.99]: "))
+    lr_decay = float(input("Enter learning rate decay [e.g. 0.99]: "))
+    training_episodes = int(input("Number of episodes for training [e.g. 1000]: "))
+    t_max = int(input("Enter maximum steps per episode [e.g. 200]: "))
+    eval_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
+
+    # Create environment and agent 
+    env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
+    agent = ReinforceAgent(env, gamma=gamma, learning_rate=learning_rate, lr_decay=lr_decay, training_episodes=training_episodes)
+
+    print("\n🚀 Training in progress...")
+    start_time = time.time()
+    
+    # Train the agent
+    rewards = []
+    losses = []
+    for i in range(training_episodes):
+        reward, loss = agent.learn_from_episode()
+        rewards.append(reward)
+        losses.append(loss)
+        
+    training_time = time.time() - start_time
+
+    policy, _ = agent.policy()
+    print("\n🎯 Learned Policy:")
+    print(agent.print_policy(policy))
+
+    # Save the learned policy
+    policy_path = os.path.join(exp_dir, "learned_policy.txt")
+    save_policy(policy, policy_path)
+
+    # Evaluate the policy using the evaluator
+    results = evaluate_policy(env, policy, num_episodes=eval_episodes)
+    
+    print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
+    print(f"🎯 Success rate: {results['success_rate']:.2%}")
+    print(f"⏱️ Mean steps per episode: {results['mean_steps']:.2f}")
+    print(f"⚡ Training time: {training_time:.2f} seconds")
+
+    # Save metrics 
+    metrics = {
+        "gamma": gamma,
+        "learning_rate": learning_rate,
+        "learning_rate_decay": lr_decay,
+        "training_episodes": training_episodes,
+        "mean_reward": results['mean_return'],
+        "mean_steps": results['mean_steps'],
+        "success_rate": results['success_rate'],
+        "training_time": training_time,
+        "final_learning_rate": agent.learning_rate,
+        "mean_loss": np.mean(losses)
+    }
+    
+    save_metrics("metrics.csv", metrics, exp_dir)
+
+    # Generate and save rewards plot 
+    plot_path = os.path.join(exp_dir, "rewards_plot.png")
+    draw_rewards(results['rewards'], plot_path)
+
+def clear_files():
+    experiments_dir = "experiments"
+    if os.path.exists(experiments_dir):
+        for algo_dir in ["valueIteration", "directEstimation", "qlearning", "reinforce"]:
+            algo_path = os.path.join(experiments_dir, algo_dir)
+            if os.path.exists(algo_path):
+                for exp_dir in os.listdir(algo_path):
+                    exp_path = os.path.join(algo_path, exp_dir)
+                    if os.path.isdir(exp_path):
+                        for file in os.listdir(exp_path):
+                            os.remove(os.path.join(exp_path, file))
+                        os.rmdir(exp_path)
+                os.rmdir(algo_path)
+        print("🧹 All experiment files have been cleared!")
+    else:
+        print("📂 No experiment files found.")
+
 def select_algorithm():
     print("\n🤖 Available Algorithms:")
     print("1. Value Iteration")
     print("2. Direct Estimation")
     print("3. Q-Learning")
+    print("4. REINFORCE")
     while True:
         try:
             choice = int(input("\nSelect algorithm: "))
-            if choice in [1, 2, 3]:
+            if choice in [1, 2, 3, 4]:
                 return choice
-            print("❌ Please enter 1, 2, or 3")
+            print("❌ Please enter 1, 2, 3, or 4")
         except ValueError:
             print("❌ Please enter a valid number")
 
@@ -262,9 +329,12 @@ if __name__ == "__main__":
         elif algorithm == 2:
             algo_dir = "directEstimation"
             run_experiment = run_direct_estimation_experiment
-        else:
+        elif algorithm == 3:
             algo_dir = "qlearning"
             run_experiment = run_qlearning_experiment
+        else:  # algorithm == 4
+            algo_dir = "reinforce"
+            run_experiment = run_reinforce_experiment
         
         exp_dir = os.path.join("experiments", algo_dir, f"experiment_{timestamp}")
         os.makedirs(exp_dir, exist_ok=True)
