@@ -57,11 +57,6 @@ def evaluate_policy(env, policy, num_episodes=100, max_steps=200):
     mean_steps = total_steps / num_episodes
     mean_return = total_reward / num_episodes
 
-    print(f"\n✨ Complete Evaluation:")
-    print(f"Success rate: {successes}/{num_episodes} = {success_rate:.2%}")
-    print(f"Mean steps per episode: {mean_steps:.2f}")
-    print(f"Mean return per episode: {mean_return:.2f}")
-
     return {
         'success_rate': success_rate,
         'mean_steps': mean_steps,

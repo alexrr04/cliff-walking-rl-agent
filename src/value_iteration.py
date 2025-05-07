@@ -17,7 +17,7 @@ class ValueIterationAgent:
     A Value Iteration agent implementation for the CliffWalking environment.
     Learns the optimal policy through iterative value function updates.
     """
-    def __init__(self, env, gamma):
+    def __init__(self, env, gamma, epsilon):
         """
         Initialize the Value Iteration agent.
 
@@ -28,6 +28,7 @@ class ValueIterationAgent:
         self.env = env
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
+        self.epsilon = epsilon
         
     def calc_action_value(self, state, action):
         """
@@ -110,7 +111,7 @@ class ValueIterationAgent:
         best_reward = -np.inf
         max_diff = 1.0
         
-        while max_diff > EPSILON:
+        while max_diff > self.epsilon:
             _, max_diff = self.value_iteration()
             max_diffs.append(max_diff)
             print("After value iteration, max_diff = " + str(max_diff))
