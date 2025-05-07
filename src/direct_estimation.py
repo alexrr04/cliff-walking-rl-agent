@@ -16,7 +16,7 @@ MAX_ITERS = 500
 PATIENCE = 100    # iteraciones sin mejora para parar
 
 class DirectEstimationAgent:
-    def __init__(self, env, gamma, num_trajectories):
+    def __init__(self, env, gamma, num_trajectories, max_iters):
         """
         Initialize the Value Iteration agent.
 
@@ -37,6 +37,7 @@ class DirectEstimationAgent:
         self.V = np.zeros(self.env.observation_space.n)
         self.gamma = gamma
         self.num_trajectories = num_trajectories
+        self.max_iters = max_iters
 
     def play_n_random_steps(self, count):
         """
@@ -146,10 +147,10 @@ class DirectEstimationAgent:
         reward_test = 0.0
         for i in range(NUM_EPISODES):
             total_reward = 0.0
-            state, _ = env.reset()
+            state, _ = self.env.reset()
             for i in range(T_MAX):
                 action = self.select_action(state)
-                new_state, new_reward, is_done, truncated, _ = env.step(action)
+                new_state, new_reward, is_done, truncated, _ = self.env.step(action)
                 total_reward += new_reward
                 if is_done: 
                     break
@@ -166,7 +167,7 @@ class DirectEstimationAgent:
         max_diff = 1.0
         no_improve = 0
 
-        while t < MAX_ITERS:
+        while t < self.max_iters:
             _, max_diff = self.value_iteration()
             max_diffs.append(max_diff)
             print("After value iteration, max_diff = " + str(max_diff))
