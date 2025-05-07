@@ -93,156 +93,156 @@ class ValueIterationAgent:
             self._policy[s] = np.argmax(Q_values)   
         return self._policy
     
+    def train(self): 
+        """
+        Train the agent using value iteration until convergence.
 
-def check_improvements():
-    """
-    Test the current agent policy over multiple episodes.
+        Args:
+            agent (ValueIterationAgent): The agent to train
 
-    Returns:
-        float: Average reward across test episodes
-    """
-    reward_test = 0.0
-    for i in range(NUM_EPISODES):
-        total_reward = 0.0
-        state, _ = env.reset()
-        for i in range(T_MAX):
-            action = agent.select_action(state)
-            new_state, new_reward, is_done, *_ = env.step(action)
-            total_reward += new_reward
-            if is_done: 
-                break
-            state = new_state
-        reward_test += total_reward
-    reward_avg = reward_test / NUM_EPISODES
-    return reward_avg
-
-def train(agent): 
-    """
-    Train the agent using value iteration until convergence.
-
-    Args:
-        agent (ValueIterationAgent): The agent to train
-
-    Returns:
-        tuple: (List of rewards during training, List of maximum differences per iteration)
-    """
-    rewards = []
-    max_diffs = []
-    t = 0
-    best_reward = -np.inf
-    max_diff = 1.0
-     
-    while max_diff > EPSILON:
-        _, max_diff = agent.value_iteration()
-        max_diffs.append(max_diff)
-        print("After value iteration, max_diff = " + str(max_diff))
-        t += 1
-        reward_test = check_improvements()
-        rewards.append(reward_test)
-               
-        if reward_test > best_reward:
-            print(f"Best reward updated {reward_test:.2f} at iteration {t}") 
-            best_reward = reward_test
+        Returns:
+            tuple: (List of rewards during training, List of maximum differences per iteration)
+        """
+        print("Training agent using value iteration with gamma = " + str(self.gamma) + " ...\n")
+        rewards = []
+        max_diffs = []
+        t = 0
+        best_reward = -np.inf
+        max_diff = 1.0
+        
+        while max_diff > EPSILON:
+            _, max_diff = self.value_iteration()
+            max_diffs.append(max_diff)
+            print("After value iteration, max_diff = " + str(max_diff))
+            t += 1
+            reward_test = self.check_improvements()
+            rewards.append(reward_test)
+                
+            if reward_test > best_reward:
+                print(f"Best reward updated {reward_test:.2f} at iteration {t}") 
+                best_reward = reward_test
+        
+        return rewards, max_diffs
     
-    return rewards, max_diffs
+    def check_improvements(self):
+        """
+        Test the current agent policy over multiple episodes.
 
-def print_policy(policy):
-    """
-    Print a visual representation of the policy using arrows.
+        Returns:
+            float: Average reward across test episodes
+        """
+        reward_test = 0.0
+        for i in range(NUM_EPISODES):
+            total_reward = 0.0
+            state, _ = self.env.reset()
+            for i in range(T_MAX):
+                action = self.select_action(state)
+                new_state, new_reward, is_done, *_ = self.env.step(action)
+                total_reward += new_reward
+                if is_done: 
+                    break
+                state = new_state
+            reward_test += total_reward
+        reward_avg = reward_test / NUM_EPISODES
+        return reward_avg
 
-    Args:
-        policy (numpy.ndarray): Array of actions representing the policy
-    """
-    visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
-    policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([4, 12]))
+    def print_policy(self, policy):
+        """
+        Print a visual representation of the policy using arrows.
 
-def draw_rewards(rewards):
-    """
-    Plot the rewards obtained during training/testing.
+        Args:
+            policy (numpy.ndarray): Array of actions representing the policy
+        """
+        visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
+        policy_arrows = [visual_help[x] for x in policy]
+        print(np.array(policy_arrows).reshape([4, 12]))
 
-    Args:
-        rewards (list): List of rewards to plot
-    """
-    data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
-    plt.figure(figsize=(10, 6))
-    sns.lineplot(x='Episode', y='Reward', data=data)
+# def draw_rewards(rewards):
+#     """
+#     Plot the rewards obtained during training/testing.
 
-    plt.title('Rewards Over Episodes')
-    plt.xlabel('Episode')
-    plt.ylabel('Reward')
-    plt.grid(True)
-    plt.tight_layout()
+#     Args:
+#         rewards (list): List of rewards to plot
+#     """
+#     data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
+#     plt.figure(figsize=(10, 6))
+#     sns.lineplot(x='Episode', y='Reward', data=data)
 
-    plt.show()
+#     plt.title('Rewards Over Episodes')
+#     plt.xlabel('Episode')
+#     plt.ylabel('Reward')
+#     plt.grid(True)
+#     plt.tight_layout()
 
-def rollout(env, policy, max_steps=300):
-    """
-    Execute one episode with the greedy policy.
+#     plt.show()
 
-    Returns
-    -------
-    reached_goal : bool
-    steps        : int
-    total_return : float
-    """
-    state, _ = env.reset()
-    total_return = 0.0
-    for t in range(1, max_steps + 1):
-        # print(env.render())               # returns an ASCII string
-        # r, c = divmod(state, 12)
-        # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
+# def rollout(env, policy, max_steps=300):
+#     """
+#     Execute one episode with the greedy policy.
 
-        action = policy[state]
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_return += reward
+#     Returns
+#     -------
+#     reached_goal : bool
+#     steps        : int
+#     total_return : float
+#     """
+#     state, _ = env.reset()
+#     total_return = 0.0
+#     for t in range(1, max_steps + 1):
+#         # print(env.render())               # returns an ASCII string
+#         # r, c = divmod(state, 12)
+#         # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
 
-        if is_done:                        # reached [3,11]
-            print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
-            return True, t, total_return
-        if truncated:                         # hit the TimeLimit wrapper
-            break
+#         action = policy[state]
+#         state, reward, is_done, truncated, _ = env.step(action)
+#         total_return += reward
 
-    print("\n💥  Episode ended without reaching the goal\n")
-    return False, t, total_return
+#         if is_done:                        # reached [3,11]
+#             print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
+#             return True, t, total_return
+#         if truncated:                         # hit the TimeLimit wrapper
+#             break
+
+#     print("\n💥  Episode ended without reaching the goal\n")
+#     return False, t, total_return
 
 
-# Initialize the environment
-env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
+# # Initialize the environment
+# env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
 
-# Initialize and train the agent
-agent = ValueIterationAgent(env, gamma=GAMMA)
-rewards, max_diffs = train(agent)
+# # Initialize and train the agent
+# agent = ValueIterationAgent(env, gamma=GAMMA)
+# rewards, max_diffs = train(agent)
 
-# Compute and print agent's policy
-policy = agent.policy()
-print_policy(policy)
+# # Compute and print agent's policy
+# policy = agent.policy()
+# print_policy(policy)
 
-# Test the agent once it is trained
-test_rewards = []
-successes = 0
-total_steps = 0
-total_reward = 0
-episodes = NUM_EPISODES
+# # Test the agent once it is trained
+# test_rewards = []
+# successes = 0
+# total_steps = 0
+# total_reward = 0
+# episodes = NUM_EPISODES
 
-for ep in range(episodes):
-    print(f"\n=== Episode {ep} ===")
-    render_episode = ep == 0  
-    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
+# for ep in range(episodes):
+#     print(f"\n=== Episode {ep} ===")
+#     render_episode = ep == 0  
+#     reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
     
-    test_rewards.append(G)
-    successes += int(reached_goal)
-    total_steps += steps
-    total_reward += G
+#     test_rewards.append(G)
+#     successes += int(reached_goal)
+#     total_steps += steps
+#     total_reward += G
 
-success_rate = successes / episodes
-mean_steps = total_steps / episodes
-mean_return = total_reward / episodes
+# success_rate = successes / episodes
+# mean_steps = total_steps / episodes
+# mean_return = total_reward / episodes
 
-print(f"\n✅ Evaluación completa:")
-print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
-print(f"Mean steps per episode: {mean_steps:.2f}")
-print(f"Mean return per episode: {mean_return:.2f}")
+# print(f"\n✅ Evaluación completa:")
+# print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+# print(f"Mean steps per episode: {mean_steps:.2f}")
+# print(f"Mean return per episode: {mean_return:.2f}")
 
-draw_rewards(test_rewards)
+# draw_rewards(test_rewards)
 
