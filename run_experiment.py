@@ -9,6 +9,7 @@ import time
 from datetime import datetime
 from src.value_iteration import ValueIterationAgent
 from src.direct_estimation import DirectEstimationAgent
+from src.qlearning import QLearningAgent
 from src.utils.evaluator import evaluate_policy
 from src.utils.plotter import draw_rewards
 
@@ -149,7 +150,7 @@ def run_direct_estimation_experiment(exp_dir):
 def clear_files():
     experiments_dir = "experiments"
     if os.path.exists(experiments_dir):
-        for algo_dir in ["valueIteration", "directEstimation"]:
+        for algo_dir in ["valueIteration", "directEstimation", "qlearning"]:
             algo_path = os.path.join(experiments_dir, algo_dir)
             if os.path.exists(algo_path):
                 for exp_dir in os.listdir(algo_path):
@@ -163,16 +164,81 @@ def clear_files():
     else:
         print("📂 No experiment files found.")
 
+def run_qlearning_experiment(exp_dir):
+    print("\n--------------------------")
+    print("  🤖 Q-Learning 🤖 ")
+    print("--------------------------\n")
+
+    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.95]: "))
+    num_episodes = int(input("Number of episodes for training [e.g. 2000]: "))
+    learning_rate = float(input("Enter learning rate [e.g. 0.1]: "))
+    epsilon = float(input("Enter initial epsilon value [e.g. 0.9]: "))
+    decay = float(input("Enter epsilon decay rate [e.g. 0.95]: "))
+    t_max = int(input("Enter maximum steps per episode [e.g. 250]: "))
+    eval_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
+
+    # Create environment and agent 
+    env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
+    agent = QLearningAgent(env, gamma=gamma, learning_rate=learning_rate, epsilon=epsilon, t_max=t_max, decay=decay)
+
+    print("\n🚀 Training in progress...")
+    start_time = time.time()
+    
+    # Train the agent
+    rewards = []
+    for i in range(num_episodes):
+        reward = agent.learn_from_episode(i)
+        rewards.append(reward)
+        
+    training_time = time.time() - start_time
+
+    policy = agent.policy()
+    print("\n🎯 Learned Policy:")
+    print(agent.print_policy(policy))
+
+    # Save the learned policy
+    policy_path = os.path.join(exp_dir, "learned_policy.txt")
+    save_policy(policy, policy_path)
+
+    # Evaluate the policy using the evaluator
+    results = evaluate_policy(env, policy, num_episodes=eval_episodes)
+    
+    print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
+    print(f"🎯 Success rate: {results['success_rate']:.2%}")
+    print(f"⏱️ Mean steps per episode: {results['mean_steps']:.2f}")
+    print(f"⚡ Training time: {training_time:.2f} seconds")
+
+    # Save metrics 
+    metrics = {
+        "gamma": gamma,
+        "learning_rate": learning_rate,
+        "initial_epsilon": epsilon,
+        "epsilon_decay": decay,
+        "t_max": t_max,
+        "training_episodes": num_episodes,
+        "mean_reward": results['mean_return'],
+        "mean_steps": results['mean_steps'],
+        "success_rate": results['success_rate'],
+        "training_time": training_time
+    }
+    
+    save_metrics("metrics.csv", metrics, exp_dir)
+
+    # Generate and save rewards plot 
+    plot_path = os.path.join(exp_dir, "rewards_plot.png")
+    draw_rewards(results['rewards'], plot_path)
+
 def select_algorithm():
     print("\n🤖 Available Algorithms:")
     print("1. Value Iteration")
     print("2. Direct Estimation")
+    print("3. Q-Learning")
     while True:
         try:
             choice = int(input("\nSelect algorithm: "))
-            if choice in [1, 2]:
+            if choice in [1, 2, 3]:
                 return choice
-            print("❌ Please enter 1 or 2")
+            print("❌ Please enter 1, 2, or 3")
         except ValueError:
             print("❌ Please enter a valid number")
 
@@ -193,10 +259,13 @@ if __name__ == "__main__":
         if algorithm == 1:
             algo_dir = "valueIteration"
             run_experiment = run_value_iteration_experiment
-        else:
+        elif algorithm == 2:
             algo_dir = "directEstimation"
             run_experiment = run_direct_estimation_experiment
-            
+        else:
+            algo_dir = "qlearning"
+            run_experiment = run_qlearning_experiment
+        
         exp_dir = os.path.join("experiments", algo_dir, f"experiment_{timestamp}")
         os.makedirs(exp_dir, exist_ok=True)
 

@@ -22,7 +22,7 @@ class QLearningAgent:
     A Q-Learning agent implementation for the CliffWalking environment.
     Learns the optimal policy through experience using Q-learning algorithm.
     """
-    def __init__(self, env, gamma, learning_rate, epsilon, t_max):
+    def __init__(self, env, gamma, learning_rate, epsilon, t_max, decay):
         """
         Initialize the Q-Learning agent.
 
@@ -39,6 +39,7 @@ class QLearningAgent:
         self.learning_rate = learning_rate
         self.epsilon = epsilon
         self.t_max = t_max
+        self.decay = decay
 
     def select_action(self, state, training=True):
         """
@@ -78,7 +79,7 @@ class QLearningAgent:
         Returns:
             float: Total reward accumulated in the episode
         """
-        self.epsilon = max(MIN_EPSILON, EPSILON * (DECAY ** num_episode))
+        self.epsilon = max(MIN_EPSILON, self.epsilon * (self.decay** num_episode))
         state, _ = self.env.reset()
         total_reward = 0
         for i in range(self.t_max):
@@ -102,6 +103,17 @@ class QLearningAgent:
         for s in range(self.env.observation_space.n):
             policy[s] = np.argmax(np.array(self.Q[s]))        
         return policy
+    
+    def print_policy(self, policy):
+        """
+        Print a visual representation of the policy using arrows.
+
+        Args:
+            policy (numpy.ndarray): Array of actions representing the policy
+        """
+        visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
+        policy_arrows = [visual_help[x] for x in policy]
+        print(np.array(policy_arrows).reshape([4, 12]))
     
 
 class CustomCliffWalkingWrapper(Wrapper):
@@ -132,108 +144,99 @@ class CustomCliffWalkingWrapper(Wrapper):
             reward = -2
         return state, reward, is_done, truncated, info
 
-def draw_rewards(rewards):
-    """
-    Plot the rewards obtained during training/testing.
 
-    Args:
-        rewards (list): List of rewards to plot
-    """
-    data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
-    plt.figure(figsize=(10, 6))
-    sns.lineplot(x='Episode', y='Reward', data=data)
 
-    plt.title('Rewards Over Episodes')
-    plt.xlabel('Episode')
-    plt.ylabel('Reward')
-    plt.grid(True)
-    plt.tight_layout()
+# def draw_rewards(rewards):
+#     """
+#     Plot the rewards obtained during training/testing.
 
-    plt.show()
+#     Args:
+#         rewards (list): List of rewards to plot
+#     """
+#     data = pd.DataFrame({'Episode': range(1, len(rewards) + 1), 'Reward': rewards})
+#     plt.figure(figsize=(10, 6))
+#     sns.lineplot(x='Episode', y='Reward', data=data)
+
+#     plt.title('Rewards Over Episodes')
+#     plt.xlabel('Episode')
+#     plt.ylabel('Reward')
+#     plt.grid(True)
+#     plt.tight_layout()
+
+#     plt.show()
+
+# def rollout(env, policy, max_steps=300):
+#     """
+#     Execute one episode with the greedy policy.
+
+#     Returns
+#     -------
+#     reached_goal : bool
+#     steps        : int
+#     total_return : float
+#     """
+#     state, _ = env.reset()
+#     total_return = 0.0
+#     for t in range(1, max_steps + 1):
+#         # print(env.render())               # returns an ASCII string
+#         # r, c = divmod(state, 12)
+#         # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
+
+#         action = int(policy[state])
+#         state, reward, is_done, truncated, _ = env.step(action)
+#         total_return += reward
+
+#         if is_done:                        # reached [3,11]
+#             print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
+#             return True, t, total_return
+#         if truncated:                         # hit the TimeLimit wrapper
+#             break
+
+#     print("\n💥  Episode ended without reaching the goal\n")
+#     return False, t, total_return
+
+
+# env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
+
+# env = CustomCliffWalkingWrapper(env)
+# agent = QLearningAgent(env, gamma=GAMMA, learning_rate=LEARNING_RATE, epsilon=EPSILON, t_max=T_MAX)
+# rewards = []
+
+# # Train the agent
+# for i in range(NUM_EPISODES):
+#     reward = agent.learn_from_episode(i)
+#     print("New reward: " + str(reward))
+#     rewards.append(reward)
+# # draw_rewards(rewards)
+
+# policy = agent.policy()
+# print_policy(policy)
+
+
+# # Test the agent once it is trained
+# test_rewards = []
+# successes = 0
+# total_steps = 0
+# total_reward = 0
+# episodes = NUM_EPISODES
+
+# for ep in range(episodes):
+#     print(f"\n=== Episode {ep} ===")
+#     render_episode = ep == 0  
+#     reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
     
-def print_policy(policy):
-    """
-    Print a visual representation of the policy using arrows.
+#     test_rewards.append(G)
+#     successes += int(reached_goal)
+#     total_steps += steps
+#     total_reward += G
 
-    Args:
-        policy (numpy.ndarray): Array of actions representing the policy
-    """
-    visual_help = {0:'^', 1:'>', 2:'v', 3:'<'}
-    policy_arrows = [visual_help[x] for x in policy]
-    print(np.array(policy_arrows).reshape([4, 12]))
+# success_rate = successes / episodes
+# mean_steps = total_steps / episodes
+# mean_return = total_reward / episodes
 
-def rollout(env, policy, max_steps=300):
-    """
-    Execute one episode with the greedy policy.
+# print(f"\n✅ Evaluación completa:")
+# print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
+# print(f"Mean steps per episode: {mean_steps:.2f}")
+# print(f"Mean return per episode: {mean_return:.2f}")
 
-    Returns
-    -------
-    reached_goal : bool
-    steps        : int
-    total_return : float
-    """
-    state, _ = env.reset()
-    total_return = 0.0
-    for t in range(1, max_steps + 1):
-        # print(env.render())               # returns an ASCII string
-        # r, c = divmod(state, 12)
-        # print(f"t={t:3d}  state=({r},{c})  index={state:2d}")
-
-        action = int(policy[state])
-        state, reward, is_done, truncated, _ = env.step(action)
-        total_return += reward
-
-        if is_done:                        # reached [3,11]
-            print(f"\n🎉  Goal reached in {t} steps, return = {total_return}\n")
-            return True, t, total_return
-        if truncated:                         # hit the TimeLimit wrapper
-            break
-
-    print("\n💥  Episode ended without reaching the goal\n")
-    return False, t, total_return
-
-
-env = gym.make("CliffWalking-v0", render_mode=RENDER_MODE, is_slippery=SLIPPERY)
-
-env = CustomCliffWalkingWrapper(env)
-agent = QLearningAgent(env, gamma=GAMMA, learning_rate=LEARNING_RATE, epsilon=EPSILON, t_max=T_MAX)
-rewards = []
-
-# Train the agent
-for i in range(NUM_EPISODES):
-    reward = agent.learn_from_episode(i)
-    print("New reward: " + str(reward))
-    rewards.append(reward)
-# draw_rewards(rewards)
-
-policy = agent.policy()
-print_policy(policy)
-
-
-# Test the agent once it is trained
-test_rewards = []
-successes = 0
-total_steps = 0
-total_reward = 0
-episodes = NUM_EPISODES
-
-for ep in range(episodes):
-    print(f"\n=== Episode {ep} ===")
-    render_episode = ep == 0  
-    reached_goal, steps, G = rollout(env, policy, max_steps=T_MAX)
-    
-    test_rewards.append(G)
-    successes += int(reached_goal)
-    total_steps += steps
-    total_reward += G
-
-success_rate = successes / episodes
-mean_steps = total_steps / episodes
-mean_return = total_reward / episodes
-
-print(f"\n✅ Evaluación completa:")
-print(f"Success rate: {successes}/{episodes} = {success_rate:.2%}")
-print(f"Mean steps per episode: {mean_steps:.2f}")
-print(f"Mean return per episode: {mean_return:.2f}")
-
-draw_rewards(test_rewards)
+# draw_rewards(test_rewards)
