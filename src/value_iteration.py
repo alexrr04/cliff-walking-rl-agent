@@ -103,7 +103,7 @@ class ValueIterationAgent:
         Returns:
             tuple: (List of rewards during training, List of maximum differences per iteration)
         """
-        print("Training agent using value iteration with gamma = " + str(self.gamma) + " ...\n")
+        # print("Training agent using value iteration with gamma = " + str(self.gamma) + " ...\n")
         rewards = []
         max_diffs = []
         t = 0

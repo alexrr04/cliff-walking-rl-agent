@@ -6,22 +6,7 @@ import glob
 import argparse
 from datetime import datetime
 from src.value_iteration import ValueIterationAgent  # agent file
-from src.utils.evaluator import rollout
-
-
-def evaluate_policy(env, policy, num_episodes=100, max_steps=200):
-    total_reward = 0.0
-    for _ in range(num_episodes):
-        state, _ = env.reset()
-        episode_reward = 0
-        for _ in range(max_steps):
-            action = int(policy[state])
-            state, reward, done, *_ = env.step(action)
-            episode_reward += reward
-            if done:
-                break
-        total_reward += episode_reward
-    return total_reward / num_episodes
+from src.utils.evaluator import evaluate_policy
 
 def save_results(filename, data):
     os.makedirs("experiments", exist_ok=True)
@@ -30,7 +15,6 @@ def save_results(filename, data):
     return path
 
 def run_value_iteration_experiment():
-
     print("🌟====================🌟")
     print("  🤖 Value Iteration 🤖 ")
     print("🌟====================🌟")
@@ -48,18 +32,28 @@ def run_value_iteration_experiment():
     policy = agent.policy()
     print("\n🎯 Learned Policy:")
     print(agent.print_policy(policy))
-    avg_reward = evaluate_policy(env, policy, num_episodes=num_episodes)
 
-    print(f"\n🏆 Average reward after training: {avg_reward:.2f}")
-
-    # Save results 💾
+    # Evaluate the policy using the new evaluator
+    results = evaluate_policy(env, policy, num_episodes=num_episodes)
+    
+    # Save results 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"value_iteration_results_{timestamp}.csv"
-    save_path = save_results(filename, {
+    
+    # Save training progress
+    train_filename = f"value_iteration_training_{timestamp}.csv"
+    train_path = save_results(train_filename, {
         "iteration": list(range(1, len(max_diffs)+1)),
         "max_diff": max_diffs
     })
-    print(f"📁 Results saved in: {save_path}")
+    print(f"📁 Training results saved in: {train_path}")
+    
+    # Save evaluation results
+    eval_filename = f"value_iteration_evaluation_{timestamp}.csv"
+    eval_path = save_results(eval_filename, {
+        "episode": list(range(1, len(results['rewards'])+1)),
+        "reward": results['rewards']
+    })
+    print(f"📁 Evaluation results saved in: {eval_path}")
 
 def clear_csv_files():
     """Clear all CSV files in the experiments directory 🧹"""
