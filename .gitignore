@@ -20,10 +20,15 @@ docs/report/*.fls
 docs/report/*.run.xml
 docs/report/*.synctex
 
+# Ignore __pycache__ folders
+**/__pycache__/
+
 # Ignore VS Code settings
 .vscode/
 
 # Ignore practice statement
 Enunciat.pdf
 
+# Ignore experiments outputs
+experiments/*
 
