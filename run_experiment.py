@@ -311,10 +311,10 @@ def select_algorithm():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="🤖 Cliff Walking Experiment Runner")
-    parser.add_argument('--clear', action='store_true', help='Clear all experiment files')
+    parser.add_argument('--clean', action='store_true', help='Clear all experiment files')
     args = parser.parse_args()
 
-    if args.clear:
+    if args.clean:
         clear_files()
     else:
         print("\n🎮 === Cliff Walking Experiment Runner === 🤖")
