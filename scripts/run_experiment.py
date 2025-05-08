@@ -1,18 +1,22 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import gymnasium as gym
 import pandas as pd
 import numpy as np
-import os
 import glob
 import argparse
-import sys
 import time
 from datetime import datetime
+
 from src.value_iteration import ValueIterationAgent
 from src.direct_estimation import DirectEstimationAgent
 from src.qlearning import QLearningAgent
 from src.reinforce import ReinforceAgent
 from src.utils.evaluator import evaluate_policy
 from src.utils.plotter import draw_rewards
+
 
 class Logger:
     def __init__(self, filename):
@@ -309,7 +313,7 @@ def select_algorithm():
         except ValueError:
             print("❌ Please enter a valid number")
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="🤖 Cliff Walking Experiment Runner")
     parser.add_argument('--clean', action='store_true', help='Clear all experiment files')
     args = parser.parse_args()
@@ -348,3 +352,6 @@ if __name__ == "__main__":
         
         # Restore original stdout
         sys.stdout = sys.__stdout__
+
+if __name__ == "__main__":
+    main()
