@@ -3,6 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import time
 
 # Constants
 SLIPPERY = True
@@ -133,9 +134,10 @@ class ValueIterationAgent:
             float: Average reward across test episodes
         """
         reward_test = 0.0
-        for i in range(NUM_EPISODES):
+        for ep in range(NUM_EPISODES):
             total_reward = 0.0
             state, _ = self.env.reset()
+            
             for i in range(T_MAX):
                 action = self.select_action(state)
                 new_state, new_reward, is_done, *_ = self.env.step(action)
@@ -143,7 +145,9 @@ class ValueIterationAgent:
                 if is_done: 
                     break
                 state = new_state
+            
             reward_test += total_reward
+            
         reward_avg = reward_test / NUM_EPISODES
         return reward_avg
 
@@ -246,4 +250,3 @@ class ValueIterationAgent:
 # print(f"Mean return per episode: {mean_return:.2f}")
 
 # draw_rewards(test_rewards)
-
