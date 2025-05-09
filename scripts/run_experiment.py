@@ -339,14 +339,18 @@ def clear_files():
         for algo_dir in ["valueIteration", "directEstimation", "qlearning", "reinforce"]:
             algo_path = os.path.join(experiments_dir, algo_dir)
             if os.path.exists(algo_path):
+                # Only remove directories that start with "experiment_"
                 for exp_dir in os.listdir(algo_path):
-                    exp_path = os.path.join(algo_path, exp_dir)
-                    if os.path.isdir(exp_path):
-                        for file in os.listdir(exp_path):
-                            os.remove(os.path.join(exp_path, file))
-                        os.rmdir(exp_path)
-                os.rmdir(algo_path)
-        print("🧹 All experiment files have been cleared!")
+                    if exp_dir.startswith("experiment_"):
+                        exp_path = os.path.join(algo_path, exp_dir)
+                        if os.path.isdir(exp_path):
+                            for file in os.listdir(exp_path):
+                                os.remove(os.path.join(exp_path, file))
+                            os.rmdir(exp_path)
+                # Only remove the algorithm directory if it's empty
+                if not os.listdir(algo_path):
+                    os.rmdir(algo_path)
+        print("🧹 Default experiment files have been cleared!")
     else:
         print("📂 No experiment files found.")
 
