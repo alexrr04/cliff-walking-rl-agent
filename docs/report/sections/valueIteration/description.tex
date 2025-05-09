@@ -1,1 +1,53 @@
 \subsection{Descripción del algoritmo}
+
+La iteración por valor es un método de programación dinámica para resolver un Proceso de Decisión de Markov (MDP) y encontrar simultáneamente la función valor óptima \(V^*\) y la política óptima \(\pi^*\). Se basa en la relación de Bellman óptima:
+\[
+V^*(s) \;=\; \max_{a \in A}\;\sum_{s'} P(s' \mid s,a)\,\bigl[R(s,a,s') + \gamma\,V^*(s')\bigr],
+\]
+donde:
+\begin{itemize}
+  \item \(S\) es el conjunto de estados.
+  \item \(A\) es el conjunto de acciones.
+  \item \(P(s'\mid s,a)\) es la probabilidad de transición de \(s\) a \(s'\) dado \(a\).
+  \item \(R(s,a,s')\) es la recompensa recibida al transitar.
+  \item \(\gamma \in [0,1)\) es el factor de descuento.
+\end{itemize}
+
+A continuación se presenta el pseudocódigo genérico de Value Iteration que se ha implementado en este proyecto, seguido de las decisiones de diseño adoptadas en la implementación de Python.
+
+\begin{algorithm}[H]
+\caption{Value Iteration}
+\begin{algorithmic}[1]
+\Require Conjunto de estados $S$, conjunto de acciones $A$, $P(s'\mid s,a)$ y $R(s,a,s')$, factor de descuento $\gamma\in[0,1)$, umbral de convergencia $\varepsilon>0$
+\Ensure Función valor $V$ y política óptima $\pi$
+\State Inicializar $V(s)\gets 0,\;\forall s\in S$
+\Repeat
+    \State $\Delta\gets 0$
+    \ForAll{$s\in S$}
+        \State $V_{\text{old}}\gets V(s)$
+        \State $V(s)\gets \max_{a\in A}\;\sum_{s'}P(s'\mid s,a)\bigl[R(s,a,s')+\gamma\,V(s')\bigr]$
+        \State $\Delta\gets \max\bigl(\Delta,\;|V(s)-V_{\text{old}}|\bigr)$
+    \EndFor
+\Until{$\Delta\le\varepsilon$}
+\ForAll{$s\in S$}
+    \State $\pi(s)\gets \displaystyle\arg\max_{a\in A}\;\sum_{s'}P(s'\mid s,a)\bigl[R(s,a,s')+\gamma\,V(s')\bigr]$
+\EndFor
+\State \Return $V,\pi$
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\textbf{Decisiones de diseño en la implementación Python}
+\begin{enumerate}
+  \item \textbf{Cálculo de $Q(s,a)$ con manejo del estado terminal}: para calcular el valor de cada acción consideramos que si se ha llegado a un estado terminal, el término de arranque posterior (\emph{bootstrap}) se anula:
+  \[
+    Q(s,a) \;=\; \sum_{s'} p\,\bigl[r + \gamma\,V(s')\bigr]
+    \quad\longrightarrow\quad
+    \text{bootstrap}=0\;\text{si }s'\text{ es terminal.}
+  \]
+
+  De esta forma, se garantiza que al terminar el episodio, no se incorporen erróneamente estimaciones de valor posteriores a la terminación.
+
+  \item \textbf{Evaluación periódica de la política}: tras cada iteración de valor calculamos la recompensa media de la política actual en $N=100$ episodios de longitud máxima $T_{\max}=200$ (método \texttt{check\_improvements}), tanto para monitorizar progresos como para registrar la mejor recompensa y la iteración en que ocurre. Se fijan los valores de $N$ y $T_{\max}$ para evitar que el algoritmo se detenga por un número excesivo de episodios, lo que podría ocurrir si la política converge a una política subóptima. En este caso, el algoritmo se detendría sin haber explorado adecuadamente el espacio de estados.
+\end{enumerate}
