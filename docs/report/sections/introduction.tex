@@ -13,12 +13,41 @@ A continuación se caracteriza de forma detallada el entorno:
 \begin{itemize}
     \item \textbf{Observabilidad}: Totalmente observable. El agente recibe en cada paso su posición exacta en la cuadrícula, sin ruido ni información oculta, por lo que tiene acceso total al estado relevante.
     \item \textbf{Número de agentes}: Un único agente.
-    \item \textbf{Determinismo}: Estocástico, ya que está activado el modo \texttt{is\_slippery=True}. En este caso, por cada acción que el agente toma, hay una probabilidad de aproximadamente el 67\% de que el agente se resvale hacia una dirección perpendicular a la acción deseada.
+    \item \textbf{Determinismo}: Estocástico, ya que está activado el modo \texttt{is\_slippery=True}. En este caso, por cada acción que el agente toma, hay una probabilidad de aproximadamente el 66.7\% de que el agente se resvale hacia una dirección perpendicular a la acción deseada.
     \item \textbf{Atomicidad}: Secuencial. Las decisiones del agente tienen consecuencias que dependen de toda la historia de acciones y percepciones, y los efectos futuros de las acciones importan para maximizar la recompensa acumulada.
     \item \textbf{Dinamicidad}: Estático. El estado del entorno sólo cambia cuando el agente toma una acción; no hay cambios “por sí mismos” mientras el agente razona.
     \item \textbf{Continuidad}: Discreto. Tanto el espacio de estados (posiciones en la cuadrícula) como el de acciones (arriba, abajo, izquierda, derecha) y el tiempo de decisión son discretos.
     \item \textbf{Conocimiento}: Conocido. Las reglas de transición (aunque estocásticas) y la función de recompensa están definidas de antemano y son accesibles al agente.
 \end{itemize}
+
+\subsubsection{Espacio de acciones}
+
+El agente dispone de un conjunto finito de acciones
+\[
+  \mathcal{A} = \{\text{Arriba},\, \text{Derecha},\, \text{Abajo},\, \text{Izquierda}\},
+\]
+cada una de las cuales intenta desplazar al agente una celda en la dirección indicada.
+
+\subsubsection{Estados inicial y terminal}
+\begin{itemize}
+  \item \textbf{Estado inicial} $\;s_0=(3,0)$, correspondiente a la esquina inferior izquierda de la cuadrícula.
+  \item \textbf{Estado terminal} $\;s_T=(3,11)$, la meta en la esquina inferior derecha; al llegar aquí, el episodio termina.
+\end{itemize}
+
+Si durante el episodio el agente cae en el acantilado, este regresa al estado inicial $s_0$ y continua con el episodio.
+
+\subsubsection{Función de recompensa}
+La señal de recompensa $R(s,a,s')$ se define como:
+\[
+  R(s,a,s') = 
+  \begin{cases}
+    -100, & \text{si } s' \text{ es una celda de acantilado (cliff),}\\
+    -1,   & \text{en cada transición válida que no alcance la meta ni el cliff,}\\
+    \;0,  & \text{al alcanzar el estado terminal } s_T.
+  \end{cases}
+\]
+De este modo, el agente está incentivado a llegar cuanto antes a la meta evitando caer en el precipicio.
+
 
 \subsection{Entorno experimental}
 
