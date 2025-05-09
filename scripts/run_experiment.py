@@ -62,6 +62,10 @@ def run_value_iteration_experiment(exp_dir):
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
     agent = ValueIterationAgent(env, gamma=gamma, epsilon=epsilon)
 
+    # Create latest directory for temporary files
+    latest_dir = os.path.join("experiments", "valueIteration", "latest")
+    os.makedirs(latest_dir, exist_ok=True)
+
     print("\n🚀 Training in progress...")
     start_time = time.time()
     agent.train()
@@ -76,7 +80,16 @@ def run_value_iteration_experiment(exp_dir):
     save_policy(policy, policy_path)
 
     # Evaluate the policy using the evaluator
-    results = evaluate_policy(env, policy, num_episodes=num_episodes)
+    results = evaluate_policy(env, policy, num_episodes=num_episodes, algo_dir="valueIteration")
+
+    # Move evaluation metrics file to experiment directory
+    eval_metrics_file = os.path.join(latest_dir, "evaluation_metrics.csv")
+    if os.path.exists(eval_metrics_file):
+        os.rename(eval_metrics_file, os.path.join(exp_dir, "episode_metrics.csv"))
+    
+    # Remove latest directory
+    if os.path.exists(latest_dir):
+        os.rmdir(latest_dir)
     
     print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
     print(f"🎯 Success rate: {results['success_rate']:.2%}")
@@ -114,6 +127,10 @@ def run_direct_estimation_experiment(exp_dir):
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
     agent = DirectEstimationAgent(env, gamma=gamma, num_trajectories=num_trajectories, max_iters=max_iters)
 
+    # Create latest directory for temporary files
+    latest_dir = os.path.join("experiments", "directEstimation", "latest")
+    os.makedirs(latest_dir, exist_ok=True)
+
     print("\n🚀 Training in progress...")
     start_time = time.time()
     agent.train()
@@ -128,7 +145,16 @@ def run_direct_estimation_experiment(exp_dir):
     save_policy(policy, policy_path)
 
     # Evaluate the policy using the evaluator
-    results = evaluate_policy(env, policy, num_episodes=num_episodes)
+    results = evaluate_policy(env, policy, num_episodes=num_episodes, algo_dir="directEstimation")
+
+    # Move evaluation metrics file to experiment directory
+    eval_metrics_file = os.path.join(latest_dir, "evaluation_metrics.csv")
+    if os.path.exists(eval_metrics_file):
+        os.rename(eval_metrics_file, os.path.join(exp_dir, "episode_metrics.csv"))
+    
+    # Remove latest directory
+    if os.path.exists(latest_dir):
+        os.rmdir(latest_dir)
     
     print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
     print(f"🎯 Success rate: {results['success_rate']:.2%}")
@@ -169,6 +195,10 @@ def run_qlearning_experiment(exp_dir):
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
     agent = QLearningAgent(env, gamma=gamma, learning_rate=learning_rate, epsilon=epsilon, t_max=t_max, decay=decay)
 
+    # Create latest directory for temporary files
+    latest_dir = os.path.join("experiments", "qlearning", "latest")
+    os.makedirs(latest_dir, exist_ok=True)
+
     print("\n🚀 Training in progress...")
     start_time = time.time()
     
@@ -189,7 +219,16 @@ def run_qlearning_experiment(exp_dir):
     save_policy(policy, policy_path)
 
     # Evaluate the policy using the evaluator
-    results = evaluate_policy(env, policy, num_episodes=eval_episodes)
+    results = evaluate_policy(env, policy, num_episodes=eval_episodes, algo_dir="qlearning")
+
+    # Move evaluation metrics file to experiment directory
+    eval_metrics_file = os.path.join(latest_dir, "evaluation_metrics.csv")
+    if os.path.exists(eval_metrics_file):
+        os.rename(eval_metrics_file, os.path.join(exp_dir, "episode_metrics.csv"))
+    
+    # Remove latest directory
+    if os.path.exists(latest_dir):
+        os.rmdir(latest_dir)
     
     print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
     print(f"🎯 Success rate: {results['success_rate']:.2%}")
@@ -232,6 +271,10 @@ def run_reinforce_experiment(exp_dir):
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
     agent = ReinforceAgent(env, gamma=gamma, learning_rate=learning_rate, lr_decay=lr_decay, training_episodes=training_episodes)
 
+    # Create latest directory for temporary files
+    latest_dir = os.path.join("experiments", "reinforce", "latest")
+    os.makedirs(latest_dir, exist_ok=True)
+
     print("\n🚀 Training in progress...")
     start_time = time.time()
     
@@ -254,7 +297,16 @@ def run_reinforce_experiment(exp_dir):
     save_policy(policy, policy_path)
 
     # Evaluate the policy using the evaluator
-    results = evaluate_policy(env, policy, num_episodes=eval_episodes)
+    results = evaluate_policy(env, policy, num_episodes=eval_episodes, algo_dir="reinforce")
+
+    # Move evaluation metrics file to experiment directory
+    eval_metrics_file = os.path.join(latest_dir, "evaluation_metrics.csv")
+    if os.path.exists(eval_metrics_file):
+        os.rename(eval_metrics_file, os.path.join(exp_dir, "episode_metrics.csv"))
+    
+    # Remove latest directory
+    if os.path.exists(latest_dir):
+        os.rmdir(latest_dir)
     
     print(f"\n🏆 Mean return per episode: {results['mean_return']:.2f}")
     print(f"🎯 Success rate: {results['success_rate']:.2%}")
@@ -287,14 +339,18 @@ def clear_files():
         for algo_dir in ["valueIteration", "directEstimation", "qlearning", "reinforce"]:
             algo_path = os.path.join(experiments_dir, algo_dir)
             if os.path.exists(algo_path):
+                # Only remove directories that start with "experiment_"
                 for exp_dir in os.listdir(algo_path):
-                    exp_path = os.path.join(algo_path, exp_dir)
-                    if os.path.isdir(exp_path):
-                        for file in os.listdir(exp_path):
-                            os.remove(os.path.join(exp_path, file))
-                        os.rmdir(exp_path)
-                os.rmdir(algo_path)
-        print("🧹 All experiment files have been cleared!")
+                    if exp_dir.startswith("experiment_"):
+                        exp_path = os.path.join(algo_path, exp_dir)
+                        if os.path.isdir(exp_path):
+                            for file in os.listdir(exp_path):
+                                os.remove(os.path.join(exp_path, file))
+                            os.rmdir(exp_path)
+                # Only remove the algorithm directory if it's empty
+                if not os.listdir(algo_path):
+                    os.rmdir(algo_path)
+        print("🧹 Default experiment files have been cleared!")
     else:
         print("📂 No experiment files found.")
 
