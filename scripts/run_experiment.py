@@ -122,10 +122,11 @@ def run_direct_estimation_experiment(exp_dir):
     num_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
     num_trajectories = int(input("Number of trajectories for sampling [e.g. 500]: "))
     max_iters = int(input("Maximum iterations for training [e.g. 1000]: "))
+    patience = int(input("Patience for convergence [e.g. 100]: "))
 
     # Create environment and agent 
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
-    agent = DirectEstimationAgent(env, gamma=gamma, num_trajectories=num_trajectories, max_iters=max_iters)
+    agent = DirectEstimationAgent(env, gamma=gamma, num_trajectories=num_trajectories, max_iters=max_iters, patience=patience)
 
     # Create latest directory for temporary files
     latest_dir = os.path.join("experiments", "directEstimation", "latest")
@@ -166,6 +167,7 @@ def run_direct_estimation_experiment(exp_dir):
         "gamma": gamma,
         "num_trajectories": num_trajectories,
         "max_iters": max_iters,
+        "patience": patience,
         "mean_reward": results['mean_return'],
         "mean_steps": results['mean_steps'],
         "success_rate": results['success_rate'],

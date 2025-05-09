@@ -1,0 +1,2624 @@
+
+---------------------------
+  🤖 Direct Estimation 🤖 
+----------------------------
+
+Enter gamma value (discount factor) [e.g. 0.95]: Number of episodes for evaluation [e.g. 100]: Number of trajectories for sampling [e.g. 500]: Maximum iterations for training [e.g. 1000]: Patience for convergence [e.g. 100]: 
+🚀 Training in progress...
+After value iteration, max_diff = 1.0
+Best reward updated -302.96 at iteration 1
+After value iteration, max_diff = 0.7424999999999999
+Best reward updated -200.00 at iteration 2
+After value iteration, max_diff = 0.6375600000000003
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.3724297991632648
+After value iteration, max_diff = 0.35069101597974495
+After value iteration, max_diff = 0.5395835245799709
+After value iteration, max_diff = 0.6069075363536225
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.9866999999999999
+After value iteration, max_diff = 0.2400383413106928
+After value iteration, max_diff = 0.2507953175259443
+After value iteration, max_diff = 0.26944616017639866
+After value iteration, max_diff = 0.2844828692986825
+After value iteration, max_diff = 0.28222594075902663
+After value iteration, max_diff = 0.16360876077273767
+After value iteration, max_diff = 0.16233941478236513
+After value iteration, max_diff = 0.13499413945514505
+After value iteration, max_diff = 0.03477789586065816
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.4950000000000001
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.3002189273015001
+After value iteration, max_diff = 0.08939788183212816
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.7199333367886629
+After value iteration, max_diff = 0.186512567265523
+After value iteration, max_diff = 0.06154914719762239
+After value iteration, max_diff = 0.14628433213731684
+After value iteration, max_diff = 0.05800941854095054
+After value iteration, max_diff = 0.06016783312788476
+After value iteration, max_diff = 0.03995686313687763
+After value iteration, max_diff = 0.011667996899487498
+After value iteration, max_diff = 0.0261715390361692
+After value iteration, max_diff = 0.6566999999999998
+After value iteration, max_diff = 0.43343065632510624
+After value iteration, max_diff = 0.1957294026259193
+After value iteration, max_diff = 0.07936476299334583
+After value iteration, max_diff = 0.2660694696003141
+After value iteration, max_diff = 1.0774720791140746
+After value iteration, max_diff = 0.2649901369537879
+After value iteration, max_diff = 0.13787802839607544
+After value iteration, max_diff = 0.10178089536849733
+After value iteration, max_diff = 0.09892448277578136
+After value iteration, max_diff = 0.107161155140445
+After value iteration, max_diff = 0.07068633490383647
+After value iteration, max_diff = 0.005215006347667028
+After value iteration, max_diff = 0.0036095736635832765
+After value iteration, max_diff = 0.19257969150862708
+After value iteration, max_diff = 0.25559391878409965
+After value iteration, max_diff = 0.16869196289357102
+After value iteration, max_diff = 0.11133669039060035
+After value iteration, max_diff = 0.4704532228050602
+After value iteration, max_diff = 0.14560133144867748
+After value iteration, max_diff = 0.042905356395595895
+After value iteration, max_diff = 0.062202420675443904
+After value iteration, max_diff = 0.054039185057869865
+After value iteration, max_diff = 0.025534151142418082
+After value iteration, max_diff = 0.0277546820318868
+After value iteration, max_diff = 0.04382778844674107
+After value iteration, max_diff = 0.02252931904653721
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.3300016049300116
+After value iteration, max_diff = 0.077505117176079
+After value iteration, max_diff = 0.032188294228376435
+After value iteration, max_diff = 0.03134848465137896
+After value iteration, max_diff = 0.16361828958880453
+After value iteration, max_diff = 0.11249986316515503
+After value iteration, max_diff = 0.14506953369081677
+After value iteration, max_diff = 0.06800381103297504
+After value iteration, max_diff = 0.520289353983113
+After value iteration, max_diff = 0.1379677949397795
+After value iteration, max_diff = 0.08155980948713903
+After value iteration, max_diff = 0.1403638187274785
+After value iteration, max_diff = 0.07792442069345373
+After value iteration, max_diff = 0.06567313622549165
+After value iteration, max_diff = 0.7386029262792411
+After value iteration, max_diff = 0.2817321039182312
+After value iteration, max_diff = 0.10919069904096279
+After value iteration, max_diff = 0.05099426508521354
+After value iteration, max_diff = 0.08682378976677807
+After value iteration, max_diff = 0.12272769960425567
+After value iteration, max_diff = 0.6054495086245275
+After value iteration, max_diff = 0.44159331430660487
+After value iteration, max_diff = 0.34923991053109926
+After value iteration, max_diff = 0.17384843578660458
+After value iteration, max_diff = 0.06471369981180874
+After value iteration, max_diff = 0.037106860279390474
+After value iteration, max_diff = 0.04682740984883349
+After value iteration, max_diff = 0.02274102258611066
+After value iteration, max_diff = 0.011229301890200105
+After value iteration, max_diff = 0.18446948654231843
+After value iteration, max_diff = 0.11862001411108203
+After value iteration, max_diff = 0.10032802232398197
+After value iteration, max_diff = 0.07758239953317592
+After value iteration, max_diff = 0.06523189621242409
+After value iteration, max_diff = 0.037175575006817674
+After value iteration, max_diff = 0.03636995596391479
+After value iteration, max_diff = 0.04084987652937855
+After value iteration, max_diff = 0.05494672887693497
+After value iteration, max_diff = 0.025664830284652496
+Sin mejora en 100 iteraciones. Parando.
+
+🎯 Learned Policy:
+[['>' '>' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^']
+ ['^' '^' '^' '>' '^' '^' '^' '^' '^' '^' '^' '^']
+ ['^' '^' '<' '^' '^' '^' '^' '^' '^' '^' '^' '^']
+ ['<' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^']]
+None
+
+=== Episode 1 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 2 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 3 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 4 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 5 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 6 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 7 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 8 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 9 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 10 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 11 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 12 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 13 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 14 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 15 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 16 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 17 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 18 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 19 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 20 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 21 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 22 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 23 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 24 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 25 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 26 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 27 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 28 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 29 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 30 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 31 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 32 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 33 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 34 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 35 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 36 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 37 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 38 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 39 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 40 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 41 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 42 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 43 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 44 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 45 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 46 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 47 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 48 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 49 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 50 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 51 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 52 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 53 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 54 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 55 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 56 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 57 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 58 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 59 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 60 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 61 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 62 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 63 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 64 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 65 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 66 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 67 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 68 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 69 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 70 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 71 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 72 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 73 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 74 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 75 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 76 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 77 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 78 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 79 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 80 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 81 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 82 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 83 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 84 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 85 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 86 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 87 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 88 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 89 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 90 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 91 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 92 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 93 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 94 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 95 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 96 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 97 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 98 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 99 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 100 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 101 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 102 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 103 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 104 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 105 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 106 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 107 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 108 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 109 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 110 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 111 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 112 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 113 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 114 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 115 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 116 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 117 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 118 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 119 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 120 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 121 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 122 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 123 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 124 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 125 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 126 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 127 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 128 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 129 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 130 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 131 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 132 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 133 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 134 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 135 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 136 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 137 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 138 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 139 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 140 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 141 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 142 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 143 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 144 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 145 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 146 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 147 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 148 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 149 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 150 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 151 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 152 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 153 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 154 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 155 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 156 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 157 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 158 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 159 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 160 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 161 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 162 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 163 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 164 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 165 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 166 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 167 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 168 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 169 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 170 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 171 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 172 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 173 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 174 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 175 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 176 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 177 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 178 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 179 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 180 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 181 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 182 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 183 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 184 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 185 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 186 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 187 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 188 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 189 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 190 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 191 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 192 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 193 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 194 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 195 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 196 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 197 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 198 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 199 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 200 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 201 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 202 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 203 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 204 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 205 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 206 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 207 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 208 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 209 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 210 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 211 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 212 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 213 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 214 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 215 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 216 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 217 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 218 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 219 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 220 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 221 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 222 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 223 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 224 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 225 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 226 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 227 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 228 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 229 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 230 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 231 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 232 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 233 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 234 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 235 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 236 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 237 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 238 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 239 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 240 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 241 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 242 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 243 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 244 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 245 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 246 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 247 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 248 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 249 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 250 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 251 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 252 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 253 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 254 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 255 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 256 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 257 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 258 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 259 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 260 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 261 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 262 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 263 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 264 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 265 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 266 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 267 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 268 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 269 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 270 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 271 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 272 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 273 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 274 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 275 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 276 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 277 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 278 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 279 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 280 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 281 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 282 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 283 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 284 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 285 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 286 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 287 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 288 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 289 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 290 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 291 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 292 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 293 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 294 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 295 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 296 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 297 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 298 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 299 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 300 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 301 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 302 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 303 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 304 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 305 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 306 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 307 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 308 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 309 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 310 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 311 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 312 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 313 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 314 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 315 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 316 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 317 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 318 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 319 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 320 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 321 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 322 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 323 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 324 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 325 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 326 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 327 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 328 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 329 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 330 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 331 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 332 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 333 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 334 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 335 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 336 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 337 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 338 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 339 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 340 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 341 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 342 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 343 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 344 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 345 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 346 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 347 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 348 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 349 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 350 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 351 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 352 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 353 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 354 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 355 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 356 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 357 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 358 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 359 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 360 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 361 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 362 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 363 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 364 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 365 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 366 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 367 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 368 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 369 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 370 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 371 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 372 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 373 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 374 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 375 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 376 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 377 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 378 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 379 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 380 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 381 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 382 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 383 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 384 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 385 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 386 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 387 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 388 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 389 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 390 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 391 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 392 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 393 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 394 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 395 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 396 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 397 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 398 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 399 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 400 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 401 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 402 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 403 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 404 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 405 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 406 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 407 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 408 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 409 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 410 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 411 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 412 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 413 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 414 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 415 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 416 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 417 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 418 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 419 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 420 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 421 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 422 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 423 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 424 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 425 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 426 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 427 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 428 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 429 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 430 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 431 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 432 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 433 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 434 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 435 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 436 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 437 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 438 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 439 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 440 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 441 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 442 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 443 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 444 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 445 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 446 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 447 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 448 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 449 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 450 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 451 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 452 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 453 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 454 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 455 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 456 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 457 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 458 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 459 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 460 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 461 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 462 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 463 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 464 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 465 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 466 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 467 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 468 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 469 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 470 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 471 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 472 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 473 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 474 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 475 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 476 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 477 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 478 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 479 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 480 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 481 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 482 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 483 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 484 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 485 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 486 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 487 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 488 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 489 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 490 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 491 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 492 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 493 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 494 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 495 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 496 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 497 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 498 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 499 ===
+
+💥 Episode ended without reaching the goal
+
+
+=== Episode 500 ===
+
+💥 Episode ended without reaching the goal
+
+
+🏆 Mean return per episode: -216.83
+🎯 Success rate: 0.00%
+⏱️ Mean steps per episode: 200.00
+⚡ Training time: 19.07 seconds

@@ -1,0 +1,2930 @@
+
+---------------------------
+  🤖 Direct Estimation 🤖 
+----------------------------
+
+Enter gamma value (discount factor) [e.g. 0.95]: Number of episodes for evaluation [e.g. 100]: Number of trajectories for sampling [e.g. 500]: Maximum iterations for training [e.g. 1000]: Patience for convergence [e.g. 100]: 
+🚀 Training in progress...
+After value iteration, max_diff = 1.7689062500000001
+Best reward updated -220.79 at iteration 1
+After value iteration, max_diff = 1.4076809172453706
+Best reward updated -200.00 at iteration 2
+After value iteration, max_diff = 1.6705111761191436
+After value iteration, max_diff = 1.9499999999999997
+After value iteration, max_diff = 1.95
+After value iteration, max_diff = 1.8525
+After value iteration, max_diff = 2.230137924287713
+After value iteration, max_diff = 1.3425560093711564
+After value iteration, max_diff = 0.8612515324343217
+After value iteration, max_diff = 0.7500975805169121
+After value iteration, max_diff = 0.6741709983030049
+After value iteration, max_diff = 0.6153731464203869
+After value iteration, max_diff = 0.5769323067040375
+After value iteration, max_diff = 1.9043611410185524
+After value iteration, max_diff = 0.7124999999999999
+After value iteration, max_diff = 0.5955086658457955
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 2.106923519314236
+After value iteration, max_diff = 1.5621529507532195
+After value iteration, max_diff = 0.9436192610674228
+After value iteration, max_diff = 1.367934595457987
+After value iteration, max_diff = 1.7125
+After value iteration, max_diff = 0.938195860236192
+After value iteration, max_diff = 0.6966194687163263
+After value iteration, max_diff = 0.846537907684116
+After value iteration, max_diff = 0.6017674666986226
+After value iteration, max_diff = 0.773994358870957
+After value iteration, max_diff = 0.4555530057543127
+After value iteration, max_diff = 0.49835082184453405
+After value iteration, max_diff = 1.2815446290032728
+After value iteration, max_diff = 0.8490512734723783
+After value iteration, max_diff = 0.506541704798785
+After value iteration, max_diff = 0.311775393953182
+After value iteration, max_diff = 2.61233691387817
+After value iteration, max_diff = 0.5008203559049944
+After value iteration, max_diff = 0.33590737091603806
+After value iteration, max_diff = 0.25112118522621163
+After value iteration, max_diff = 0.22027546404004017
+After value iteration, max_diff = 1.4412183867664696
+Best reward updated -176.44 at iteration 39
+After value iteration, max_diff = 0.4921951643970983
+After value iteration, max_diff = 0.2167690804625586
+After value iteration, max_diff = 0.21650813798748203
+After value iteration, max_diff = 0.1485911396475874
+After value iteration, max_diff = 0.168941033668494
+After value iteration, max_diff = 0.179906359141345
+After value iteration, max_diff = 0.10799987667092559
+After value iteration, max_diff = 0.13340631361990773
+After value iteration, max_diff = 0.09181320302849727
+After value iteration, max_diff = 0.09620566340135284
+After value iteration, max_diff = 0.0676989784330182
+After value iteration, max_diff = 0.10274355906901533
+After value iteration, max_diff = 0.0641099893666972
+After value iteration, max_diff = 0.07552393077003927
+After value iteration, max_diff = 0.07504085518044157
+After value iteration, max_diff = 0.5394534069704378
+Best reward updated -167.28 at iteration 55
+After value iteration, max_diff = 0.21449293884626464
+Best reward updated -167.20 at iteration 56
+After value iteration, max_diff = 1.0
+After value iteration, max_diff = 0.7175090835199214
+Best reward updated -164.91 at iteration 58
+After value iteration, max_diff = 0.5070744396661646
+After value iteration, max_diff = 0.21851739260885328
+After value iteration, max_diff = 0.7022105740007456
+After value iteration, max_diff = 0.24385764379380248
+After value iteration, max_diff = 0.21041765956790925
+After value iteration, max_diff = 0.15281615283878835
+After value iteration, max_diff = 0.14092187093649855
+After value iteration, max_diff = 0.10471871876790928
+After value iteration, max_diff = 0.1195698953677784
+After value iteration, max_diff = 0.06852329738559249
+After value iteration, max_diff = 0.06069532391112986
+After value iteration, max_diff = 0.3478273824821816
+After value iteration, max_diff = 0.13007342967999058
+After value iteration, max_diff = 0.10019785468059883
+After value iteration, max_diff = 1.8980295152683717
+Best reward updated -89.44 at iteration 73
+After value iteration, max_diff = 1.4033161771577873
+After value iteration, max_diff = 1.1376849404837448
+After value iteration, max_diff = 0.7871297324673678
+After value iteration, max_diff = 0.7224186933424299
+After value iteration, max_diff = 0.7625266216331665
+After value iteration, max_diff = 0.4913946168924088
+After value iteration, max_diff = 0.9491472008404451
+After value iteration, max_diff = 0.54289128430504
+Best reward updated -86.93 at iteration 81
+After value iteration, max_diff = 0.31509427602723594
+After value iteration, max_diff = 0.2773200995490406
+After value iteration, max_diff = 0.24175264938297758
+After value iteration, max_diff = 0.20652372565494836
+Best reward updated -85.84 at iteration 85
+After value iteration, max_diff = 0.1855295615199548
+Best reward updated -85.66 at iteration 86
+After value iteration, max_diff = 0.1895531933436203
+After value iteration, max_diff = 0.15567759661035652
+After value iteration, max_diff = 0.4536403282309518
+Best reward updated -76.49 at iteration 89
+After value iteration, max_diff = 0.2573982971771791
+After value iteration, max_diff = 0.16594583736487856
+After value iteration, max_diff = 0.1339108599568153
+After value iteration, max_diff = 0.6642263640299966
+After value iteration, max_diff = 0.3460535786371741
+After value iteration, max_diff = 0.2606106300757549
+After value iteration, max_diff = 0.14810772466170619
+After value iteration, max_diff = 0.8490457298555918
+After value iteration, max_diff = 0.368158118101376
+After value iteration, max_diff = 0.3677121337889826
+After value iteration, max_diff = 0.16005368326745728
+After value iteration, max_diff = 0.10063567092778403
+Best reward updated -75.91 at iteration 101
+After value iteration, max_diff = 0.0844212965068607
+Best reward updated -72.39 at iteration 102
+After value iteration, max_diff = 0.5491616458209645
+Best reward updated -72.12 at iteration 103
+After value iteration, max_diff = 0.3082591471423939
+After value iteration, max_diff = 0.23003507641718102
+After value iteration, max_diff = 0.1674210802049707
+After value iteration, max_diff = 0.16347705289582137
+After value iteration, max_diff = 0.11974657342472206
+After value iteration, max_diff = 0.35243888199385776
+Best reward updated -70.22 at iteration 109
+After value iteration, max_diff = 0.15742923492919658
+After value iteration, max_diff = 0.19951636618817226
+After value iteration, max_diff = 0.10405004876737145
+After value iteration, max_diff = 0.33498371941042393
+After value iteration, max_diff = 0.19500609324778306
+After value iteration, max_diff = 0.4097025076238223
+After value iteration, max_diff = 0.24685354547806782
+After value iteration, max_diff = 0.19147866769147903
+After value iteration, max_diff = 0.259236714713861
+After value iteration, max_diff = 0.18257824748373608
+After value iteration, max_diff = 0.1485647941696584
+After value iteration, max_diff = 0.13128816073430905
+After value iteration, max_diff = 0.12086875249413076
+After value iteration, max_diff = 0.14776031695778258
+After value iteration, max_diff = 0.11722274215956396
+After value iteration, max_diff = 0.09501637213499947
+After value iteration, max_diff = 0.08779547949715649
+After value iteration, max_diff = 0.0745662285458053
+After value iteration, max_diff = 0.06479118620480051
+Best reward updated -69.69 at iteration 128
+After value iteration, max_diff = 0.057705916114890954
+After value iteration, max_diff = 0.04880884427398158
+After value iteration, max_diff = 0.043614191533400515
+Best reward updated -68.77 at iteration 131
+After value iteration, max_diff = 0.3928431050053698
+After value iteration, max_diff = 0.19669361310629974
+After value iteration, max_diff = 0.1420542666908755
+After value iteration, max_diff = 0.10612663850048953
+After value iteration, max_diff = 0.08896874619958162
+After value iteration, max_diff = 0.08036528026554635
+After value iteration, max_diff = 0.06701062197964092
+After value iteration, max_diff = 0.06016312730169382
+After value iteration, max_diff = 0.05047524045352603
+After value iteration, max_diff = 0.10833349189725183
+After value iteration, max_diff = 0.12363333137992072
+After value iteration, max_diff = 0.06151175393691943
+After value iteration, max_diff = 0.05110909101583161
+After value iteration, max_diff = 0.04219818322262725
+Best reward updated -66.69 at iteration 145
+After value iteration, max_diff = 0.05099110080700342
+After value iteration, max_diff = 0.02647937382693577
+After value iteration, max_diff = 0.0807804806955037
+After value iteration, max_diff = 0.04253242603469687
+After value iteration, max_diff = 0.022793221959441112
+After value iteration, max_diff = 0.014848877212894962
+After value iteration, max_diff = 0.029116842703036383
+After value iteration, max_diff = 0.0214470252334813
+After value iteration, max_diff = 0.10861240112115844
+After value iteration, max_diff = 0.046472020309225925
+After value iteration, max_diff = 0.045788040123701634
+After value iteration, max_diff = 0.08276323608133751
+After value iteration, max_diff = 0.04725221241388411
+After value iteration, max_diff = 0.15508501544988107
+After value iteration, max_diff = 0.09905516642763423
+After value iteration, max_diff = 0.11355790634696739
+After value iteration, max_diff = 0.04745200008569306
+After value iteration, max_diff = 0.48838240636316055
+After value iteration, max_diff = 0.2196246823213599
+After value iteration, max_diff = 0.14602021337960647
+After value iteration, max_diff = 0.11100758395249954
+After value iteration, max_diff = 0.09591547948664392
+After value iteration, max_diff = 0.08462472105809127
+After value iteration, max_diff = 0.06928023274823758
+After value iteration, max_diff = 0.05893070609867834
+After value iteration, max_diff = 0.1360593160010275
+After value iteration, max_diff = 0.24100789832297131
+After value iteration, max_diff = 0.11518660869484165
+After value iteration, max_diff = 0.07392905136072692
+After value iteration, max_diff = 0.05446788346135456
+After value iteration, max_diff = 0.04571475864281993
+After value iteration, max_diff = 0.0367285587426327
+After value iteration, max_diff = 0.032688885393080014
+After value iteration, max_diff = 0.05136536847137663
+After value iteration, max_diff = 0.19363729927538387
+After value iteration, max_diff = 0.24495146518336242
+After value iteration, max_diff = 0.11915166044673953
+After value iteration, max_diff = 0.09271281391784392
+After value iteration, max_diff = 0.11293938120833324
+After value iteration, max_diff = 0.10800977231937026
+After value iteration, max_diff = 0.09064642664345612
+After value iteration, max_diff = 0.07291146760434764
+After value iteration, max_diff = 0.05696196755462779
+After value iteration, max_diff = 0.0819239384378374
+After value iteration, max_diff = 0.2315921469816704
+After value iteration, max_diff = 0.1545102388723727
+After value iteration, max_diff = 0.08970278621657712
+After value iteration, max_diff = 0.05822430254256972
+After value iteration, max_diff = 0.04896340265557342
+After value iteration, max_diff = 0.23423210377479986
+After value iteration, max_diff = 0.09535267369908773
+After value iteration, max_diff = 0.07694831804127134
+After value iteration, max_diff = 0.06162992993598593
+After value iteration, max_diff = 0.055272522818320624
+Best reward updated -66.33 at iteration 199
+After value iteration, max_diff = 0.048689852476250906
+After value iteration, max_diff = 0.042378067606845704
+After value iteration, max_diff = 0.03759571454087052
+After value iteration, max_diff = 0.032071684879849016
+Best reward updated -64.71 at iteration 203
+After value iteration, max_diff = 0.03994243364140182
+After value iteration, max_diff = 0.040098116592112376
+After value iteration, max_diff = 0.04618487143374583
+After value iteration, max_diff = 0.03182582171770498
+After value iteration, max_diff = 0.02579672425951074
+Best reward updated -63.87 at iteration 208
+After value iteration, max_diff = 0.053612551356224
+After value iteration, max_diff = 0.0325542924608051
+After value iteration, max_diff = 0.02074330596322227
+After value iteration, max_diff = 0.020299149144188178
+After value iteration, max_diff = 0.03467024421015097
+After value iteration, max_diff = 0.016242494244149697
+After value iteration, max_diff = 0.21550424472247265
+Best reward updated -62.83 at iteration 215
+After value iteration, max_diff = 0.06037672592155374
+After value iteration, max_diff = 0.028960415410139717
+After value iteration, max_diff = 0.017447005889245304
+After value iteration, max_diff = 0.011833399665572841
+After value iteration, max_diff = 0.03214263392394301
+Best reward updated -62.66 at iteration 220
+After value iteration, max_diff = 0.012297862537991477
+After value iteration, max_diff = 0.011041862224367094
+After value iteration, max_diff = 0.008175445032026829
+After value iteration, max_diff = 0.004727668384507666
+After value iteration, max_diff = 0.003745072989755016
+After value iteration, max_diff = 0.07359582832288147
+After value iteration, max_diff = 0.22087599048520268
+After value iteration, max_diff = 0.14047759895552758
+After value iteration, max_diff = 0.11270467136799311
+After value iteration, max_diff = 0.08104511302234307
+After value iteration, max_diff = 0.07266418676531394
+After value iteration, max_diff = 0.056944537210100066
+After value iteration, max_diff = 0.05024618606659814
+After value iteration, max_diff = 0.0418679397875259
+After value iteration, max_diff = 0.04216671363169766
+After value iteration, max_diff = 0.1401919567442631
+After value iteration, max_diff = 0.06859349072779697
+After value iteration, max_diff = 0.05432484409173988
+After value iteration, max_diff = 0.05153996157447338
+After value iteration, max_diff = 0.040168386157439784
+After value iteration, max_diff = 0.05915872896534946
+After value iteration, max_diff = 0.048087160494246106
+After value iteration, max_diff = 0.043492395263168504
+After value iteration, max_diff = 0.023072896265107445
+After value iteration, max_diff = 0.021063922262301915
+After value iteration, max_diff = 0.07555145758666981
+After value iteration, max_diff = 0.03991528072462103
+After value iteration, max_diff = 0.027834327798245795
+After value iteration, max_diff = 0.017593235665891882
+After value iteration, max_diff = 0.015585371737335763
+After value iteration, max_diff = 0.04240570018356138
+After value iteration, max_diff = 0.017915458579324195
+After value iteration, max_diff = 0.011512341493777
+After value iteration, max_diff = 0.012103546236396312
+After value iteration, max_diff = 0.14233892303114537
+After value iteration, max_diff = 0.059175835295189216
+After value iteration, max_diff = 0.029882161846241928
+After value iteration, max_diff = 0.020508209426852275
+After value iteration, max_diff = 0.01855208512797013
+After value iteration, max_diff = 0.01915459125479657
+After value iteration, max_diff = 0.01725880021448134
+After value iteration, max_diff = 0.01366993754352741
+After value iteration, max_diff = 0.01705661848325235
+After value iteration, max_diff = 0.010436769962552717
+After value iteration, max_diff = 0.0061067200561844
+After value iteration, max_diff = 0.04504997301967251
+After value iteration, max_diff = 0.24592166377543023
+After value iteration, max_diff = 0.14927384732379245
+After value iteration, max_diff = 0.10048172651236165
+After value iteration, max_diff = 0.07859226343022385
+After value iteration, max_diff = 0.06694094239682258
+After value iteration, max_diff = 0.05967135810562496
+After value iteration, max_diff = 0.08426077959500056
+After value iteration, max_diff = 0.0656661080124934
+After value iteration, max_diff = 0.14547196347879243
+After value iteration, max_diff = 0.04150052150416528
+After value iteration, max_diff = 0.03603617587857144
+After value iteration, max_diff = 0.1498143758020234
+After value iteration, max_diff = 0.17729058886065374
+After value iteration, max_diff = 0.07756874263608893
+After value iteration, max_diff = 0.05277685905612017
+After value iteration, max_diff = 0.1459363371290987
+After value iteration, max_diff = 0.0762500910893742
+After value iteration, max_diff = 0.06052272010334292
+After value iteration, max_diff = 0.12559947100259095
+After value iteration, max_diff = 0.0886848653754182
+Best reward updated -61.42 at iteration 286
+After value iteration, max_diff = 0.06303699864802503
+After value iteration, max_diff = 0.057184748030921995
+After value iteration, max_diff = 0.05088000587218744
+After value iteration, max_diff = 0.044660053376512465
+After value iteration, max_diff = 0.03687783483323237
+After value iteration, max_diff = 0.10647447933331833
+After value iteration, max_diff = 0.043944292881832325
+After value iteration, max_diff = 0.09481617991807312
+After value iteration, max_diff = 0.04554743899877689
+After value iteration, max_diff = 0.16657356547374214
+After value iteration, max_diff = 0.09189156785311603
+After value iteration, max_diff = 0.06533809011524383
+After value iteration, max_diff = 0.052004358967167263
+After value iteration, max_diff = 0.0560125178837616
+After value iteration, max_diff = 0.10651449602502439
+After value iteration, max_diff = 0.05793877888853771
+After value iteration, max_diff = 0.0494169325664231
+After value iteration, max_diff = 0.04383479131720591
+After value iteration, max_diff = 0.08375009842746817
+After value iteration, max_diff = 0.04732186466453392
+After value iteration, max_diff = 0.03752831936300183
+After value iteration, max_diff = 0.0314279034632623
+After value iteration, max_diff = 0.03523435212910542
+After value iteration, max_diff = 0.02769182063920006
+After value iteration, max_diff = 0.028078336243899216
+After value iteration, max_diff = 0.13034100702429186
+After value iteration, max_diff = 0.054730100593706865
+After value iteration, max_diff = 0.037436963824225344
+After value iteration, max_diff = 0.02943240011930115
+After value iteration, max_diff = 0.025446643199437347
+After value iteration, max_diff = 0.027600954901915387
+After value iteration, max_diff = 0.023257893090484316
+After value iteration, max_diff = 0.021327999702291933
+After value iteration, max_diff = 0.019139971230982766
+After value iteration, max_diff = 0.017041440553068554
+After value iteration, max_diff = 0.016414644302747305
+After value iteration, max_diff = 0.015119568067861522
+After value iteration, max_diff = 0.013442097825679511
+After value iteration, max_diff = 0.01836558667157817
+After value iteration, max_diff = 0.017985081536425085
+After value iteration, max_diff = 0.01002037832239111
+After value iteration, max_diff = 0.0086159841639315
+After value iteration, max_diff = 0.19506666762730696
+After value iteration, max_diff = 0.08042716976719078
+After value iteration, max_diff = 0.056904560651583225
+After value iteration, max_diff = 0.04625937112218992
+After value iteration, max_diff = 0.035050687389444946
+After value iteration, max_diff = 0.031779624496167
+After value iteration, max_diff = 0.027230350970636863
+After value iteration, max_diff = 0.121715844180736
+After value iteration, max_diff = 0.04879893850204553
+After value iteration, max_diff = 0.03706602629348765
+After value iteration, max_diff = 0.036274493156494
+After value iteration, max_diff = 0.11393008866213616
+After value iteration, max_diff = 0.046593758154921616
+After value iteration, max_diff = 0.04003061441996536
+After value iteration, max_diff = 0.0324573825595138
+After value iteration, max_diff = 0.029676693929204134
+After value iteration, max_diff = 0.04759293940899845
+After value iteration, max_diff = 0.026656284389671825
+After value iteration, max_diff = 0.02246783535541219
+After value iteration, max_diff = 0.01995335347380056
+After value iteration, max_diff = 0.016878697988676805
+After value iteration, max_diff = 0.015564907743856438
+After value iteration, max_diff = 0.011914918639039485
+After value iteration, max_diff = 0.010665327796910873
+After value iteration, max_diff = 0.009412589522828085
+After value iteration, max_diff = 0.007828742288129575
+After value iteration, max_diff = 0.05453372298401149
+After value iteration, max_diff = 0.044906341182143095
+After value iteration, max_diff = 0.018644212022282503
+After value iteration, max_diff = 0.04134656767563882
+After value iteration, max_diff = 0.018288799758840568
+After value iteration, max_diff = 0.01362114169424622
+After value iteration, max_diff = 0.011692402466135121
+After value iteration, max_diff = 0.033595016878896544
+After value iteration, max_diff = 0.0148410033131956
+After value iteration, max_diff = 0.11696937551199049
+After value iteration, max_diff = 0.042749809636935865
+After value iteration, max_diff = 0.02541248897916759
+After value iteration, max_diff = 0.11223319452578018
+After value iteration, max_diff = 0.04280504510966665
+After value iteration, max_diff = 0.02574237037032212
+After value iteration, max_diff = 0.10392653508668914
+After value iteration, max_diff = 0.04326589118247526
+After value iteration, max_diff = 0.031664843658049335
+After value iteration, max_diff = 0.02868805396042262
+After value iteration, max_diff = 0.020647745750130397
+After value iteration, max_diff = 0.02440933176246496
+After value iteration, max_diff = 0.015864600308656662
+After value iteration, max_diff = 0.010800256051561874
+After value iteration, max_diff = 0.022949838961469737
+After value iteration, max_diff = 0.013400532084231642
+After value iteration, max_diff = 0.009668294351264706
+After value iteration, max_diff = 0.01445131703766478
+After value iteration, max_diff = 0.015458557991866684
+After value iteration, max_diff = 0.010973644179843589
+After value iteration, max_diff = 0.012710407309560523
+After value iteration, max_diff = 0.025593769800636323
+After value iteration, max_diff = 0.00948251111325682
+Sin mejora en 100 iteraciones. Parando.
+
+🎯 Learned Policy:
+[['^' '>' '>' '>' '>' '>' '>' '>' '>' '>' '>' '>']
+ ['^' '>' '>' '>' '>' '>' '>' '>' '>' '>' '>' '>']
+ ['^' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^' 'v']
+ ['<' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^' '^']]
+None
+
+=== Episode 1 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 2 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 3 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 4 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 5 ===
+
+🎉 Goal reached in 81 steps, return = -81.0
+
+
+=== Episode 6 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 7 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 8 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 9 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 10 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 11 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 12 ===
+
+🎉 Goal reached in 28 steps, return = -28.0
+
+
+=== Episode 13 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 14 ===
+
+🎉 Goal reached in 95 steps, return = -95.0
+
+
+=== Episode 15 ===
+
+🎉 Goal reached in 166 steps, return = -166.0
+
+
+=== Episode 16 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 17 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 18 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 19 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 20 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 21 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 22 ===
+
+🎉 Goal reached in 123 steps, return = -123.0
+
+
+=== Episode 23 ===
+
+🎉 Goal reached in 110 steps, return = -110.0
+
+
+=== Episode 24 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 25 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 26 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 27 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 28 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 29 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 30 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 31 ===
+
+🎉 Goal reached in 137 steps, return = -137.0
+
+
+=== Episode 32 ===
+
+🎉 Goal reached in 80 steps, return = -80.0
+
+
+=== Episode 33 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 34 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 35 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 36 ===
+
+🎉 Goal reached in 131 steps, return = -131.0
+
+
+=== Episode 37 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 38 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 39 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 40 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 41 ===
+
+🎉 Goal reached in 111 steps, return = -111.0
+
+
+=== Episode 42 ===
+
+🎉 Goal reached in 32 steps, return = -32.0
+
+
+=== Episode 43 ===
+
+🎉 Goal reached in 98 steps, return = -98.0
+
+
+=== Episode 44 ===
+
+🎉 Goal reached in 91 steps, return = -91.0
+
+
+=== Episode 45 ===
+
+🎉 Goal reached in 130 steps, return = -130.0
+
+
+=== Episode 46 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 47 ===
+
+🎉 Goal reached in 28 steps, return = -28.0
+
+
+=== Episode 48 ===
+
+🎉 Goal reached in 89 steps, return = -89.0
+
+
+=== Episode 49 ===
+
+🎉 Goal reached in 70 steps, return = -70.0
+
+
+=== Episode 50 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 51 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 52 ===
+
+🎉 Goal reached in 74 steps, return = -74.0
+
+
+=== Episode 53 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 54 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 55 ===
+
+🎉 Goal reached in 99 steps, return = -99.0
+
+
+=== Episode 56 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 57 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 58 ===
+
+🎉 Goal reached in 91 steps, return = -91.0
+
+
+=== Episode 59 ===
+
+🎉 Goal reached in 73 steps, return = -73.0
+
+
+=== Episode 60 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 61 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 62 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 63 ===
+
+🎉 Goal reached in 77 steps, return = -77.0
+
+
+=== Episode 64 ===
+
+🎉 Goal reached in 98 steps, return = -98.0
+
+
+=== Episode 65 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 66 ===
+
+🎉 Goal reached in 97 steps, return = -97.0
+
+
+=== Episode 67 ===
+
+🎉 Goal reached in 77 steps, return = -77.0
+
+
+=== Episode 68 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 69 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 70 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 71 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 72 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 73 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 74 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 75 ===
+
+🎉 Goal reached in 91 steps, return = -91.0
+
+
+=== Episode 76 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 77 ===
+
+🎉 Goal reached in 94 steps, return = -94.0
+
+
+=== Episode 78 ===
+
+🎉 Goal reached in 23 steps, return = -23.0
+
+
+=== Episode 79 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 80 ===
+
+🎉 Goal reached in 66 steps, return = -66.0
+
+
+=== Episode 81 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 82 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 83 ===
+
+🎉 Goal reached in 32 steps, return = -32.0
+
+
+=== Episode 84 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 85 ===
+
+🎉 Goal reached in 97 steps, return = -97.0
+
+
+=== Episode 86 ===
+
+🎉 Goal reached in 31 steps, return = -31.0
+
+
+=== Episode 87 ===
+
+🎉 Goal reached in 84 steps, return = -84.0
+
+
+=== Episode 88 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 89 ===
+
+🎉 Goal reached in 115 steps, return = -115.0
+
+
+=== Episode 90 ===
+
+🎉 Goal reached in 130 steps, return = -130.0
+
+
+=== Episode 91 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 92 ===
+
+🎉 Goal reached in 74 steps, return = -74.0
+
+
+=== Episode 93 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 94 ===
+
+🎉 Goal reached in 90 steps, return = -90.0
+
+
+=== Episode 95 ===
+
+🎉 Goal reached in 109 steps, return = -109.0
+
+
+=== Episode 96 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 97 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 98 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 99 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 100 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 101 ===
+
+🎉 Goal reached in 73 steps, return = -73.0
+
+
+=== Episode 102 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 103 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 104 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 105 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 106 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 107 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 108 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 109 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 110 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 111 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 112 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 113 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 114 ===
+
+🎉 Goal reached in 108 steps, return = -108.0
+
+
+=== Episode 115 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 116 ===
+
+🎉 Goal reached in 108 steps, return = -108.0
+
+
+=== Episode 117 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 118 ===
+
+🎉 Goal reached in 58 steps, return = -58.0
+
+
+=== Episode 119 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 120 ===
+
+🎉 Goal reached in 78 steps, return = -78.0
+
+
+=== Episode 121 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 122 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 123 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 124 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 125 ===
+
+🎉 Goal reached in 70 steps, return = -70.0
+
+
+=== Episode 126 ===
+
+🎉 Goal reached in 95 steps, return = -95.0
+
+
+=== Episode 127 ===
+
+🎉 Goal reached in 138 steps, return = -138.0
+
+
+=== Episode 128 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 129 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 130 ===
+
+🎉 Goal reached in 102 steps, return = -102.0
+
+
+=== Episode 131 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 132 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 133 ===
+
+🎉 Goal reached in 33 steps, return = -33.0
+
+
+=== Episode 134 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 135 ===
+
+🎉 Goal reached in 56 steps, return = -56.0
+
+
+=== Episode 136 ===
+
+🎉 Goal reached in 99 steps, return = -99.0
+
+
+=== Episode 137 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 138 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 139 ===
+
+🎉 Goal reached in 110 steps, return = -110.0
+
+
+=== Episode 140 ===
+
+🎉 Goal reached in 70 steps, return = -70.0
+
+
+=== Episode 141 ===
+
+🎉 Goal reached in 66 steps, return = -66.0
+
+
+=== Episode 142 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 143 ===
+
+🎉 Goal reached in 162 steps, return = -162.0
+
+
+=== Episode 144 ===
+
+🎉 Goal reached in 109 steps, return = -109.0
+
+
+=== Episode 145 ===
+
+🎉 Goal reached in 84 steps, return = -84.0
+
+
+=== Episode 146 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 147 ===
+
+🎉 Goal reached in 73 steps, return = -73.0
+
+
+=== Episode 148 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 149 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 150 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 151 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 152 ===
+
+🎉 Goal reached in 116 steps, return = -116.0
+
+
+=== Episode 153 ===
+
+🎉 Goal reached in 122 steps, return = -122.0
+
+
+=== Episode 154 ===
+
+🎉 Goal reached in 90 steps, return = -90.0
+
+
+=== Episode 155 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 156 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 157 ===
+
+🎉 Goal reached in 105 steps, return = -105.0
+
+
+=== Episode 158 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 159 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 160 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 161 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 162 ===
+
+🎉 Goal reached in 68 steps, return = -68.0
+
+
+=== Episode 163 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 164 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 165 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 166 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 167 ===
+
+🎉 Goal reached in 90 steps, return = -90.0
+
+
+=== Episode 168 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 169 ===
+
+🎉 Goal reached in 73 steps, return = -73.0
+
+
+=== Episode 170 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 171 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 172 ===
+
+🎉 Goal reached in 163 steps, return = -163.0
+
+
+=== Episode 173 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 174 ===
+
+🎉 Goal reached in 66 steps, return = -66.0
+
+
+=== Episode 175 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 176 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 177 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 178 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 179 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 180 ===
+
+🎉 Goal reached in 80 steps, return = -80.0
+
+
+=== Episode 181 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 182 ===
+
+🎉 Goal reached in 149 steps, return = -149.0
+
+
+=== Episode 183 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 184 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 185 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 186 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 187 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 188 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 189 ===
+
+🎉 Goal reached in 58 steps, return = -58.0
+
+
+=== Episode 190 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 191 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 192 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 193 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 194 ===
+
+🎉 Goal reached in 91 steps, return = -91.0
+
+
+=== Episode 195 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 196 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 197 ===
+
+🎉 Goal reached in 30 steps, return = -30.0
+
+
+=== Episode 198 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 199 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 200 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 201 ===
+
+🎉 Goal reached in 113 steps, return = -113.0
+
+
+=== Episode 202 ===
+
+🎉 Goal reached in 81 steps, return = -81.0
+
+
+=== Episode 203 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 204 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 205 ===
+
+🎉 Goal reached in 173 steps, return = -173.0
+
+
+=== Episode 206 ===
+
+🎉 Goal reached in 113 steps, return = -113.0
+
+
+=== Episode 207 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 208 ===
+
+🎉 Goal reached in 53 steps, return = -53.0
+
+
+=== Episode 209 ===
+
+🎉 Goal reached in 106 steps, return = -106.0
+
+
+=== Episode 210 ===
+
+🎉 Goal reached in 77 steps, return = -77.0
+
+
+=== Episode 211 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 212 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 213 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 214 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 215 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 216 ===
+
+🎉 Goal reached in 29 steps, return = -29.0
+
+
+=== Episode 217 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 218 ===
+
+🎉 Goal reached in 62 steps, return = -62.0
+
+
+=== Episode 219 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 220 ===
+
+🎉 Goal reached in 31 steps, return = -31.0
+
+
+=== Episode 221 ===
+
+🎉 Goal reached in 102 steps, return = -102.0
+
+
+=== Episode 222 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 223 ===
+
+🎉 Goal reached in 126 steps, return = -126.0
+
+
+=== Episode 224 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 225 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 226 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 227 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 228 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 229 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 230 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 231 ===
+
+🎉 Goal reached in 68 steps, return = -68.0
+
+
+=== Episode 232 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 233 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 234 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 235 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 236 ===
+
+🎉 Goal reached in 27 steps, return = -27.0
+
+
+=== Episode 237 ===
+
+🎉 Goal reached in 74 steps, return = -74.0
+
+
+=== Episode 238 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 239 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 240 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 241 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 242 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 243 ===
+
+🎉 Goal reached in 33 steps, return = -33.0
+
+
+=== Episode 244 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 245 ===
+
+🎉 Goal reached in 80 steps, return = -80.0
+
+
+=== Episode 246 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 247 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 248 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 249 ===
+
+🎉 Goal reached in 109 steps, return = -109.0
+
+
+=== Episode 250 ===
+
+🎉 Goal reached in 94 steps, return = -94.0
+
+
+=== Episode 251 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 252 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 253 ===
+
+🎉 Goal reached in 114 steps, return = -114.0
+
+
+=== Episode 254 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 255 ===
+
+🎉 Goal reached in 117 steps, return = -117.0
+
+
+=== Episode 256 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 257 ===
+
+🎉 Goal reached in 68 steps, return = -68.0
+
+
+=== Episode 258 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 259 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 260 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 261 ===
+
+🎉 Goal reached in 165 steps, return = -165.0
+
+
+=== Episode 262 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 263 ===
+
+🎉 Goal reached in 167 steps, return = -167.0
+
+
+=== Episode 264 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 265 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 266 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 267 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 268 ===
+
+🎉 Goal reached in 81 steps, return = -81.0
+
+
+=== Episode 269 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 270 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 271 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 272 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 273 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 274 ===
+
+🎉 Goal reached in 78 steps, return = -78.0
+
+
+=== Episode 275 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 276 ===
+
+🎉 Goal reached in 70 steps, return = -70.0
+
+
+=== Episode 277 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 278 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 279 ===
+
+🎉 Goal reached in 37 steps, return = -37.0
+
+
+=== Episode 280 ===
+
+🎉 Goal reached in 57 steps, return = -57.0
+
+
+=== Episode 281 ===
+
+🎉 Goal reached in 112 steps, return = -112.0
+
+
+=== Episode 282 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 283 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 284 ===
+
+🎉 Goal reached in 105 steps, return = -105.0
+
+
+=== Episode 285 ===
+
+🎉 Goal reached in 62 steps, return = -62.0
+
+
+=== Episode 286 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 287 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 288 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 289 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 290 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 291 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 292 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 293 ===
+
+🎉 Goal reached in 58 steps, return = -58.0
+
+
+=== Episode 294 ===
+
+🎉 Goal reached in 112 steps, return = -112.0
+
+
+=== Episode 295 ===
+
+🎉 Goal reached in 93 steps, return = -93.0
+
+
+=== Episode 296 ===
+
+🎉 Goal reached in 152 steps, return = -152.0
+
+
+=== Episode 297 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 298 ===
+
+🎉 Goal reached in 67 steps, return = -67.0
+
+
+=== Episode 299 ===
+
+🎉 Goal reached in 90 steps, return = -90.0
+
+
+=== Episode 300 ===
+
+🎉 Goal reached in 77 steps, return = -77.0
+
+
+=== Episode 301 ===
+
+🎉 Goal reached in 78 steps, return = -78.0
+
+
+=== Episode 302 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 303 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 304 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 305 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 306 ===
+
+🎉 Goal reached in 113 steps, return = -113.0
+
+
+=== Episode 307 ===
+
+🎉 Goal reached in 40 steps, return = -40.0
+
+
+=== Episode 308 ===
+
+🎉 Goal reached in 110 steps, return = -110.0
+
+
+=== Episode 309 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 310 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 311 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 312 ===
+
+🎉 Goal reached in 68 steps, return = -68.0
+
+
+=== Episode 313 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 314 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 315 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 316 ===
+
+🎉 Goal reached in 66 steps, return = -66.0
+
+
+=== Episode 317 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 318 ===
+
+🎉 Goal reached in 65 steps, return = -65.0
+
+
+=== Episode 319 ===
+
+🎉 Goal reached in 92 steps, return = -92.0
+
+
+=== Episode 320 ===
+
+🎉 Goal reached in 36 steps, return = -36.0
+
+
+=== Episode 321 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 322 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 323 ===
+
+🎉 Goal reached in 117 steps, return = -117.0
+
+
+=== Episode 324 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 325 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 326 ===
+
+🎉 Goal reached in 83 steps, return = -83.0
+
+
+=== Episode 327 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 328 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 329 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 330 ===
+
+🎉 Goal reached in 40 steps, return = -40.0
+
+
+=== Episode 331 ===
+
+🎉 Goal reached in 121 steps, return = -121.0
+
+
+=== Episode 332 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 333 ===
+
+🎉 Goal reached in 73 steps, return = -73.0
+
+
+=== Episode 334 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 335 ===
+
+🎉 Goal reached in 93 steps, return = -93.0
+
+
+=== Episode 336 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 337 ===
+
+🎉 Goal reached in 95 steps, return = -95.0
+
+
+=== Episode 338 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 339 ===
+
+🎉 Goal reached in 101 steps, return = -101.0
+
+
+=== Episode 340 ===
+
+🎉 Goal reached in 107 steps, return = -107.0
+
+
+=== Episode 341 ===
+
+🎉 Goal reached in 22 steps, return = -22.0
+
+
+=== Episode 342 ===
+
+🎉 Goal reached in 83 steps, return = -83.0
+
+
+=== Episode 343 ===
+
+🎉 Goal reached in 93 steps, return = -93.0
+
+
+=== Episode 344 ===
+
+🎉 Goal reached in 81 steps, return = -81.0
+
+
+=== Episode 345 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 346 ===
+
+🎉 Goal reached in 137 steps, return = -137.0
+
+
+=== Episode 347 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 348 ===
+
+🎉 Goal reached in 115 steps, return = -115.0
+
+
+=== Episode 349 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 350 ===
+
+🎉 Goal reached in 80 steps, return = -80.0
+
+
+=== Episode 351 ===
+
+🎉 Goal reached in 58 steps, return = -58.0
+
+
+=== Episode 352 ===
+
+🎉 Goal reached in 58 steps, return = -58.0
+
+
+=== Episode 353 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 354 ===
+
+🎉 Goal reached in 99 steps, return = -99.0
+
+
+=== Episode 355 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 356 ===
+
+🎉 Goal reached in 89 steps, return = -89.0
+
+
+=== Episode 357 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 358 ===
+
+🎉 Goal reached in 32 steps, return = -32.0
+
+
+=== Episode 359 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 360 ===
+
+🎉 Goal reached in 106 steps, return = -106.0
+
+
+=== Episode 361 ===
+
+🎉 Goal reached in 31 steps, return = -31.0
+
+
+=== Episode 362 ===
+
+🎉 Goal reached in 56 steps, return = -56.0
+
+
+=== Episode 363 ===
+
+🎉 Goal reached in 66 steps, return = -66.0
+
+
+=== Episode 364 ===
+
+🎉 Goal reached in 32 steps, return = -32.0
+
+
+=== Episode 365 ===
+
+🎉 Goal reached in 56 steps, return = -56.0
+
+
+=== Episode 366 ===
+
+🎉 Goal reached in 135 steps, return = -135.0
+
+
+=== Episode 367 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 368 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 369 ===
+
+🎉 Goal reached in 62 steps, return = -62.0
+
+
+=== Episode 370 ===
+
+🎉 Goal reached in 62 steps, return = -62.0
+
+
+=== Episode 371 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 372 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 373 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 374 ===
+
+🎉 Goal reached in 117 steps, return = -117.0
+
+
+=== Episode 375 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 376 ===
+
+🎉 Goal reached in 88 steps, return = -88.0
+
+
+=== Episode 377 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 378 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 379 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 380 ===
+
+🎉 Goal reached in 53 steps, return = -53.0
+
+
+=== Episode 381 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 382 ===
+
+🎉 Goal reached in 53 steps, return = -53.0
+
+
+=== Episode 383 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 384 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 385 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 386 ===
+
+🎉 Goal reached in 26 steps, return = -26.0
+
+
+=== Episode 387 ===
+
+🎉 Goal reached in 131 steps, return = -131.0
+
+
+=== Episode 388 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 389 ===
+
+🎉 Goal reached in 85 steps, return = -85.0
+
+
+=== Episode 390 ===
+
+🎉 Goal reached in 123 steps, return = -123.0
+
+
+=== Episode 391 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 392 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 393 ===
+
+🎉 Goal reached in 101 steps, return = -101.0
+
+
+=== Episode 394 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 395 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 396 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 397 ===
+
+🎉 Goal reached in 43 steps, return = -43.0
+
+
+=== Episode 398 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 399 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 400 ===
+
+🎉 Goal reached in 151 steps, return = -151.0
+
+
+=== Episode 401 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 402 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 403 ===
+
+🎉 Goal reached in 101 steps, return = -101.0
+
+
+=== Episode 404 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 405 ===
+
+🎉 Goal reached in 81 steps, return = -81.0
+
+
+=== Episode 406 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 407 ===
+
+🎉 Goal reached in 85 steps, return = -85.0
+
+
+=== Episode 408 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 409 ===
+
+🎉 Goal reached in 99 steps, return = -99.0
+
+
+=== Episode 410 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 411 ===
+
+🎉 Goal reached in 85 steps, return = -85.0
+
+
+=== Episode 412 ===
+
+🎉 Goal reached in 68 steps, return = -68.0
+
+
+=== Episode 413 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 414 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 415 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 416 ===
+
+🎉 Goal reached in 25 steps, return = -25.0
+
+
+=== Episode 417 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 418 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 419 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 420 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 421 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 422 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 423 ===
+
+🎉 Goal reached in 54 steps, return = -54.0
+
+
+=== Episode 424 ===
+
+🎉 Goal reached in 87 steps, return = -87.0
+
+
+=== Episode 425 ===
+
+🎉 Goal reached in 31 steps, return = -31.0
+
+
+=== Episode 426 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 427 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 428 ===
+
+🎉 Goal reached in 100 steps, return = -100.0
+
+
+=== Episode 429 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 430 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 431 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 432 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 433 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 434 ===
+
+🎉 Goal reached in 82 steps, return = -82.0
+
+
+=== Episode 435 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 436 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 437 ===
+
+🎉 Goal reached in 62 steps, return = -62.0
+
+
+=== Episode 438 ===
+
+🎉 Goal reached in 98 steps, return = -98.0
+
+
+=== Episode 439 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 440 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 441 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 442 ===
+
+🎉 Goal reached in 163 steps, return = -163.0
+
+
+=== Episode 443 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 444 ===
+
+🎉 Goal reached in 99 steps, return = -99.0
+
+
+=== Episode 445 ===
+
+🎉 Goal reached in 55 steps, return = -55.0
+
+
+=== Episode 446 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 447 ===
+
+🎉 Goal reached in 105 steps, return = -105.0
+
+
+=== Episode 448 ===
+
+🎉 Goal reached in 112 steps, return = -112.0
+
+
+=== Episode 449 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 450 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 451 ===
+
+🎉 Goal reached in 69 steps, return = -69.0
+
+
+=== Episode 452 ===
+
+🎉 Goal reached in 34 steps, return = -34.0
+
+
+=== Episode 453 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 454 ===
+
+🎉 Goal reached in 84 steps, return = -84.0
+
+
+=== Episode 455 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 456 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 457 ===
+
+🎉 Goal reached in 45 steps, return = -45.0
+
+
+=== Episode 458 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 459 ===
+
+🎉 Goal reached in 38 steps, return = -38.0
+
+
+=== Episode 460 ===
+
+🎉 Goal reached in 76 steps, return = -76.0
+
+
+=== Episode 461 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 462 ===
+
+🎉 Goal reached in 113 steps, return = -113.0
+
+
+=== Episode 463 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 464 ===
+
+🎉 Goal reached in 32 steps, return = -32.0
+
+
+=== Episode 465 ===
+
+🎉 Goal reached in 52 steps, return = -52.0
+
+
+=== Episode 466 ===
+
+🎉 Goal reached in 56 steps, return = -56.0
+
+
+=== Episode 467 ===
+
+🎉 Goal reached in 60 steps, return = -60.0
+
+
+=== Episode 468 ===
+
+🎉 Goal reached in 51 steps, return = -51.0
+
+
+=== Episode 469 ===
+
+🎉 Goal reached in 29 steps, return = -29.0
+
+
+=== Episode 470 ===
+
+🎉 Goal reached in 133 steps, return = -133.0
+
+
+=== Episode 471 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 472 ===
+
+🎉 Goal reached in 29 steps, return = -29.0
+
+
+=== Episode 473 ===
+
+🎉 Goal reached in 35 steps, return = -35.0
+
+
+=== Episode 474 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 475 ===
+
+🎉 Goal reached in 79 steps, return = -79.0
+
+
+=== Episode 476 ===
+
+🎉 Goal reached in 97 steps, return = -97.0
+
+
+=== Episode 477 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 478 ===
+
+🎉 Goal reached in 63 steps, return = -63.0
+
+
+=== Episode 479 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+=== Episode 480 ===
+
+🎉 Goal reached in 103 steps, return = -103.0
+
+
+=== Episode 481 ===
+
+🎉 Goal reached in 42 steps, return = -42.0
+
+
+=== Episode 482 ===
+
+🎉 Goal reached in 47 steps, return = -47.0
+
+
+=== Episode 483 ===
+
+🎉 Goal reached in 97 steps, return = -97.0
+
+
+=== Episode 484 ===
+
+🎉 Goal reached in 39 steps, return = -39.0
+
+
+=== Episode 485 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 486 ===
+
+🎉 Goal reached in 59 steps, return = -59.0
+
+
+=== Episode 487 ===
+
+🎉 Goal reached in 75 steps, return = -75.0
+
+
+=== Episode 488 ===
+
+🎉 Goal reached in 64 steps, return = -64.0
+
+
+=== Episode 489 ===
+
+🎉 Goal reached in 56 steps, return = -56.0
+
+
+=== Episode 490 ===
+
+🎉 Goal reached in 61 steps, return = -61.0
+
+
+=== Episode 491 ===
+
+🎉 Goal reached in 46 steps, return = -46.0
+
+
+=== Episode 492 ===
+
+🎉 Goal reached in 48 steps, return = -48.0
+
+
+=== Episode 493 ===
+
+🎉 Goal reached in 40 steps, return = -40.0
+
+
+=== Episode 494 ===
+
+🎉 Goal reached in 44 steps, return = -44.0
+
+
+=== Episode 495 ===
+
+🎉 Goal reached in 49 steps, return = -49.0
+
+
+=== Episode 496 ===
+
+🎉 Goal reached in 50 steps, return = -50.0
+
+
+=== Episode 497 ===
+
+🎉 Goal reached in 86 steps, return = -86.0
+
+
+=== Episode 498 ===
+
+🎉 Goal reached in 71 steps, return = -71.0
+
+
+=== Episode 499 ===
+
+🎉 Goal reached in 72 steps, return = -72.0
+
+
+=== Episode 500 ===
+
+🎉 Goal reached in 41 steps, return = -41.0
+
+
+🏆 Mean return per episode: -68.18
+🎯 Success rate: 100.00%
+⏱️ Mean steps per episode: 68.18
+⚡ Training time: 58.46 seconds
