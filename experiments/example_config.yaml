@@ -10,5 +10,4 @@ parameters:
   num_runs: 1 # Single run for testing
   ep_decay: 0.95
   lr_decay: 0.95
-  t_max: 250
   penalty: -2.0

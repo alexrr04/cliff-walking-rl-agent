@@ -9,7 +9,7 @@ from gymnasium import Wrapper
 # Constants
 SLIPPERY = True
 T_MAX = 200
-NUM_EPISODES = 2000
+NUM_EPISODES = 1000
 GAMMA = 0.95
 LEARNING_RATE = 0.1
 EPSILON = 0.9
@@ -24,7 +24,7 @@ class QLearningAgent:
     A Q-Learning agent implementation for the CliffWalking environment.
     Learns the optimal policy through experience using Q-learning algorithm.
     """
-    def __init__(self, env, gamma, learning_rate, epsilon, t_max, ep_decay, lr_decay):
+    def __init__(self, env, gamma, learning_rate, epsilon, ep_decay, lr_decay):
         """
         Initialize the Q-Learning agent.
 
@@ -33,14 +33,14 @@ class QLearningAgent:
             gamma (float): Discount factor for future rewards
             learning_rate (float): Learning rate for Q-value updates
             epsilon (float): Exploration probability for epsilon-greedy policy
-            t_max (int): Maximum number of timesteps per episode
+            ep_decay (float): Decay rate for epsilon
+            lr_decay (float): Decay rate for learning rate
         """
         self.env = env
         self.Q = np.zeros((env.observation_space.n, env.action_space.n))
         self.gamma = gamma
         self.learning_rate = learning_rate
         self.epsilon = epsilon
-        self.t_max = t_max
         self.decay = ep_decay
         self.lr_decay = lr_decay
 
@@ -86,7 +86,7 @@ class QLearningAgent:
         self.learning_rate = max(MIN_LEARNING_RATE, self.learning_rate * (self.lr_decay ** num_episode))
         state, _ = self.env.reset()
         total_reward = 0
-        for i in range(self.t_max):
+        for i in range(T_MAX):
             action = self.select_action(state)
             new_state, new_reward, is_done, truncated, _ = self.env.step(action)
             total_reward += new_reward
