@@ -377,8 +377,24 @@ def clear_files():
                     if exp_dir.startswith("experiment_"):
                         exp_path = os.path.join(algo_path, exp_dir)
                         if os.path.isdir(exp_path):
+                            # First remove files in run directories for direct estimation
+                            if algo_dir == "directEstimation":
+                                for run_dir in os.listdir(exp_path):
+                                    run_path = os.path.join(exp_path, run_dir)
+                                    if os.path.isdir(run_path):
+                                        for file in os.listdir(run_path):
+                                            os.remove(os.path.join(run_path, file))
+                                        os.rmdir(run_path)
+                            # Remove remaining files and the experiment directory itself
                             for file in os.listdir(exp_path):
-                                os.remove(os.path.join(exp_path, file))
+                                file_path = os.path.join(exp_path, file)
+                                if os.path.isfile(file_path):
+                                    os.remove(file_path)
+                                elif os.path.isdir(file_path):
+                                    # Remove any remaining subdirectories (should only happen for direct estimation)
+                                    for subfile in os.listdir(file_path):
+                                        os.remove(os.path.join(file_path, subfile))
+                                    os.rmdir(file_path)
                             os.rmdir(exp_path)
                 # Only remove the algorithm directory if it's empty
                 if not os.listdir(algo_path):
