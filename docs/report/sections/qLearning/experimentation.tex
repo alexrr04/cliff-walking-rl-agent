@@ -1,64 +1,96 @@
 \subsection{Experimentación}
 
-\subsubsection{Experimento factor de descuento \& \(\epsilon\) decay}
+\subsubsection{Experimento factor de descuento \& tasa de aprendizaje}
 
 \paragraph{Diseño experimental}
 
-El objetivo de este experimento es analizar cómo el factor de descuento y la tasa de decaimiento de exploración afectan el rendimiento del algoritmo Q-Learning.
+El objetivo de este experimento es analizar cómo el factor de descuento y la tasa de aprendizaje afectan el rendimiento del algoritmo Q-Learning.
 
 % TODO: Usar esta tabla para cada experimento
 \begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
         \hline % Línea horizontal superior
-        \textbf{Observación} & El factor de descuento ($\gamma$) y la tasa de decaimiento ($decay$) de exploración son parámetros críticos en el algoritmo Q-Learning. 
+        \textbf{Observación} & El factor de descuento ($\gamma$) y la tasa de aprendizaje ($\alpha$) de exploración son parámetros críticos en el algoritmo Q-Learning. 
         \\ \hline 
-        \textbf{Planteamiento} & Para cada pareja de valores de $\gamma$ y $decay$, se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
+        \textbf{Planteamiento} & Para cada pareja de valores de $\gamma$ y $\alpha$, se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
         \\ \hline 
-        \textbf{Hipótesis} & Un mayor factor de descuento y una tasa de decaimiento de $\epsilon$ más lenta mejorarán el rendimiento del algoritmo.
+        \textbf{Hipótesis} & Un mayor factor de descuento y una tasa de aprendizaje más lenta mejorarán el rendimiento del algoritmo.
         \\ \hline 
         \textbf{Método} & 
         \begin{itemize}
-            \item Se fijan 1000 episodios de entrenamiento, tasa de aprendizaje \(\alpha = 0.1\) y \(\epsilon\) inicial de $0.9$.
-            \item Se eligen los siguientes valores para \(\gamma\) y $decay$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y $decay \in \{0.8, 0.9, 0.95, 0.99\}$.
-            \item Para cada combinación de \(\gamma\) y $decay$, se ejecuta el algoritmo Q-Learning en el entorno.
+            \item Se fijan 1000 episodios de entrenamiento, \(\epsilon\) inicial de $0.9$, coeficiente de decaimiento de \(\epsilon\) de $0.95$, un coeficiente de decaimiento de la tasa de aprendizaje de $0.99$ y una penalización de la acción ``moverse a la izquierda'' de $-1$.
+            \item Se eligen los siguientes valores para \(\gamma\) y $\alpha$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y $\alpha \in \{0.1, 0.2, 0.5, 0.8\}$.
+            \item Para cada combinación de \(\gamma\) y $\alpha$, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
             \item Se repite el proceso para cada combinación de \(\gamma\) y $decay$ 20 veces.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Q-Learning - Experimento 1 - Factor de descuento \& $\epsilon$ decay}
+    \caption{Q-Learning - Experimento 1 - Factor de descuento \& tasa de aprendizaje}
     \label{tab:diseñoQLEarningExp1}
 \end{table}
 
 \paragraph{Resultados}
 
-\subsubsection{Experimento tasa de aprendizaje (\(\alpha\)) \& tasa de exploración (\(\epsilon\))}
+\subsubsection{Experimento tasa de exploración (\(\epsilon\)) \& decaimiento de la tasa de exploración (\(\epsilon\))}
 
 \paragraph{Diseño experimental}
+El objetivo de este experimento es analizar cómo la tasa de exploración y su decaimiento afectan el rendimiento del algoritmo Q-Learning.
 
 \begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
         \hline % Línea horizontal superior
-        \textbf{Observación} & El rendimiento y óptimalidad de la política encontrada por Q-Learning se ven afectados por los valores de la tasa de aprendizaje $\alpha$ y la tasa de exploración $\epsilon$. 
+        \textbf{Observación} & El rendimiento y óptimalidad de la política encontrada por Q-Learning se ven afectados por la tasa de exploración y su decaimiento. 
         \\ \hline 
-        \textbf{Planteamiento} & Para cada combinación de \(\alpha\) y \(\epsilon\), se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
+        \textbf{Planteamiento} & Para cada combinación de \(\epsilon\) y decaimiento de \(\epsilon\), se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
         \\ \hline 
-        \textbf{Hipótesis} & Un menor valor de \(\alpha\) y un \(\epsilon\) más lento mejorarán el rendimiento del algoritmo.
+        \textbf{Hipótesis} & Un mayor valor de \(\epsilon\) y un decaimiento más lento mejorarán el rendimiento del algoritmo.
         \\ \hline 
         \textbf{Método} & 
         \begin{itemize}
-            \item Se fijan 1000 episodios de entrenamiento y los mejores valores para \(\gamma\) y $decay$ del experimento anterior.
-            \item Se eligen los siguientes valores para \(\alpha\) y \(\epsilon\): \(\alpha \in \{0.1, 0.2, 0.5, 0.8\}\) y \(\epsilon \in \{0.7, 0.9, 0.95, 0.99\}\).
-            \item Para cada combinación de \(\alpha\) y \(\epsilon\), se ejecuta el algoritmo Q-Learning en el entorno.
+            \item Se fijan 1000 episodios de entrenamiento,  un coeficiente de decaimiento de la tasa de aprendizaje de $0.99$, una penalización de la acción ``moverse a la izquierda'' de $-1$. y los mejores valores para \(\gamma\) y $\alpha$ del experimento anterior.
+            \item Se eligen los siguientes valores para \(\epsilon\) y decaimiento de \(\epsilon\): \(\epsilon \in \{0.7, 0.9, 0.95, 0.99\}\) y decaimiento de \(\epsilon \in \{0.8, 0.9, 0.95, 0.99\}\).
+            \item Para cada combinación de \(\epsilon\) y decaimiento de \(\epsilon\), se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada combinación de \(\alpha\) y \(\epsilon\) 20 veces.
+            \item Se repite el proceso para cada combinación de \(\epsilon\) y decaimiento de \(\epsilon\) 20 veces.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Q-Learning - Experimento 2 - Tasa de aprendizaje \& tasa de exploración}
+    \caption{Q-Learning - Experimento 2 - Tasa de exploracion \& decaimiento de la tasa de exploracion}
     \label{tab:diseñoQLEarningExp2}
+\end{table}
+
+\paragraph{Resultados}
+
+\subsubsection{Experimento tasa de aprendizaje \& decaimiento de la tasa de aprendizaje}
+
+\paragraph{Diseño experimental}
+El objetivo de este experimento es analizar cómo la tasa de aprendizaje y su decaimiento afectan el rendimiento del algoritmo Q-Learning.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
+        \hline % Línea horizontal superior
+        \textbf{Observación} & La tasa de aprendizaje ($\alpha$) y su decaimiento son parámetros que influyen en la convergencia del algoritmo Q-Learning.
+        \\ \hline 
+        \textbf{Planteamiento} & Para cada combinación de $\alpha$ y su decaimiento, se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
+        \\ \hline 
+        \textbf{Hipótesis} & Una tasa de aprendizaje lenta con un decaimiento gradual mejorará el rendimiento del algoritmo.
+        \\ \hline 
+        \textbf{Método} & 
+        \begin{itemize}
+            \item Se fijan 1000 episodios de entrenamiento, una penalización de la acción ``moverse a la izquierda'' de $-1$. valores de \(\gamma\), y los mejores valores de \(\gamma\), \(\epsilon\) y su decaimiento de los experimentos anteriores.
+            \item Se eligen los siguientes valores para $\alpha$ y su decaimiento: $\alpha \in \{0.1, 0.2, 0.5, 0.8\}$ y decaimiento de $\alpha \in \{0.95, 0.99, 0.995, 0.999\}$.
+            \item Para cada combinación de $\alpha$ y su decaimiento, se ejecuta el algoritmo Q-Learning en el entorno.
+            \item Se evalúa la política obtenida probándola con 500 episodios.
+            \item Se repite el proceso para cada combinación de $\alpha$ y su decaimiento 20 veces.
+        \end{itemize}
+        \\ \hline
+    \end{tabularx}
+    \caption{Q-Learning - Experimento 3 - Tasa de aprendizaje \& decaimiento de la tasa de aprendizaje}
+    \label{tab:diseñoQLEarningExp3}
 \end{table}
 
 \paragraph{Resultados}
@@ -66,7 +98,7 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
 \subsubsection{Experimento número de episodios}
 
 \paragraph{Diseño experimental}
-
+El objetivo de este experimento es analizar cómo el número de episodios de entrenamiento afectan el rendimiento del algoritmo Q-Learning.
 \begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
@@ -79,7 +111,7 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
         \\ \hline
         \textbf{Método} &
         \begin{itemize}
-            \item Se fijan los mejores valores para \(\gamma\), $decay$, \(\alpha\) y \(\epsilon\) de los experimentos anteriores.
+            \item Se fijan los mejores valores para \(\gamma\), \(\alpha\), decaimiento de \(\alpha\), \(\epsilon\), decaimiento de \(\epsilon\) de los experimentos anteriores y una penalización de la acción ``moverse a la izquierda'' de $-1$.
             \item Se eligen los siguientes \textit{números de episodios de entrenamiento}: \{500, 1000, 5000, 10000\}.
             \item Para cada \textit{número de episodios}, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
@@ -91,12 +123,13 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
     \label{tab:diseñoQLEarningExp3}
 \end{table}
 
+
 \paragraph{Resultados}
 
 \subsubsection{Experimento penalización de la acción izquierda}
 
 \paragraph{Diseño experimental}
-
+El objetivo de este experimento es analizar si penalizar acciones poco favorables afectan el rendimiento del algoritmo Q-Learning.
 \begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
@@ -109,7 +142,7 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
         \\ \hline
         \textbf{Método} &
         \begin{itemize}
-            \item Se fijan los mejores valores para \(\gamma\), $decay$, \(\alpha\), \(\epsilon\) y \textit{número de episodios de entrenamiento} de los experimentos anteriores.
+            \item Se fijan los mejores valores para \(\gamma\), \(\alpha\), decaimiento de \(\alpha\), \(\epsilon\), decaimiento de \(\epsilon\) de los experimentos anteriores.
             \item Se eligen los siguientes valores para la penalización de la acción ``moverse a la izquierda'': \{-1, -2, -10, -50\}.
             \item Para cada penalización, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
