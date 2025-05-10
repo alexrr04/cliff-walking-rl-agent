@@ -140,7 +140,6 @@ class CustomCliffWalkingWrapper(Wrapper):
             tuple: (state, reward, is_done, truncated, info)
         """
         state, reward, is_done, truncated, info = self.env.step(action)
-        print("penalty: " + str(self.penalty))
         if action == 3:
             reward = self.penalty
         return state, reward, is_done, truncated, info
