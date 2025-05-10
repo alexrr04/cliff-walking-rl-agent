@@ -101,21 +101,21 @@
         \hline % Línea horizontal superior
         \textbf{Observación} & Moverse a la izquierda no es deseable para el agente en ningún momento, ya que no le acerca al objetivo. Por lo tanto, penalizarla con una recompensa menor que las demás acciones puede alterar el comportamiento del agente.
         \\ \hline 
-        \textbf{Planteamiento} & Se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo para diferentes penalizaciones a la acción izquierda.
+        \textbf{Planteamiento} & Se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo para diferentes penalizaciones a la acción ``moverse a la izquierda''.
         \\ \hline
-        \textbf{Hipótesis} & Penalizar la acción izquierda mejorará el rendimiento del algoritmo.
+        \textbf{Hipótesis} & Penalizar la acción ``moverse a la izquierda'' mejorará el rendimiento del algoritmo.
         \\ \hline
         \textbf{Método} &
         \begin{itemize}
             \item Se fijan los mejores valores para \(\gamma\), $decay$, \(\alpha\), \(\epsilon\) y \textit{número de episodios de entrenamiento} de los experimentos anteriores.
-            \item Se eligen los siguientes valores para la penalización de la acción izquierda: \{-1, -2, -10, -50\}.
+            \item Se eligen los siguientes valores para la penalización de la acción ``moverse a la izquierda'': \{-1, -2, -10, -50\}.
             \item Para cada penalización, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
             \item Se repite el proceso para cada penalización 20 veces.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Q-Learning - Experimento 4 - Penalización de la acción izquierda}
+    \caption{Q-Learning - Experimento 4 - Penalización de la acción ``moverse a la izquierda''}
     \label{tab:diseñoQLEarningExp4}
 \end{table}
 
