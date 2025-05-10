@@ -1,23 +1,33 @@
 \subsection{Experimentación}
 
+En el caso de iteración de valor, se han decidido estudiar el efecto de diferente valores del factor de descuento $\gamma$ y el parámetro de convergencia $\epsilon$ en el rendimiento del algoritmo. 
+
+\subsubsection{Experimento factor de descuento \& \(\epsilon\)} 
+
+\paragraph{Diseño experimental}
+El objetivo de este experimento es analizar cómo los parámetros \(\gamma\) y \(\epsilon\) afectan el rendimiento del algoritmo de iteración de valor.
 
 % TODO: Usar esta tabla para cada experimento
 \begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
         \hline % Línea horizontal superior
-        \textbf{Observación} &  
-        \\ \hline 
-        \textbf{Planteamiento} & 
-        \\ \hline 
-        \textbf{Hipótesis} & 
-        \\ \hline 
+        \textbf{Observación} & El rendimiento y óptimalidad de la política encontrada por \textit{Value Iteration} se ven afectados por los valores de $\gamma$ y $\epsilon$.
+        \\ \hline
+        \textbf{Planteamiento} & Para cada pareja de valores de $\gamma$ y $\epsilon$, se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
+        \\ \hline
+        \textbf{Hipótesis} & Se espera que un mayor valor de $\gamma$ conduzca a una política más óptima, mientras que un menor valor de $\epsilon$ permita una convergencia más rápida con una menor precisión.
+        \\ \hline
         \textbf{Método} & 
         \begin{itemize}
-            \item 
+            \item Elegimos un conjunto de valores para $\gamma$ y $\epsilon$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y \(\epsilon \in \{1\times 10^{-1}, 1\times 10^{-2}, 1\times 10^{-4}, 1\times 10^{-8}\}\).
+            \item Para cada combinación de \(\gamma\) y \(\epsilon\), se ejecuta el algoritmo \textit{Value Iteration} en el entorno.
+            \item Se evalúa la política obtenida probándola con 500 episodios.
         \end{itemize}
         \\ \hline
     \end{tabularx}
     \caption{Experimento 1}
-    \label{tab:tabla1}
+    \label{tab:diseñoValueIterationExp1}
 \end{table}
+
+\paragraph{Resultados}

@@ -1,1 +1,53 @@
 \subsection{Descripción del algoritmo}
+
+Q-learning es un algoritmo de aprendizaje por refuerzo. La característica fundamental de Q-learning es su capacidad para aprender de forma off-policy, es decir, puede aprender la política óptima mientras sigue una política de exploración diferente (como $\varepsilon$-greedy). El algoritmo actualiza iterativamente sus estimaciones $Q(s,a)$ utilizando la ecuación de Bellman. A medida que el aprendizaje progresa, las estimaciones de $Q$ convergen hacia los valores óptimos, permitiendo derivar la política óptima como $\pi^*(s) = \arg\max_a Q(s,a)$.
+
+\
+
+A continuación se presenta el pseudocódigo genérico de Direct Estimation que se ha implementado en este proyecto, seguido de las decisiones de diseño adoptadas en la implementación de Python.
+
+\begin{algorithm}[H]
+  \caption{Q-Learning}
+  \begin{algorithmic}[1]
+    \State Inicializar $Q(s,a)\gets 0$ para todo $s\in S$, $a\in A$
+    \For{$\text{episodio}\gets 1$ \textbf{to} $N_{\text{episodios}}$}
+      \State $\varepsilon \gets \max(\varepsilon_{\min}, \varepsilon_0\cdot\text{decay}^{\text{episodio}})$
+      \State Inicializar $s\gets s_0$
+      \For{$t\gets 1$ \textbf{to} $T_{\max}$}
+        \If{rand() $\le\varepsilon$}
+          \State $a\gets$ acción aleatoria
+        \Else
+          \State $a\gets \arg\max_{a'} Q(s,a')$
+        \EndIf
+        \State Ejecutar $a$, observar $r,s'$
+        \State $\,\text{td\_target}\gets r + \gamma \max_{a''}Q(s',a'')$
+        \State $\,\text{td\_error}\gets \text{td\_target} - Q(s,a)$
+        \State $Q(s,a)\;\widehat{\gets}\;Q(s,a) + \alpha\;\text{td\_error}$
+        \If{$s'$ es terminal}
+          \State \textbf{break}
+        \EndIf
+        \State $s\gets s'$
+      \EndFor
+    \EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\paragraph*{Decisiones de diseño en la implementación Python}
+
+\begin{itemize}
+  \item \textbf{Política \(\varepsilon\)-greedy con decaimiento:}
+    \[
+      \pi(a \mid s) = 
+      \begin{cases}
+        \frac{1}{|\mathcal{A}|}, & \text{con probabilidad } \varepsilon,\\
+        1, & \text{si } a = \arg\max_{a'}Q(s,a'),\\
+        0, & \text{en otro caso.}
+      \end{cases}
+    \]
+    Al inicio de cada episodio:
+    \[
+      \varepsilon \leftarrow \max\bigl(\varepsilon_{\min},\ \varepsilon \cdot (\text{decay})^{\text{episodio}}\bigr).
+    \]
+  \item \textbf{Wrapper de recompensas customizado:}
+    Se penaliza la acción \texttt{Izquierda} añadiendo una recompensa peor que la original, ya que en ningún caso interesa que el agente se desplace hacia la izquierda.
+\end{itemize}

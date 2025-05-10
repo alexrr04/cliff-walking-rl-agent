@@ -1,1 +1,61 @@
 \subsection{Descripción del algoritmo}
+
+La versión de Estimación Directa que se ha implementado corresponde a un \emph{Método Monte Carlo basado en modelo}, en el cual:
+
+\begin{enumerate}
+  \item Se recolectan muestras de transición $(s,a,s',r)$ jugando acciones aleatorias.
+  \item Se estiman empíricamente
+    \begin{align*}
+      \hat T(s,a,s') &= \frac{\mathrm{conteo}(s,a\to s')}{\sum_{s''}\mathrm{conteo}(s,a\to s'')},\\
+      \hat R(s,a,s') &= \frac{\sum r}{\mathrm{veces}(s,a\to s')}.
+    \end{align*}
+  \item Se aplica iteración de valor sobre el MDP estimado $(\hat T,\hat R,\gamma)$ para obtener
+    \[
+      V^*(s) = \max_a \sum_{s'} \hat T(s,a,s')\Bigl[\hat R(s,a,s') + \gamma\,V^*(s')\Bigr],
+    \]
+    y de ahí la política óptima
+    \[
+      \pi^*(s) = \arg\max_a \sum_{s'} \hat T(s,a,s')\Bigl[\hat R(s,a,s') + \gamma\,V^*(s')\Bigr].
+    \]
+\end{enumerate}
+
+A continuación se presenta el pseudocódigo genérico de Direct Estimation que se ha implementado en este proyecto, seguido de las decisiones de diseño adoptadas en la implementación de Python.
+
+\begin{algorithm}[H]
+\caption{Estimación Directa (Model-based Monte Carlo)}\label{alg:direct-estimation}
+\begin{algorithmic}[1]
+\Require Factor de descuento $\gamma$, número de trayectorias $N$, tolerancia $\varepsilon$, máximo de iteraciones $K$
+\State Inicializar contadores de transición y recompensa vacíos
+\State Inicializar $V(s)\gets 0$ para todo estado $s$
+\For{$t=1,\dots,K$}
+  \State \textbf{Recolectar datos:}
+  \For{$i=1,\dots,N$}
+    \State Jugar un paso aleatorio, obtener $(s,a,s',r)$
+     \State Incrementar $N(s,a,s')$ y acumular recompensa en $R_{\text{sum}}(s,a,s')$
+  \EndFor
+  \State \textbf{Ajustar modelo:}
+  \ForAll{$(s,a)$}
+    \State $\hat T(s,a,s')\gets \dfrac{N(s,a,s')}{\sum_{u}N(s,a,u)}$
+    \State $\hat R(s,a,s')\gets \dfrac{R_{\text{sum}}(s,a,s')}{N(s,a,s')}$
+
+  \EndFor
+  \State \textbf{Iteración de valor:}
+  \State $\Delta\gets 0$
+  \ForAll{$s$}
+    \ForAll{$a$}
+      \State $Q(s,a)\gets \sum_{s'}\hat T(s,a,s')\bigl[\hat R(s,a,s')+\gamma\,V(s')\bigr]$
+    \EndFor
+    \State $V_{\text{nuevo}}(s)\gets \max_a Q(s,a)$
+    \State $\Delta\gets \max\{\Delta,\,|V_{\text{nuevo}}(s)-V(s)|\}$
+    \State $V(s)\gets V_{\text{nuevo}}(s)$
+  \EndFor
+  \If{$\Delta<\varepsilon$} \textbf{break} \EndIf
+\EndFor
+\State \Return $V$, y derivar $\pi^*(s)=\arg\max_a Q(s,a)$
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph*{Decisiones de diseño en la implementación Python}
+\begin{itemize}
+  \item \textbf{Criterio de parada por paciencia.} Además de la tolerancia en la iteración de valor, detenemos el entrenamiento si no hay mejora en la recompensa media durante \texttt{PATIENCE} iteraciones, midiendo esto con la función \texttt{check\_improvements()}.
+\end{itemize}
