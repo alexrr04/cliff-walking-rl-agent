@@ -1,6 +1,10 @@
 \subsection{Experimentación}
 
+En el caso de estimación directa se analizan diferentes parámetros como el factor de descuento, el número de trayectorias, episodios de entrenamiento y el número máximo de iteraciones sin mejora para detener el entrenamiento (\textit{patience}).
+
 \subsubsection{Experimento factor de descuento \& número de trayectorias}
+
+El objetivo de este experimento es analizar el rendimiento del algoritmo \textit{Direct Estimation} en función del factor de descuento y el número de trayectorias.
 
 \paragraph{Diseño experimental}
 % TODO: Usar esta tabla para cada experimento
@@ -8,25 +12,31 @@
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
         \hline % Línea horizontal superior
-        \textbf{Observación} &  
-        \\ \hline 
-        \textbf{Planteamiento} & 
-        \\ \hline 
-        \textbf{Hipótesis} & 
-        \\ \hline 
+        \textbf{Observación} & El rendimiento del algoritmo varía con el factor de descuento y el número de trayectorias.
+        \\ \hline
+        \textbf{Planteamiento} & Para cada combinación de \(\gamma\) y \textit{número de trayectorias}, se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
+        \\ \hline
+        \textbf{Hipótesis} & Un mayor factor de descuento y un mayor número de trayectorias mejorarán el rendimiento del algoritmo.
+        \\ \hline
         \textbf{Método} & 
         \begin{itemize}
-            \item 
+            \item Se fijan 500 episodios de entrenamiento y un número máximo de iteraciones sin mejora para detener el entrenamiento (\textit{patience}) de 100.
+            \item Se eligen los siguientes valores para \(\gamma\) y \textit{número de trayectorias}: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y \textit{número de trayectorias} \(\in \{10, 100, 500, 1000\}\).
+            \item Para cada combinación de \(\gamma\) y \textit{número de trayectorias}, se ejecuta el algoritmo \textit{Direct Estimation} en el entorno.
+            \item Se evalúa la política obtenida probándola con 500 episodios.
+            \item Se repite el proceso para cada combinación de \(\gamma\) y \textit{número de trayectorias} 10 veces.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Experimento 1}
-    \label{tab:tabla1}
+    \caption{Direct Estimation - Experimento 1 - Factor de descuento \& número de trayectorias}
+    \label{tab:diseñoDirectEstimationExp1}
 \end{table}
 
 \paragraph{Resultados}
 
-\subsubsection{Experimento número de episodios \& $PATIENCE$}
+\subsubsection{Experimento número de episodios de entrenamiento}
+
+El objetivo de este experimento es analizar el rendimiento del algoritmo \textit{Direct Estimation} en función del número de episodios de entrenamiento.
 
 \paragraph{Diseño experimental}
 
@@ -34,20 +44,56 @@
     \centering
     \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
         \hline % Línea horizontal superior
-        \textbf{Observación} &  
-        \\ \hline 
-        \textbf{Planteamiento} & 
-        \\ \hline 
-        \textbf{Hipótesis} & 
-        \\ \hline 
+        \textbf{Observación} & El rendimiento del algoritmo varía con el número de episodios de entrenamiento.
+        \\ \hline
+        \textbf{Planteamiento} & Se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo para diferentes números de episodios de entrenamiento.
+        \\ \hline
+        \textbf{Hipótesis} & Un mayor número de episodios de entrenamiento mejorará el rendimiento del algoritmo.
+        \\ \hline
         \textbf{Método} & 
         \begin{itemize}
-            \item 
+            \item Se fijan los mejores valores para \(\gamma\) y \textit{número de trayectorias} del experimento anterior.
+            \item Se eligen los siguientes valores para \textit{número de episodios de entrenamiento}: \textit{número de episodios de entrenamiento} \(\in \{100, 500, 1000, 5000\}\).
+            \item Para cada \textit{número de episodios}, se ejecuta el algoritmo \textit{Direct Estimation} en el entorno.
+            \item Se evalúa la política obtenida probándola con 500 episodios.
+            \item Se repite el proceso para cada \textit{número de episodios} 10 veces.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Experimento 1}
-    \label{tab:tabla1}
+    \caption{Direct Estimation - Experimento 2 - Número de episodios de entrenamiento}
+    \label{tab:diseñoDirectEstimationExp2}
+\end{table}
+
+\paragraph{Resultados}
+
+\subsubsection{Experimento Patience}
+
+El objetivo de este experimento es ver si el algoritmo \textit{Direct Estimation} puede detenerse antes de que se alcance el número máximo de episodios de entrenamiento, lo que podría reducir el tiempo de entrenamiento sin afectar el rendimiento.
+
+\paragraph{Diseño experimental}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
+        \hline % Línea horizontal superior
+        \textbf{Observación} & El algoritmo \textit{Direct Estimation} tiene fases largas de entrenamiento sin mejora.
+        \\ \hline
+        \textbf{Planteamiento} & Se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo para diferentes valores de iteraciones sin mejora para detener el entrenamiento (\textit{patience}).
+        \\ \hline
+        \textbf{Hipótesis} & Un valor de \textit{patience} más bajo permitirá al algoritmo detenerse antes y reducir el tiempo de entrenamiento sin afectar significativamente el rendimiento.
+        \\ \hline
+        \textbf{Método} & 
+        \begin{itemize}
+            \item Se fijan los mejores valores para \(\gamma\), \textit{número de trayectorias} y \textit{número de episodios de entrenamiento} de los experimentos anteriores.
+            \item Se eligen los siguientes valores para \textit{patience}: \textit{patience} \(\in \{10, 100, 1000\}\).
+            \item Para cada \textit{patience}, se ejecuta el algoritmo \textit{Direct Estimation} en el entorno.
+            \item Se evalúa la política obtenida probándola con 500 episodios.
+            \item Se repite el proceso para cada \textit{patience} 10 veces.
+        \end{itemize}
+        \\ \hline
+    \end{tabularx}
+    \caption{Direct Estimation - Experimento 3 - Patience}
+    \label{tab:diseñoDirectEstimationExp3}
 \end{table}
 
 \paragraph{Resultados}

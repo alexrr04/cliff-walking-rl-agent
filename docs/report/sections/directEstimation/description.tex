@@ -6,9 +6,10 @@ La versión de Estimación Directa que se ha implementado corresponde a un \emph
   \item Se recolectan muestras de transición $(s,a,s',r)$ jugando acciones aleatorias.
   \item Se estiman empíricamente
     \begin{align*}
-      \hat T(s,a,s') &= \frac{\mathrm{conteo}(s,a\to s')}{\sum_{s''}\mathrm{conteo}(s,a\to s'')},\\
-      \hat R(s,a,s') &= \frac{\sum r}{\mathrm{veces}(s,a\to s')}.
+      \hat T(s,a,s') &= \frac{N(s,a,s')}{\sum_{u}N(s,a,u)},\\
+      \hat R(s,a,s') &= \frac{\sum_{i=1}^{N(s,a,s')} r_i(s,a,s')}{N(s,a,s')}.
     \end{align*}
+    donde $N(s,a,s')$ representa el número de veces que se ha observado la transición del estado $s$ al estado $s'$ tomando la acción $a$, y $r_i(s,a,s')$ es la recompensa obtenida en la $i$-ésima transición de $s$ a $s'$ mediante la acción $a$.
   \item Se aplica iteración de valor sobre el MDP estimado $(\hat T,\hat R,\gamma)$ para obtener
     \[
       V^*(s) = \max_a \sum_{s'} \hat T(s,a,s')\Bigl[\hat R(s,a,s') + \gamma\,V^*(s')\Bigr],
@@ -31,12 +32,12 @@ A continuación se presenta el pseudocódigo genérico de Direct Estimation que 
   \State \textbf{Recolectar datos:}
   \For{$i=1,\dots,N$}
     \State Jugar un paso aleatorio, obtener $(s,a,s',r)$
-     \State Incrementar $N(s,a,s')$ y acumular recompensa en $R_{\text{sum}}(s,a,s')$
+     \State Incrementar $N(s,a,s')$ y acumular recompensa $r$ para el par $(s,a,s')$
   \EndFor
   \State \textbf{Ajustar modelo:}
   \ForAll{$(s,a)$}
     \State $\hat T(s,a,s')\gets \dfrac{N(s,a,s')}{\sum_{u}N(s,a,u)}$
-    \State $\hat R(s,a,s')\gets \dfrac{R_{\text{sum}}(s,a,s')}{N(s,a,s')}$
+    \State $\hat R(s,a,s')\gets \dfrac{\sum_{i=1}^{N(s,a,s')} r_i(s,a,s')}{N(s,a,s')}$
 
   \EndFor
   \State \textbf{Iteración de valor:}
