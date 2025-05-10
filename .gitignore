@@ -30,5 +30,8 @@ docs/report/*.synctex
 Enunciat.pdf
 
 # Ignore experiments outputs
-experiments/*
+experiments/valueIteration/experiment_*
+experiments/directEstimation/experiment_*
+experiments/qlearning/experiment_*
+experiments/reinforce/experiment_*
 

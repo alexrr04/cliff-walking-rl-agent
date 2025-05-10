@@ -16,7 +16,7 @@ MAX_ITERS = 500
 PATIENCE = 100    # iteraciones sin mejora para parar
 
 class DirectEstimationAgent:
-    def __init__(self, env, gamma, num_trajectories, max_iters):
+    def __init__(self, env, gamma, num_trajectories, max_iters, patience):
         """
         Initialize the Value Iteration agent.
 
@@ -38,6 +38,7 @@ class DirectEstimationAgent:
         self.gamma = gamma
         self.num_trajectories = num_trajectories
         self.max_iters = max_iters
+        self.patience = patience
 
     def play_n_random_steps(self, count):
         """
@@ -182,8 +183,8 @@ class DirectEstimationAgent:
             else:
                 no_improve += 1
 
-            if no_improve >= PATIENCE:
-                print(f"Sin mejora en {PATIENCE} iteraciones. Parando.")
+            if no_improve >= self.patience:
+                print(f"Sin mejora en {self.patience} iteraciones. Parando.")
                 break
 
         return rewards, max_diffs

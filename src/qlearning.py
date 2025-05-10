@@ -16,7 +16,6 @@ EPSILON = 0.9
 RENDER_MODE = "ansi"
 MIN_EPSILON = 0.1
 DECAY = 0.95
-
 class QLearningAgent:
     """
     A Q-Learning agent implementation for the CliffWalking environment.
@@ -120,7 +119,7 @@ class CustomCliffWalkingWrapper(Wrapper):
     """
     A custom wrapper for the Cliff Walking environment that modifies the reward structure.
     """
-    def __init__(self, env):
+    def __init__(self, env, penalty):
         """
         Initialize the wrapper.
 
@@ -128,6 +127,7 @@ class CustomCliffWalkingWrapper(Wrapper):
             env: Gymnasium environment instance
         """
         super().__init__(env)
+        self.penalty = penalty
     
     def step(self, action):
         """
@@ -141,7 +141,7 @@ class CustomCliffWalkingWrapper(Wrapper):
         """
         state, reward, is_done, truncated, info = self.env.step(action)
         if action == 3:
-            reward = -2
+            reward = self.penalty
         return state, reward, is_done, truncated, info
 
 
