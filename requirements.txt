@@ -10,3 +10,5 @@ numpy
 seaborn
 matplotlib
 pandas
+pyyaml  # For YAML configuration support
+termcolor  # For colored terminal output
