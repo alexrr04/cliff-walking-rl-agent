@@ -13,6 +13,7 @@ from datetime import datetime
 from src.value_iteration import ValueIterationAgent
 from src.direct_estimation import DirectEstimationAgent
 from src.qlearning import QLearningAgent
+from src.qlearning import CustomCliffWalkingWrapper
 from src.reinforce import ReinforceAgent
 from src.utils.evaluator import evaluate_policy
 from src.utils.plotter import draw_rewards
@@ -192,9 +193,11 @@ def run_qlearning_experiment(exp_dir):
     decay = float(input("Enter epsilon decay rate [e.g. 0.95]: "))
     t_max = int(input("Enter maximum steps per episode [e.g. 250]: "))
     eval_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
+    penalty = float(input("Enter penalty for moving to the right [e.g. -2]: "))
 
     # Create environment and agent 
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
+    env = CustomCliffWalkingWrapper(env, penalty=penalty)
     agent = QLearningAgent(env, gamma=gamma, learning_rate=learning_rate, epsilon=epsilon, t_max=t_max, decay=decay)
 
     # Create latest directory for temporary files
