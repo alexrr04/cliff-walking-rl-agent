@@ -1,0 +1,7 @@
+# Experiment 1 - Factor de descuento & umbral de convergencia
+algorithm: valueIteration
+
+parameters:
+  gamma: [0.5, 0.7, 0.9, 0.95, 0.99]
+  epsilon: [1e-1, 1e-2, 1e-4, 1e-8]
+  num_episodes: 500
