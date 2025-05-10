@@ -50,14 +50,19 @@ def save_metrics(filename, data, exp_dir):
     pd.DataFrame([data]).to_csv(path, index=False)
     return path
 
+def get_input_with_default(prompt, default, type_cast=float):
+    """Get input from user with a default value if no input is provided"""
+    value = input(f"{prompt} [default: {default}]: ").strip()
+    return type_cast(value) if value else type_cast(default)
+
 def run_value_iteration_experiment(exp_dir):
     print("\n--------------------------")
     print("  🤖 Value Iteration 🤖 ")
     print("--------------------------\n")
 
-    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.95]: "))
-    num_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
-    epsilon = float(input("Enter epsilon value for convergence [e.g. 0.001]: "))
+    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+    num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+    epsilon = get_input_with_default("Enter epsilon value for convergence", 0.00000001)
 
     # Create environment and agent 
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -119,12 +124,12 @@ def run_direct_estimation_experiment(exp_dir):
     print("  🤖 Direct Estimation 🤖 ")
     print("----------------------------\n")
 
-    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.95]: "))
-    num_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
-    num_trajectories = int(input("Number of trajectories for sampling [e.g. 500]: "))
-    max_iters = int(input("Maximum iterations for training [e.g. 1000]: "))
-    patience = int(input("Patience for convergence [e.g. 100]: "))
-    num_runs = int(input("Number of runs to execute [e.g. 5]: "))
+    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+    num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+    num_trajectories = get_input_with_default("Number of trajectories for sampling", 500, int)
+    max_iters = get_input_with_default("Maximum iterations for training", 500, int)
+    patience = get_input_with_default("Patience for convergence", 100, int)
+    num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -213,15 +218,15 @@ def run_qlearning_experiment(exp_dir):
     print("  🤖 Q-Learning 🤖 ")
     print("--------------------------\n")
 
-    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.95]: "))
-    num_episodes = int(input("Number of episodes for training [e.g. 2000]: "))
-    learning_rate = float(input("Enter learning rate [e.g. 0.1]: "))
-    epsilon = float(input("Enter initial epsilon value [e.g. 0.9]: "))
-    decay = float(input("Enter epsilon decay rate [e.g. 0.95]: "))
-    t_max = int(input("Enter maximum steps per episode [e.g. 250]: "))
-    eval_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
-    penalty = float(input("Enter penalty for moving to the right [e.g. -2]: "))
-    num_runs = int(input("Number of runs to execute [e.g. 5]: "))
+    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+    num_episodes = get_input_with_default("Number of episodes for training", 2000, int)
+    learning_rate = get_input_with_default("Enter learning rate", 0.1)
+    epsilon = get_input_with_default("Enter initial epsilon value", 0.9)
+    decay = get_input_with_default("Enter epsilon decay rate", 0.95)
+    t_max = get_input_with_default("Enter maximum steps per episode", 250, int)
+    eval_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+    penalty = get_input_with_default("Enter penalty for moving to the right", -2.0)
+    num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -320,13 +325,13 @@ def run_reinforce_experiment(exp_dir):
     print("  🤖 REINFORCE 🤖 ")
     print("--------------------------\n")
 
-    gamma = float(input("Enter gamma value (discount factor) [e.g. 0.9]: "))
-    learning_rate = float(input("Enter learning rate [e.g. 0.99]: "))
-    lr_decay = float(input("Enter learning rate decay [e.g. 0.99]: "))
-    training_episodes = int(input("Number of episodes for training [e.g. 1000]: "))
-    t_max = int(input("Enter maximum steps per episode [e.g. 200]: "))
-    eval_episodes = int(input("Number of episodes for evaluation [e.g. 100]: "))
-    num_runs = int(input("Number of runs to execute [e.g. 5]: "))
+    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.9)
+    learning_rate = get_input_with_default("Enter learning rate", 0.99)
+    lr_decay = get_input_with_default("Enter learning rate decay", 0.99)
+    training_episodes = get_input_with_default("Number of episodes for training", 1000, int)
+    t_max = get_input_with_default("Enter maximum steps per episode", 200, int)
+    eval_episodes = get_input_with_default("Number of episodes for evaluation", 100, int)
+    num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
