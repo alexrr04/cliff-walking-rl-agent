@@ -1,4 +1,4 @@
-# Experimento 1 - Factor de descuento & tasa de aprendizaje
+# Experimento 5 - Penalización de la acción "moverse a la izquierda"
 algorithm: qlearning
 
 parameters:

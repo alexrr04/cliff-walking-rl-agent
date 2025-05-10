@@ -1,4 +1,4 @@
-# Experimento 1 - Factor de descuento & tasa de aprendizaje
+# Experimento 2 - Coeficiente de exploración & descuento del coeficiente de exploración
 algorithm: qlearning
 
 parameters:
