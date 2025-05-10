@@ -478,7 +478,7 @@ def clear_files():
         algo_path = os.path.join(experiments_dir, algo_dir)
         if os.path.exists(algo_path):
             for item in os.listdir(algo_path):
-                if item.startswith("experiment_"):
+                if item.startswith("experiment_") or item.startswith("latest"):
                     item_path = os.path.join(algo_path, item)
                     if os.path.isdir(item_path):
                         # Use shutil.rmtree to recursively remove directory and contents
