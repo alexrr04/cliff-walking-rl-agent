@@ -248,6 +248,7 @@ def run_qlearning_experiment(exp_dir):
         "epsilon_decay": decay,
         "t_max": t_max,
         "training_episodes": num_episodes,
+        "left_penalty": penalty,
         "mean_reward": results['mean_return'],
         "mean_steps": results['mean_steps'],
         "success_rate": results['success_rate'],
