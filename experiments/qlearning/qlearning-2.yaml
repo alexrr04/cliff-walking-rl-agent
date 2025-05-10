@@ -1,0 +1,13 @@
+# Experimento 2 - Coeficiente de exploración & descuento del coeficiente de exploración
+algorithm: qlearning
+
+parameters:
+  gamma: # Take best values from previous experiments
+  learning_rate: # Take best values from previous experiments
+  epsilon: [0.7, 0.9, 0.95, 0.99]
+  num_episodes: 1000
+  eval_episodes: 500
+  num_runs: 20
+  ep_decay: [0.8, 0.9, 0.95, 0.99]
+  lr_decay: 0.99
+  penalty: -1.0
