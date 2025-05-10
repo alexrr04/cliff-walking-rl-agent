@@ -8,7 +8,7 @@ from gymnasium import Wrapper
 
 # Constants
 SLIPPERY = True
-T_MAX = 250
+T_MAX = 200
 NUM_EPISODES = 2000
 GAMMA = 0.95
 LEARNING_RATE = 0.1

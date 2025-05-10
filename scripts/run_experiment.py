@@ -8,7 +8,11 @@ import numpy as np
 import glob
 import argparse
 import time
+import yaml
+import shutil
 from datetime import datetime
+from termcolor import colored
+from itertools import product
 
 from src.value_iteration import ValueIterationAgent
 from src.direct_estimation import DirectEstimationAgent
@@ -55,14 +59,20 @@ def get_input_with_default(prompt, default, type_cast=float):
     value = input(f"{prompt} [default: {default}]: ").strip()
     return type_cast(value) if value else type_cast(default)
 
-def run_value_iteration_experiment(exp_dir):
+def run_value_iteration_experiment(exp_dir, params=None):
     print("\n--------------------------")
     print("  🤖 Value Iteration 🤖 ")
     print("--------------------------\n")
 
-    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
-    num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
-    epsilon = get_input_with_default("Enter epsilon value for convergence", 0.00000001)
+    # Use parameters from config if provided, otherwise get from user input
+    if params is not None:
+        gamma = params.get('gamma', 0.95)
+        num_episodes = params.get('num_episodes', 500)
+        epsilon = params.get('epsilon', 0.00000001)
+    else:
+        gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+        num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+        epsilon = get_input_with_default("Enter epsilon value for convergence", 0.00000001)
 
     # Create environment and agent 
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -119,17 +129,26 @@ def run_value_iteration_experiment(exp_dir):
     draw_rewards(results['rewards'], plot_path)
 
 
-def run_direct_estimation_experiment(exp_dir):
+def run_direct_estimation_experiment(exp_dir, params=None):
     print("\n---------------------------")
     print("  🤖 Direct Estimation 🤖 ")
     print("----------------------------\n")
 
-    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
-    num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
-    num_trajectories = get_input_with_default("Number of trajectories for sampling", 500, int)
-    max_iters = get_input_with_default("Maximum iterations for training", 500, int)
-    patience = get_input_with_default("Patience for convergence", 100, int)
-    num_runs = get_input_with_default("Number of runs to execute", 5, int)
+    # Use parameters from config if provided, otherwise get from user input
+    if params is not None:
+        gamma = params.get('gamma', 0.95)
+        num_episodes = params.get('num_episodes', 500)
+        num_trajectories = params.get('num_trajectories', 500)
+        max_iters = params.get('max_iters', 500)
+        patience = params.get('patience', 100)
+        num_runs = params.get('num_runs', 5)
+    else:
+        gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+        num_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+        num_trajectories = get_input_with_default("Number of trajectories for sampling", 500, int)
+        max_iters = get_input_with_default("Maximum iterations for training", 500, int)
+        patience = get_input_with_default("Patience for convergence", 100, int)
+        num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -213,21 +232,34 @@ def run_direct_estimation_experiment(exp_dir):
     print(f"Mean steps: {summary_df['mean_steps'].mean():.2f} ± {summary_df['mean_steps'].std():.2f}")
     print(f"Mean training time: {summary_df['training_time'].mean():.2f} ± {summary_df['training_time'].std():.2f} seconds")
 
-def run_qlearning_experiment(exp_dir):
+def run_qlearning_experiment(exp_dir, params=None):
     print("\n--------------------------")
     print("  🤖 Q-Learning 🤖 ")
     print("--------------------------\n")
 
-    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
-    num_episodes = get_input_with_default("Number of episodes for training", 2000, int)
-    learning_rate = get_input_with_default("Enter learning rate", 0.1)
-    epsilon = get_input_with_default("Enter initial epsilon value", 0.9)
-    ep_decay = get_input_with_default("Enter epsilon decay rate", 0.95)
-    lr_decay = get_input_with_default("Enter learning rate decay rate", 0.95)
-    t_max = get_input_with_default("Enter maximum steps per episode", 250, int)
-    eval_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
-    penalty = get_input_with_default("Enter penalty for moving to the right", -2.0)
-    num_runs = get_input_with_default("Number of runs to execute", 5, int)
+    # Use parameters from config if provided, otherwise get from user input
+    if params is not None:
+        gamma = params.get('gamma', 0.95)
+        num_episodes = params.get('num_episodes', 2000)
+        learning_rate = params.get('learning_rate', 0.1)
+        epsilon = params.get('epsilon', 0.9)
+        ep_decay = params.get('ep_decay', 0.95)
+        lr_decay = params.get('lr_decay', 0.95)
+        t_max = params.get('t_max', 250)
+        eval_episodes = params.get('eval_episodes', 500)
+        penalty = params.get('penalty', -2.0)
+        num_runs = params.get('num_runs', 5)
+    else:
+        gamma = get_input_with_default("Enter gamma value (discount factor)", 0.95)
+        num_episodes = get_input_with_default("Number of episodes for training", 2000, int)
+        learning_rate = get_input_with_default("Enter learning rate", 0.1)
+        epsilon = get_input_with_default("Enter initial epsilon value", 0.9)
+        ep_decay = get_input_with_default("Enter epsilon decay rate", 0.95)
+        lr_decay = get_input_with_default("Enter learning rate decay rate", 0.95)
+        t_max = get_input_with_default("Enter maximum steps per episode", 250, int)
+        eval_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
+        penalty = get_input_with_default("Enter penalty for moving to the right", -2.0)
+        num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -322,18 +354,28 @@ def run_qlearning_experiment(exp_dir):
     print(f"Mean steps: {summary_df['mean_steps'].mean():.2f} ± {summary_df['mean_steps'].std():.2f}")
     print(f"Mean training time: {summary_df['training_time'].mean():.2f} ± {summary_df['training_time'].std():.2f} seconds")
 
-def run_reinforce_experiment(exp_dir):
+def run_reinforce_experiment(exp_dir, params=None):
     print("\n--------------------------")
     print("  🤖 REINFORCE 🤖 ")
     print("--------------------------\n")
 
-    gamma = get_input_with_default("Enter gamma value (discount factor)", 0.9)
-    learning_rate = get_input_with_default("Enter learning rate", 0.99)
-    lr_decay = get_input_with_default("Enter learning rate decay", 0.99)
-    training_episodes = get_input_with_default("Number of episodes for training", 1000, int)
-    t_max = get_input_with_default("Enter maximum steps per episode", 200, int)
-    eval_episodes = get_input_with_default("Number of episodes for evaluation", 100, int)
-    num_runs = get_input_with_default("Number of runs to execute", 5, int)
+    # Use parameters from config if provided, otherwise get from user input
+    if params is not None:
+        gamma = params.get('gamma', 0.9)
+        learning_rate = params.get('learning_rate', 0.99)
+        lr_decay = params.get('lr_decay', 0.99)
+        training_episodes = params.get('training_episodes', 1000)
+        t_max = params.get('t_max', 200)
+        eval_episodes = params.get('eval_episodes', 100)
+        num_runs = params.get('num_runs', 5)
+    else:
+        gamma = get_input_with_default("Enter gamma value (discount factor)", 0.9)
+        learning_rate = get_input_with_default("Enter learning rate", 0.99)
+        lr_decay = get_input_with_default("Enter learning rate decay", 0.99)
+        training_episodes = get_input_with_default("Number of episodes for training", 1000, int)
+        t_max = get_input_with_default("Enter maximum steps per episode", 200, int)
+        eval_episodes = get_input_with_default("Number of episodes for evaluation", 100, int)
+        num_runs = get_input_with_default("Number of runs to execute", 5, int)
 
     # Create environment
     env = gym.make("CliffWalking-v0", render_mode="ansi", is_slippery=True)
@@ -431,40 +473,25 @@ def run_reinforce_experiment(exp_dir):
 
 def clear_files():
     experiments_dir = "experiments"
-    if os.path.exists(experiments_dir):
-        for algo_dir in ["valueIteration", "directEstimation", "qlearning", "reinforce"]:
-            algo_path = os.path.join(experiments_dir, algo_dir)
-            if os.path.exists(algo_path):
-                # Only remove directories that start with "experiment_"
-                for exp_dir in os.listdir(algo_path):
-                    if exp_dir.startswith("experiment_"):
-                        exp_path = os.path.join(algo_path, exp_dir)
-                        if os.path.isdir(exp_path):
-                            # First remove files in run directories for direct estimation
-                            if algo_dir == "directEstimation":
-                                for run_dir in os.listdir(exp_path):
-                                    run_path = os.path.join(exp_path, run_dir)
-                                    if os.path.isdir(run_path):
-                                        for file in os.listdir(run_path):
-                                            os.remove(os.path.join(run_path, file))
-                                        os.rmdir(run_path)
-                            # Remove remaining files and the experiment directory itself
-                            for file in os.listdir(exp_path):
-                                file_path = os.path.join(exp_path, file)
-                                if os.path.isfile(file_path):
-                                    os.remove(file_path)
-                                elif os.path.isdir(file_path):
-                                    # Remove any remaining subdirectories (should only happen for direct estimation)
-                                    for subfile in os.listdir(file_path):
-                                        os.remove(os.path.join(file_path, subfile))
-                                    os.rmdir(file_path)
-                            os.rmdir(exp_path)
-                # Only remove the algorithm directory if it's empty
-                if not os.listdir(algo_path):
-                    os.rmdir(algo_path)
-        print("🧹 Default experiment files have been cleared!")
-    else:
+    if not os.path.exists(experiments_dir):
         print("📂 No experiment files found.")
+        return
+
+    for algo_dir in ["valueIteration", "directEstimation", "qlearning", "reinforce"]:
+        algo_path = os.path.join(experiments_dir, algo_dir)
+        if os.path.exists(algo_path):
+            for item in os.listdir(algo_path):
+                if item.startswith("experiment_"):
+                    item_path = os.path.join(algo_path, item)
+                    if os.path.isdir(item_path):
+                        # Use shutil.rmtree to recursively remove directory and contents
+                        shutil.rmtree(item_path)
+            
+            # Remove algorithm directory if empty
+            if not os.listdir(algo_path):
+                os.rmdir(algo_path)
+    
+    print("🧹 Default experiment files have been cleared!")
 
 def select_algorithm():
     print("\n🤖 Available Algorithms:")
@@ -481,13 +508,127 @@ def select_algorithm():
         except ValueError:
             print("❌ Please enter a valid number")
 
+def load_experiment_config(config_path):
+    """Load and validate experiment configuration from YAML"""
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f)
+    
+    # Validate required fields
+    required_fields = ['algorithm', 'parameters']
+    for field in required_fields:
+        if field not in config:
+            raise ValueError(f"Missing required field '{field}' in config file")
+    
+    # Validate algorithm name
+    valid_algorithms = {
+        'valueIteration': 1,
+        'directEstimation': 2,
+        'qlearning': 3,
+        'reinforce': 4
+    }
+    if config['algorithm'] not in valid_algorithms:
+        raise ValueError(f"Invalid algorithm. Must be one of: {', '.join(valid_algorithms.keys())}")
+    
+    return config
+
+def generate_parameter_combinations(parameters):
+    """Generate all parameter combinations from config"""
+    # Convert list parameters to lists if they're not already
+    param_lists = {
+        k: v if isinstance(v, list) else [v]
+        for k, v in parameters.items()
+    }
+    
+    # Generate all combinations
+    keys = param_lists.keys()
+    values = param_lists.values()
+    combinations = list(product(*values))
+    
+    # Convert combinations to list of dicts
+    return [dict(zip(keys, combo)) for combo in combinations]
+
+def print_combination_header(index, total, params, start_time):
+    """Print a visually distinct header for each parameter combination"""
+    border_top = "╔" + "═" * 53 + "╗"
+    border_mid = "╠" + "═" * 53 + "╣"
+    border_bot = "╚" + "═" * 53 + "╝"
+    
+    print("\n" + border_top)
+    print(f"║ {colored(f'Parameter Combination {index + 1}/{total}', 'cyan', attrs=['bold']): <52}║")
+    print(f"║ Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S'): <42}║")
+    print(border_mid)
+    print(f"║ {colored('Parameters:', 'yellow', attrs=['bold']): <52}║")
+    
+    # Print parameters in a formatted table
+    for k, v in params.items():
+        key = colored(f"{k}:", 'green')
+        print(f"║ {key: <20} {v: <32}║")
+    
+    print(border_bot)
+
+def print_combination_footer(start_time):
+    """Print a footer with timing information"""
+    duration = time.time() - start_time
+    border = "═" * 54
+    print(f"\n⏱️  {colored('Combination completed in:', 'cyan')} {duration:.2f}s")
+    print(border)
+
+def run_experiment_from_config(config_path):
+    """Run experiments using configuration from YAML file"""
+    print(f"\n📄 Loading configuration from {config_path}...")
+    config = load_experiment_config(config_path)
+    
+    # Map algorithm name to ID and function
+    algo_map = {
+        'valueIteration': (1, run_value_iteration_experiment),
+        'directEstimation': (2, run_direct_estimation_experiment),
+        'qlearning': (3, run_qlearning_experiment),
+        'reinforce': (4, run_reinforce_experiment)
+    }
+    
+    algorithm_id, run_func = algo_map[config['algorithm']]
+    combinations = generate_parameter_combinations(config['parameters'])
+    
+    print(colored(f"\n🔬 Running {len(combinations)} experiment combinations for {config['algorithm']}", 'cyan', attrs=['bold']))
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_dir = os.path.join("experiments", config['algorithm'], f"experiment_{timestamp}")
+    
+    total_start_time = time.time()
+    
+    for i, params in enumerate(combinations):
+        # Create experiment directory for this combination
+        exp_dir = os.path.join(base_dir, f"combination_{i}")
+        os.makedirs(exp_dir, exist_ok=True)
+        
+        # Set up logging
+        log_filename = os.path.join(exp_dir, "experiment_log.txt")
+        sys.stdout = Logger(log_filename)
+        
+        combination_start_time = time.time()
+        print_combination_header(i, len(combinations), params, datetime.now())
+        
+        # Run experiment with parameters
+        run_func(exp_dir, params)
+        
+        print_combination_footer(combination_start_time)
+    
+    # Restore original stdout
+    sys.stdout = sys.__stdout__
+    total_duration = time.time() - total_start_time
+    print(colored(f"\n✅ All experiment combinations completed in {total_duration:.2f}s", 'green', attrs=['bold']))
+    print(colored(f"📂 Results saved in: {base_dir}", 'cyan'))
+
 def main():
     parser = argparse.ArgumentParser(description="🤖 Cliff Walking Experiment Runner")
     parser.add_argument('--clean', action='store_true', help='Clear all experiment files')
+    parser.add_argument('--config', type=str, help='Path to YAML configuration file')
     args = parser.parse_args()
 
     if args.clean:
         clear_files()
+    elif args.config:
+        run_experiment_from_config(args.config)
     else:
         print("\n🎮 === Cliff Walking Experiment Runner === 🤖")
         # Select algorithm
