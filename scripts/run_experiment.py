@@ -222,7 +222,8 @@ def run_qlearning_experiment(exp_dir):
     num_episodes = get_input_with_default("Number of episodes for training", 2000, int)
     learning_rate = get_input_with_default("Enter learning rate", 0.1)
     epsilon = get_input_with_default("Enter initial epsilon value", 0.9)
-    decay = get_input_with_default("Enter epsilon decay rate", 0.95)
+    ep_decay = get_input_with_default("Enter epsilon decay rate", 0.95)
+    lr_decay = get_input_with_default("Enter learning rate decay rate", 0.95)
     t_max = get_input_with_default("Enter maximum steps per episode", 250, int)
     eval_episodes = get_input_with_default("Number of episodes for evaluation", 500, int)
     penalty = get_input_with_default("Enter penalty for moving to the right", -2.0)
@@ -241,7 +242,7 @@ def run_qlearning_experiment(exp_dir):
         os.makedirs(run_dir, exist_ok=True)
 
         # Create agent for this run
-        agent = QLearningAgent(env, gamma=gamma, learning_rate=learning_rate, epsilon=epsilon, t_max=t_max, decay=decay)
+        agent = QLearningAgent(env, gamma=gamma, learning_rate=learning_rate, epsilon=epsilon, t_max=t_max, ep_decay=ep_decay, lr_decay=lr_decay)
 
         # Create latest directory for temporary files
         latest_dir = os.path.join("experiments", "qlearning", "latest")
@@ -289,7 +290,8 @@ def run_qlearning_experiment(exp_dir):
             "gamma": gamma,
             "learning_rate": learning_rate,
             "initial_epsilon": epsilon,
-            "epsilon_decay": decay,
+            "epsilon_decay": ep_decay,
+            "learning_rate_decay": lr_decay,
             "t_max": t_max,
             "training_episodes": num_episodes,
             "left_penalty": penalty,
