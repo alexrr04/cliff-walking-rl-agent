@@ -38,8 +38,8 @@ A continuación se presenta el pseudocódigo genérico de Value Iteration que se
 
 \newpage
 
-\textbf{Decisiones de diseño en la implementación Python}
-\begin{enumerate}
+\paragraph*{Decisiones de diseño en la implementación Python}
+\begin{itemize}
   \item \textbf{Cálculo de $Q(s,a)$ con manejo del estado terminal}: para calcular el valor de cada acción consideramos que si se ha llegado a un estado terminal, el término de arranque posterior (\emph{bootstrap}) se anula:
   \[
     Q(s,a) \;=\; \sum_{s'} p\,\bigl[r + \gamma\,V(s')\bigr]
@@ -50,4 +50,4 @@ A continuación se presenta el pseudocódigo genérico de Value Iteration que se
   De esta forma, se garantiza que al terminar el episodio, no se incorporen erróneamente estimaciones de valor posteriores a la terminación.
 
   \item \textbf{Evaluación periódica de la política}: tras cada iteración de valor calculamos la recompensa media de la política actual en $N=100$ episodios de longitud máxima $T_{\max}=200$ (método \texttt{check\_improvements}), tanto para monitorizar progresos como para registrar la mejor recompensa y la iteración en que ocurre. Se fijan los valores de $N$ y $T_{\max}$ para evitar que el algoritmo se detenga por un número excesivo de episodios, lo que podría ocurrir si la política converge a una política subóptima. En este caso, el algoritmo se detendría sin haber explorado adecuadamente el espacio de estados.
-\end{enumerate}
+\end{itemize}
