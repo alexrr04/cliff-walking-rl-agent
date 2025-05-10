@@ -1,4 +1,4 @@
-# Experimento 4 - Número de episodios
+# Experimento 4 - Número de episodios de entrenamiento
 algorithm: qlearning
 
 parameters:

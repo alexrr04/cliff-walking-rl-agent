@@ -1,0 +1,10 @@
+# Experiment 3 - Patience
+algorithm: directEstimation
+
+parameters:
+  gamma: # Take best values from previous experiments
+  num_episodes: # Take best values from previous experiments
+  num_trajectories: # Take best values from previous experiments
+  max_iters: 500
+  num_runs: 10
+  patience: [10, 100, 1000]

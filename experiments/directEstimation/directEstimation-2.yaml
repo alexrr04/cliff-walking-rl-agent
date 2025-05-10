@@ -1,0 +1,10 @@
+# Experiment 2 - Número de episodios de entrenamiento
+algorithm: directEstimation
+
+parameters:
+  gamma: # Take best values from previous experiments
+  num_episodes: [100, 500, 1000, 5000]
+  num_trajectories: # Take best values from previous experiments
+  max_iters: 500
+  num_runs: 10
+  patience: 100
