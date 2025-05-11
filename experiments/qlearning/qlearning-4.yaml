@@ -2,12 +2,12 @@
 algorithm: qlearning
 
 parameters:
-  gamma: # Take best values from previous experiments
-  learning_rate: # Take best values from previous experiments
-  epsilon: # Take best values from previous experiments
-  num_episodes: [500, 1000, 5000, 10000]
-  eval_episodes: 500
-  num_runs: 20
-  ep_decay: # Take best values from previous experiments
-  lr_decay: # Take best values from previous experiments
-  penalty: -1.0
+    gamma: 0.99
+    learning_rate: # Take best values from previous experiments
+    epsilon: 0.95
+    num_episodes: [500, 1000, 5000, 10000]
+    eval_episodes: 500
+    num_runs: 20
+    ep_decay: 0.8
+    lr_decay: # Take best values from previous experiments
+    penalty: -1.0

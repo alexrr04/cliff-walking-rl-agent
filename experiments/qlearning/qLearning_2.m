@@ -116,9 +116,9 @@ title('Número de pasos medio por combinación')
 
 %% 6. Boxplots de tiempo medio para las 3 mejores configuraciones
 % Configuraciones hardcodeadas: [initial_epsilon, alpha]
-best = [0.95, 0.5;
+best = [0.7,  0.8;
         0.95, 0.8;
-        0.99,  0.2];
+        0.95, 0.9];
 
 % Prepara vectores para el boxplot
 times  = [];
