@@ -5,7 +5,7 @@ baseDir   = fullfile(scriptDir, 'final_experiment');
 % final_experiment/value_iteration/metrics.csv
 % final_experiment/direct_estimation/metrics.csv
 % final_experiment/q_learning/metrics.csv
-algos = {'value_iteration', 'direct_estimation', 'q_learning'};
+algos = {'valueIteration', 'directEstimation', 'qlearning'};
 
 %% 1. Leer y concatenar todos los metrics.csv
 All = table();
