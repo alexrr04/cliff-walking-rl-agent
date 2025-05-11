@@ -203,6 +203,7 @@ def run_direct_estimation_experiment(exp_dir, params=None):
             "run": run,
             "gamma": gamma,
             "num_trajectories": num_trajectories,
+            "training_episodes": num_episodes,
             "max_iters": max_iters,
             "patience": patience,
             "mean_reward": results['mean_return'],

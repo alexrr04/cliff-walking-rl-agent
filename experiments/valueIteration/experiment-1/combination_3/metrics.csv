@@ -1,0 +1,2 @@
+gamma,epsilon,mean_reward,mean_steps,success_rate,training_time
+0.5,1e-08,-64.424,64.424,1.0,5.032020807266235

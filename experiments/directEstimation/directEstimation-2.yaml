@@ -2,9 +2,9 @@
 algorithm: directEstimation
 
 parameters:
-  gamma: # Take best values from previous experiments
+  gamma: 0.99
   num_episodes: [100, 500, 1000, 5000]
-  num_trajectories: # Take best values from previous experiments
+  num_trajectories: 1000
   max_iters: 500
   num_runs: 10
   patience: 100

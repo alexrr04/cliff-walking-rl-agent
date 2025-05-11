@@ -1,0 +1,2 @@
+run,gamma,num_trajectories,training_episodes,max_iters,patience,mean_reward,mean_steps,success_rate,training_time
+7,0.9,10,500,500,100,-380.378,200.0,0.0,27.770281553268433
