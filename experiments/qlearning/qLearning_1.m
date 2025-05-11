@@ -30,7 +30,7 @@ n     = 10;              % número de runs por combinación
 alpha = 0.05;            % nivel de significación para 95% IC
 tVal  = tinv(1 - alpha/2, n-1);  % t_{0.975,9}
 
-fprintf('  γ     traj     Métrica       Media      IC_lower    IC_upper\n');
+fprintf('  γ     alpha     Métrica       Media      IC_lower    IC_upper\n');
 fprintf('---------------------------------------------------------------\n');
 
 for i = 1:height(Summary)
@@ -43,28 +43,28 @@ for i = 1:height(Summary)
     x = All.success_rate(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %5d   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
+    fprintf(' %.2f   %.2f   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
             g, lr, mu, mu-h, mu+h);
 
     % Recompensa media
     x = All.mean_reward(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %5d   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
+    fprintf(' %.2f   %.2f   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
             g, lr, mu, mu-h, mu+h);
 
     % Pasos medios
     x = All.mean_steps(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %5d   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
+    fprintf(' %.2f   %.2f   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
             g, lr, mu, mu-h, mu+h);
 
     % Tiempo medio
     x = All.training_time(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %5d   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
+    fprintf(' %.2f   %.2f   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
             g, lr, mu, mu-h, mu+h);
 end
 
@@ -103,7 +103,7 @@ h1 = heatmap(GammaU, LearningRateU, RewMat, ...
     'Colormap', parula, ...
     'ColorLimits', [min(RewMat(:)) max(RewMat(:))]);
 xlabel('\gamma')
-ylabel('# \alph')
+ylabel('\alpha')
 title('Recompensa media por combinación')
 
 figure
@@ -114,3 +114,36 @@ xlabel('\gamma')
 ylabel('\alpha')
 title('Número de pasos medio por combinación')
 
+%% 6. Boxplots de tiempo medio para las 3 mejores configuraciones
+% Configuraciones hardcodeadas: [gamma, alpha]
+best = [0.95, 0.5;
+        0.95, 0.8;
+        0.99,  0.2];
+
+% Prepara vectores para el boxplot
+times  = [];
+groups = [];
+labels = cell(size(best,1),1);
+
+for i = 1:size(best,1)
+    g = best(i,1);
+    a = best(i,2);
+    % Filtra en 'All' los runs de la config actual
+    mask = All.gamma==g & All.learning_rate==a;
+    t   = All.training_time(mask);
+    % Acumula
+    times  = [times;  t];
+    groups = [groups; repmat(i, numel(t), 1)];
+    % Etiqueta "γ=… / a=…"
+    labels{i} = sprintf('γ=%.2f, a=%.2f', g, a);
+end
+
+% Dibuja el boxplot
+figure
+boxplot(times, groups, ...
+        'Labels', labels, ...
+        'LabelOrientation','inline', ...
+        'Whisker',1.5)   % puedes ajustar whisker si quieres
+ylabel('Tiempo de entrenamiento (s)')
+title('Distribución de tiempos (3 mejores config.)')
+grid on
