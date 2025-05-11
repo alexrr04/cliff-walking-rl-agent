@@ -191,9 +191,42 @@ Se puede observar que el número de episodios de entrenamiento no afecta signifi
 El análisis de la recompensa media y el número medio de pasos revela que:
 
 \begin{itemize}
-    \item 
+    \item Las recompensas y número de pasos son parecidos para todos los \textit{números de episodios de entrenamiento} y son muy similares a las del experimento anterior.
+    \item Si miramos los intervalos de confianza del 95\% para cada \textit{número de episodios de entrenamiento} y su valor medio:
+    \begin{itemize}
+        \item 100 episodios: -66.585 con IC 95\% [-68.044, -65.126]
+        \item 500 episodios: -66.497 con IC 95\% [-67.732, -65.262]
+        \item 1000 episodios: -67.981 con IC 95\% [-69.524, -66.438]
+        \item 5000 episodios: -67.506 con IC 95\% [-69.191, -65.822]
+    \end{itemize}
 \end{itemize}
 
+Como se ha mencionado, el número de episodios de entrenamiento no afecta significativamente a la recompensa media y al número de pasos. Todos los intervalos de confianza son muy similares y están por encima de -70. De todas formas, el número de episodios de entrenamiento de 500 parece ser el que mejor rendimiento ha dado, ya que es el que menos varía y el más alto.
+
+La hipótesis inicial de que un mayor número de episodios de entrenamiento mejorará el rendimiento del algoritmo queda desestimada.
+
+\
+
+\textbf{Tiempo de entrenamiento}
+
+\ 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-2/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes \textit{números de episodios de entrenamiento}}
+    \label{fig:directEstimation2-time}
+\end{figure}
+
+El tiempo de entrenamiento medio también es muy similar ya que como se ha fijado el valor del número máximo de episodios sin mejorar a 100, aunque incrementemos el número de episodios de entrenamiento, el tiempo de entrenamiento no varía significativamente. Los tiempos de entrenamiento son los siguientes:
+\begin{itemize}
+    \item 100 episodios: 40.63 segundos con IC 95\% [35.45,  45.82]
+    \item 500 episodios: 37.34 segundos con IC 95\% [33.90,  40.79]
+    \item 1000 episodios: 36.85 segundos con IC 95\% [34.06,  39.63]
+    \item 5000 episodios: 40.13 segundos con IC 95\% [35.27,  44.99]
+\end{itemize}
+
+Como la diferencia de tiempos es mínima, elegimos fijar 500 episodios de entrenamiento como el número óptimo, ya que es el que guarda una tasa de éxito más alta y su tiempo de entrenamiento es aceptable en relación a los demás.
 
 \subsubsection{Experimento Patience}
 
