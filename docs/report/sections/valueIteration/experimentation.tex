@@ -2,10 +2,10 @@
 
 En el caso de iteración de valor, se han decidido estudiar el efecto de diferente valores del factor de descuento $\gamma$ y el parámetro de convergencia $\epsilon$ en el rendimiento del algoritmo. 
 
-\subsubsection{Experimento factor de descuento \& \(\epsilon\)} 
+\subsubsection{Experimento factor de descuento \& umbral de convergencia}
 
 \paragraph{Diseño experimental}
-El objetivo de este experimento es analizar cómo los parámetros \(\gamma\) y \(\epsilon\) afectan el rendimiento del algoritmo de iteración de valor.
+El objetivo de este experimento es analizar cómo los parámetros factor de descuento (\(\gamma\)) y umbral de convergencia (\(\epsilon\)) afectan el rendimiento del algoritmo de iteración de valor.
 
 % TODO: Usar esta tabla para cada experimento
 \begin{table}[H]
@@ -20,13 +20,13 @@ El objetivo de este experimento es analizar cómo los parámetros \(\gamma\) y \
         \\ \hline
         \textbf{Método} & 
         \begin{itemize}
-            \item Elegimos un conjunto de valores para $\gamma$ y $\epsilon$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y \(\epsilon \in \{1\times 10^{-1}, 1\times 10^{-2}, 1\times 10^{-4}, 1\times 10^{-8}\}\).
+            \item Se elige un conjunto de valores para $\gamma$ y $\epsilon$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y \(\epsilon \in \{1\times 10^{-1}, 1\times 10^{-2}, 1\times 10^{-4}, 1\times 10^{-8}\}\).
             \item Para cada combinación de \(\gamma\) y \(\epsilon\), se ejecuta el algoritmo \textit{Value Iteration} en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Experimento 1}
+    \caption{Value Iteration - Experimento 1 - Factor de descuento \& umbral de convergencia}
     \label{tab:diseñoValueIterationExp1}
 \end{table}
 
