@@ -13,7 +13,7 @@ for k = 1:numel(files)
     All = [All; T];  %#ok<AGROW>
 end
 
-%% 3. Agrupa por (gamma, num_trajectories) y calcula el success_rate medio, recompensa media
+%% 3.a Agrupa por (gamma, num_trajectories) y calcula el success_rate medio, recompensa media
 [G, gammaVals, trajVals] = findgroups(All.gamma, All.num_trajectories);
 succMean = splitapply(@mean, All.success_rate, G);
 rewMean  = splitapply(@mean, All.mean_reward,  G);
@@ -23,6 +23,49 @@ timeMean = splitapply(@mean, All.training_time,   G);
 % Construye tabla resumen
 Summary = table(gammaVals, trajVals, succMean, rewMean, stepsMean, timeMean, ...
                 'VariableNames', {'gamma','num_trajectories','succMean', 'rewMean', 'stepsMean', 'timeMean'});
+
+%% 3.b Calcula e imprime IC 95% para cada combinación
+n     = 10;              % número de runs por combinación
+alpha = 0.05;            % nivel de significación para 95% IC
+tVal  = tinv(1 - alpha/2, n-1);  % t_{0.975,9}
+
+fprintf('  γ     traj     Métrica       Media      IC_lower    IC_upper\n');
+fprintf('---------------------------------------------------------------\n');
+
+for i = 1:height(Summary)
+    g  = Summary.gamma(i);
+    tr = Summary.num_trajectories(i);
+    % máscara para esta combinación
+    mask = All.gamma==g & All.num_trajectories==tr;
+    
+    % Success rate
+    x = All.success_rate(mask);
+    mu = mean(x); s = std(x);
+    h = tVal * s / sqrt(n);
+    fprintf(' %.2f   %5d   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
+            g, tr, mu, mu-h, mu+h);
+    
+    % Recompensa media
+    x = All.mean_reward(mask);
+    mu = mean(x); s = std(x);
+    h = tVal * s / sqrt(n);
+    fprintf(' %.2f   %5d   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
+            g, tr, mu, mu-h, mu+h);
+    
+    % Pasos medios
+    x = All.mean_steps(mask);
+    mu = mean(x); s = std(x);
+    h = tVal * s / sqrt(n);
+    fprintf(' %.2f   %5d   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
+            g, tr, mu, mu-h, mu+h);
+    
+    % Tiempo medio
+    x = All.training_time(mask);
+    mu = mean(x); s = std(x);
+    h = tVal * s / sqrt(n);
+    fprintf(' %.2f   %5d   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
+            g, tr, mu, mu-h, mu+h);
+end
 
 %% 4. Pivota para la heat-map
 GammaU = unique(Summary.gamma);                   % ejes X
