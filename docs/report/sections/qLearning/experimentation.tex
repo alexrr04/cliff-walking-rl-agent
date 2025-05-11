@@ -25,7 +25,7 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
             \item Se eligen los siguientes valores para \(\gamma\) y $\alpha$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y $\alpha \in \{0.1, 0.2, 0.5, 0.8\}$.
             \item Para cada combinación de \(\gamma\) y $\alpha$, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada combinación de \(\gamma\) y $decay$ 20 veces.
+            \item Se repite el proceso para cada combinación de \(\gamma\) y $decay$ 20 veces para obtener una muestra representativa (debido a la estocasticidad del entorno).
         \end{itemize}
         \\ \hline
     \end{tabularx}
@@ -34,6 +34,102 @@ El objetivo de este experimento es analizar cómo el factor de descuento y la ta
 \end{table}
 
 \paragraph{Resultados}
+
+Los resultados del experimento se han representado mediante heatmaps para facilitar la visualización de los datos. En cada gráfico, el eje X representa el factor de descuento ($\gamma$) y el eje Y representa la tasa de aprendizaje ($\alpha$). Los colores indican el valor de la métrica correspondiente. Cada valor representa la media de las 20 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+\\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../experiments/qlearning/experiment-1/results/success.png}
+    \caption{Tasa de éxito para diferentes combinaciones de $\alpha$ y $\gamma$}
+    \label{fig:qlearning-success}
+\end{figure}
+
+En general, la tasa de éxito en este caso es bastante alta para todas las combinaciones de valores. Sin embargo, puede observarse una pequeña tendencia. Conforme aumenta el factor de descuento ($\gamma$), el porcentaje de éxito se aproxima a 1. 
+
+\begin{itemize}
+    \item Con $\gamma = 0.5$, la tasa de éxito se mantiene alrededor del 95-96\%
+    \item Para $\gamma \geq 0.9$, la tasa de éxito supera consistentemente el 99\%
+\end{itemize}
+
+La mejor combinación se alcanza con $\gamma = 0.99$ y $\alpha = 0.2$, logrando una tasa de éxito del 99.7\%
+
+\newpage
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-1/results/reward.png}
+        \caption{Recompensa media para diferentes combinaciones de $\alpha$ y $\gamma$}
+        \label{fig:qlearning-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-1/results/steps.png}
+        \caption{Número de pasos para diferentes combinaciones de $\alpha$ y $\gamma$}
+        \label{fig:qlearning-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:qlearning-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos revela que:
+
+\begin{itemize}
+    \item Las recompensas mejoran significativamente (son menos negativas) al aumentar $\gamma$ y, por lo tanto, el número de pasos también se reduce. 
+    \item La tasa de aprendizaje no tiene mucha influencia en esta cambinación de parámetros. 
+    \item Con $\gamma = 0.5$, las recompensas medias oscilan entre -93 y -87, representando trayectorias más largas.
+    \item Las mejores recompensas se obtienen con $\gamma \geq 0.9$, alcanzando valores cercanos a -70.
+\end{itemize}
+
+La combinación óptima es $\gamma = 0.99$, $\alpha = 0.2$ y logra una recompensa media de -70.95. Corresponde con la combinación que obtiene mejor tasa de éxito. 
+\\
+
+Se puede observar que el número medio de pasos corresponde exactamente con la recompensa media en cada configuración. Esto nos indica que el agente no cae por el barranco en ningún momento, ya que sino la recompensa media sería más negativa (-100 de recompensa por caer en 1 paso, perderia la correspondencia de -1 de recompensa por cada paso).
+\\
+
+\textbf{Tiempo de Ejecución}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/qlearning/experiment-1/results/time.png}
+    \caption{Tiempo de ejecución para diferentes combinaciones de $\alpha$ y $\gamma$}
+    \label{fig:qlearning-time}
+\end{figure}
+
+El análisis del tiempo de ejecución muestra que:
+
+\begin{itemize}
+    \item Los tiempos varían entre 1.6 y 1.9 segundos por combinación
+    \item Existe una tendencia a tiempos de ejecución más bajos con valores más altos de $\gamma$
+    \item La variación en $\alpha$ tiene un impacto menor en el tiempo de ejecución
+\end{itemize}
+
+\subsection{Conclusiones}
+
+Del análisis experimental se pueden extraer las siguientes conclusiones:
+
+\begin{enumerate}
+    \item El factor de descuento ($\gamma$) tiene un impacto más significativo que la tasa de aprendizaje ($\alpha$) en el rendimiento del algoritmo
+    \item Los valores óptimos se encuentran en el rango de $\gamma \geq 0.9$
+    \item La tasa de aprendizaje óptima parece estar entre 0.2 y 0.5
+    \item La mejor combinación general considerando todos los métricas es $\gamma = 0.95$ y $\alpha = 0.5$, que proporciona:
+    \begin{itemize}
+        \item Una tasa de éxito del 99.7\%
+        \item Una recompensa media de -71.0
+        \item Un promedio de 71 pasos por episodio
+        \item Un tiempo de ejecución competitivo de 1.65 segundos
+    \end{itemize}
+\end{enumerate}
+
+Estos resultados demuestran que Q-Learning es capaz de aprender políticas efectivas para el entorno Cliff Walking, especialmente cuando se utiliza un factor de descuento alto que permite al agente considerar adecuadamente las recompensas futuras en su proceso de toma de decisiones.
+
 
 \subsubsection{Experimento tasa de exploración (\(\epsilon\)) \& decaimiento de la tasa de exploración (\(\epsilon\))}
 
