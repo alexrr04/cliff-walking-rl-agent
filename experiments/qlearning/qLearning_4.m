@@ -1,7 +1,7 @@
 
 %% 1. Localiza todos los metrics.csv partiendo de la carpeta “results” al lado de tu script
 scriptDir  = fileparts(mfilename('fullpath'));
-resultsDir = fullfile(scriptDir, 'experiment-4-fix');      
+resultsDir = fullfile(scriptDir, 'experiment-4');      
 files      = dir(fullfile(resultsDir, '**', 'metrics.csv'));
 
 %% 2. Lee y concatena todas las tablas
