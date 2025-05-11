@@ -8,6 +8,13 @@ Este trabajo se centra en la implementación y evaluación experimental de cuatr
 
 El entorno de \textit{Cliff Walking}, propuesto originalmente por \textit{Sutton \& Barto}, es un entorno clásico para evaluar algoritmos de aprendizaje por refuerzo. En este entorno, el agente debe navegar por una cuadrícula de dimensiones 4x12 evitando caer en un acantilado, lo que representa una penalización significativa. El objetivo del agente es llegar a la esquina inferior derecha de la cuadrícula de la forma más eficiente posible, maximizando la recompensa acumulada a lo largo del tiempo y minimizando el número de pasos necesarios para alcanzar la meta.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/mapa.png}
+    \caption{Captura de pantalla del entorno \textit{Cliff Walking}. El agente comienza en la esquina inferior izquierda (s0) y debe llegar a la esquina inferior derecha (sT), evitando caer en el acantilado (cliff) representado por las celdas marrones.}
+    \label{fig:cliff-walking-map}
+\end{figure}
+
 A continuación se caracteriza de forma detallada el entorno:
 
 \begin{itemize}
