@@ -23,6 +23,7 @@ El objetivo de este experimento es analizar cómo los parámetros factor de desc
             \item Se elige un conjunto de valores para $\gamma$ y $\epsilon$: \(\gamma \in \{0.5, 0.7, 0.9, 0.95, 0.99\}\) y \(\epsilon \in \{1\times 10^{-1}, 1\times 10^{-2}, 1\times 10^{-4}, 1\times 10^{-8}\}\).
             \item Para cada combinación de \(\gamma\) y \(\epsilon\), se ejecuta el algoritmo \textit{Value Iteration} en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
+            \item A diferencia de otros algoritmos que requieren de múltiples ejecuciones por su naturaleza estocástica, para Value Iteration basta con una única ejecución por combinación de parámetros, ya que es un algoritmo determinista que siempre converge a la misma política óptima para unos valores dados de $\gamma$ y $\epsilon$.
         \end{itemize}
         \\ \hline
     \end{tabularx}
