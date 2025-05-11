@@ -1,7 +1,7 @@
 
 %% 1. Localiza todos los metrics.csv partiendo de la carpeta “results” al lado de tu script
 scriptDir  = fileparts(mfilename('fullpath'));
-resultsDir = fullfile(scriptDir, 'experiment-1');      
+resultsDir = fullfile(scriptDir, 'experiment-3');      
 files      = dir(fullfile(resultsDir, '**', 'metrics.csv'));
 
 %% 2. Lee y concatena todas las tablas
@@ -34,38 +34,38 @@ fprintf('  alpha     alpha decay     Métrica       Media      IC_lower    IC_up
 fprintf('----------------------------------------------------------------------\n');
 
 for i = 1:height(Summary)
-    g  = Summary.learning_rate(i);
-    lr = Summary.learning_rate_decay(i);
+    a  = Summary.learning_rate(i);
+    ad = Summary.learning_rate_decay(i);
     % máscara para esta combinación
-    mask = All.learning_rate==g & All.learning_rate_decay==lr;
+    mask = All.learning_rate==a & All.learning_rate_decay==ad;
 
     % Success rate
     x = All.success_rate(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            a, ad, mu, mu-h, mu+h);
 
     % Recompensa media
     x = All.mean_reward(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            a, ad, mu, mu-h, mu+h);
 
     % Pasos medios
     x = All.mean_steps(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            a, ad, mu, mu-h, mu+h);
 
     % Tiempo medio
     x = All.training_time(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
-            g, lr, mu, mu-h, mu+h);
+            a, ad, mu, mu-h, mu+h);
 end
 
 %% 4. Pivota para la heat-map
@@ -116,9 +116,9 @@ title('Número de pasos medio por combinación')
 
 %% 6. Boxplots de tiempo medio para las 3 mejores configuraciones
 % Configuraciones hardcodeadas: [learning_rate, alpha]
-best = [0.95, 0.5;
-        0.95, 0.8;
-        0.99,  0.2];
+best = [0.5, 0.99;
+        0.5, 0.95;
+        0.1,  0.995];
 
 % Prepara vectores para el boxplot
 times  = [];

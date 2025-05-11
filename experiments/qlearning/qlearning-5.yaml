@@ -3,11 +3,11 @@ algorithm: qlearning
 
 parameters:
     gamma: 0.99
-    learning_rate: # Take best values from previous experiments
+    learning_rate: 0.5
     epsilon: 0.95
     num_episodes: # Take best values from previous experiments
     eval_episodes: 500
     num_runs: 20
     ep_decay: 0.8
-    lr_decay: # Take best values from previous experiments
+    lr_decay: 0.95
     penalty: [-1.0, -2.0, -10.0, -50.0]
