@@ -1,0 +1,7 @@
+# Experiment Final - Comparación de algoritmos
+algorithm: valueIteration
+
+parameters:
+    gamma: 0.99
+    epsilon: 0.00000001
+    num_episodes: 500

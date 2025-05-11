@@ -1,0 +1,13 @@
+# Experimento Final - Comparación de algoritmos
+algorithm: qlearning
+
+parameters:
+    gamma: 0.99
+    learning_rate: 0.5
+    epsilon: 0.95
+    num_episodes: 10000
+    eval_episodes: 500
+    num_runs: 20
+    ep_decay: 0.8
+    lr_decay: 0.99
+    penalty: -1
