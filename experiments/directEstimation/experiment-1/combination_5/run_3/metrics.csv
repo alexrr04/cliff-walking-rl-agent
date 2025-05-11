@@ -1,2 +1,2 @@
-run,gamma,num_trajectories,max_iters,patience,mean_reward,mean_steps,success_rate,training_time
-3,0.7,100,500,100,-366.856,165.688,0.388,31.723350048065186
+run,gamma,num_trajectories,training_episodes,max_iters,patience,mean_reward,mean_steps,success_rate,training_time
+3,0.7,100,500,500,100,-366.856,165.688,0.388,31.723350048065186
