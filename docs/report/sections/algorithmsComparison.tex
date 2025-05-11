@@ -29,3 +29,48 @@ El objetivo de este experimento es descubrir que algoritmo es el más eficiente 
 \end{table}
 
 \subsection{Resultados}
+
+A continuación se presentan los resultados obtenidos de la comparación de los algoritmos. En la tabla \ref{tab:algorithmsComparison} se muestran las métricas de rendimiento de cada algoritmo, incluyendo la tasa de éxito, el tiempo de entrenamiento, el número de pasos medio y la recompensa media.
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        Algorithm         & Success rate        & Reward             & Steps               & Time (s)           \\
+        \midrule
+        Value Iteration   & $1.0000 \pm 0.0000$ & $-64.292 \pm 0.0000$ & $64.292 \pm 0.0000$  & $29.909 \pm 0.0000$ \\
+        Direct Estimation & $0.9978 \pm 0.0020$ & $-66.392 \pm 2.2788$ & $66.392 \pm 2.2788$  & $41.961 \pm 7.8967$ \\
+        Q-learning        & $0.9974 \pm 0.0037$ & $-69.095 \pm 4.4346$ & $69.095 \pm 4.4346$  & $12.659 \pm 0.0908$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Resumen de métricas (media $\pm$ std) por algoritmo}
+    \label{tab:algorithmsComparison}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/algorithmsComparison/experiment/results/success.png}
+    \caption{Tasa de éxito}
+    \label{fig:algorithmsComparison-success}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/algorithmsComparison/experiment/results/reward.png}
+    \caption{Recompensa media}
+    \label{fig:algorithmsComparison-reward}
+\end{figure}
+
+Se puede observar que \textit{Value Iteration} garantiza la política óptima una vez converge. Los otros dos métodos, \textit{Direct Estimation} y \textit{Q-learning}, tienen un pequeño sesgo y mayor varianza, reflejando la incertidumbre Monte Carlo y la exploración \epsilon-greedy.
+
+\
+
+Es interesante notar que \textit{Q-learning} es el algoritmo más rápido, a pesar de ser el que tiene mayor varianza. Sin embargo, su alta varianza puede llevar a resultados menos consistentes en comparación con \textit{Value Iteration} y \textit{Direct Estimation}, que son más estables pero más lentos.
+
+\
+
+El algoritmo \textit{Direct Estimation} es el más lento de los tres y tampoco produce una mayor recompensa media que el \textit{Value Iteration}, por lo que no es recomendable para este entorno.
+
+\
+
+Por consecuente, si se busca una solución rápida y eficiente, \textit{Q-learning} es la mejor opción. Sin embargo, si se busca una solución óptima y estable, \textit{Value Iteration} es el candidato más adecuado.
