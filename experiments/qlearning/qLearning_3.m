@@ -43,28 +43,28 @@ for i = 1:height(Summary)
     x = All.success_rate(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %.2f   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
+    fprintf(' %.3f   %.3f   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
             a, ad, mu, mu-h, mu+h);
 
     % Recompensa media
     x = All.mean_reward(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %.2f   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
+    fprintf(' %.3f   %.3f   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
             a, ad, mu, mu-h, mu+h);
 
     % Pasos medios
     x = All.mean_steps(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %.2f   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
+    fprintf(' %.3f   %.3f   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
             a, ad, mu, mu-h, mu+h);
 
     % Tiempo medio
     x = All.training_time(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
-    fprintf(' %.2f   %.2f   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
+    fprintf(' %.3f   %.3f   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
             a, ad, mu, mu-h, mu+h);
 end
 
