@@ -1,0 +1,8 @@
+>> algorithmsComparison
+Resumen métricas (media ± std) por algoritmo:
+         Algorithm          SuccMean     SuccStd     RewMean    RewStd    StepsMean    StepsStd    TimeMean    TimeStd 
+    ____________________    ________    _________    _______    ______    _________    ________    ________    ________
+
+    {'valueIteration'  }          1             0    -64.292         0     64.292            0      29.909            0
+    {'directEstimation'}     0.9978     0.0019889    -66.392    2.2788     66.392       2.2788      41.961       7.8967
+    {'qlearning'       }     0.9974     0.0036576    -69.095    4.4346     69.095       4.4346      12.659     0.090807

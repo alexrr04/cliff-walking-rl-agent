@@ -1,14 +1,20 @@
-%% 0. Configuración de rutas y algoritmos
+% 0. Set up …
 scriptDir = fileparts(mfilename('fullpath'));
-baseDir   = fullfile(scriptDir, 'final_experiment');  
-% Debe contener tres subcarpetas, p.ej.:
-% final_experiment/value_iteration/metrics.csv
-% final_experiment/direct_estimation/metrics.csv
-% final_experiment/q_learning/metrics.csv
-algos = {'valueIteration', 'directEstimation', 'qlearning'};
+baseDir = fullfile(scriptDir, 'experiment'); 
+algos   = {'valueIteration','directEstimation','qlearning'};
+
+% 0.b Define your metrics + the “Algorithm” column
+metrics = {'success_rate','mean_reward','mean_steps','training_time'};
+varNames = [metrics, {'Algorithm'}];
+
+% 0.c Pre-allocate an empty table with those variables
+%     assume all metrics are numeric, Algorithm is a string/cell
+All = table( ...
+    'Size'         , [0, numel(varNames)], ...
+    'VariableTypes', [repmat("double",1,numel(metrics)), "cell"], ...
+    'VariableNames', varNames);
 
 %% 1. Leer y concatenar todos los metrics.csv
-All = table();
 for a = 1:numel(algos)
     algo = algos{a};
     csvPath = fullfile(baseDir, algo, 'metrics.csv');
@@ -16,7 +22,9 @@ for a = 1:numel(algos)
         error('No existe %s', csvPath)
     end
     T = readtable(csvPath);
+    T = T(:, metrics);
     T.Algorithm = repmat({algo}, height(T), 1);
+    T = T(:, varNames);
     All = [All; T];  %#ok<AGROW>
 end
 
