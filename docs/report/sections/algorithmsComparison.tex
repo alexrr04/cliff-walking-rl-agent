@@ -1,2 +1,31 @@
 \section{Comparación de los algoritmos}
 
+En esta sección se comparan los algoritmos \textit{Value Iteration}, \textit{Direct Estimation} y \textit{Q-Learning} en el entorno. Con los mejores parámetros obtenidos en los experimentos previos, se evalúa el rendimiento de cada algoritmo.
+
+\subsection{Diseño experimental}
+
+El objetivo de este experimento es descubrir que algoritmo es el más eficiente para resolver el problema del entorno. Para ello, se comparan los algoritmos \textit{Value Iteration}, \textit{Direct Estimation} y \textit{Q-Learning} en el entorno.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{4cm}|X|} % Especificar el ancho de las columnas
+        \hline % Línea horizontal superior
+        \textbf{Observación} & Los tres algoritmos tienen funcionamientos distintos, así como puntos fuertes y débiles. Uno de ellos será el más eficiente para resolver el problema del entorno.
+        \\ \hline
+        \textbf{Planteamiento} & Se ejecuta cada algoritmo con sus mejores parámetros obtenidos en los experimentos previos. Se evalúa la tasa de éxito, tiempo de entrenamiento, número de pasos medio y recompensa media.
+        \\ \hline
+        \textbf{Hipótesis} & El algoritmo \textit{Value Iteration} es el más estable y eficaz para resolver el problema, mientras que \textit{Direct Estimation} es el más ineficiente.
+        \\ \hline
+        \textbf{Método} & 
+        \begin{itemize}
+            \item Se fijan los mejores parámetros obtenidos en los experimentos previos para cada algoritmo. La única excepción es en el algoritmo \textit{Q-Learning}, donde la penalización sobre la acción izquierda se pone a -1 en vez de -50 para poder comparar las recompensas con los otros algoritmos.
+            \item Se evalúa la política obtenida para cada algoritmo probándola con 500 episodios.
+            \item Se repite el proceso para los algoritmos de \textit{Q-Learning} y \textit{Direct Estimation} 10 veces. Para el algoritmo \textit{Value Iteration} se hace una sola vez, ya que siempre obtiene la misma política.
+        \end{itemize}
+        \\ \hline
+    \end{tabularx}
+    \caption{Comparación de algoritmos}
+    \label{tab:algorithmComparisonExp}
+\end{table}
+
+\subsection{Resultados}
