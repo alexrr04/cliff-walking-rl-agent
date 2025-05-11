@@ -1,6 +1,7 @@
 \begin{abstract}
-    Este trabajo presenta un estudio detallado sobre la implementación de cuatro algoritmos de aprendizaje por refuerzo en el entorno \textit{CliffWalking-v0} de la libreria de Python \textit{Gymnasium}: \textit{Value Iteration}, \textit{Direct Estimation}, \textit{Q-Learning} y \textit{REINFORCE}. El entorno se configura con el modo \textit{is\_slippery} activado, lo cual introduce estocasticidad en las transiciones de estado.
+    Este trabajo presenta un estudio detallado sobre la implementación de tres algoritmos de aprendizaje por refuerzo en el entorno \textit{CliffWalking-v0} de la libreria de Python \textit{Gymnasium}: \textit{Value Iteration}, \textit{Direct Estimation} y \textit{Q-Learning}. El entorno se configura con el modo \textit{is\_slippery} activado, lo cual introduce estocasticidad en las transiciones de estado.
     \\
     El objetivo es evaluar el rendimiento de cada algoritmo, así como qué parámetros e hiperparámetros son los óptimos para su funcionamiento. 
-    % TODO: Añadir métricas de rendimiento y resultados principales
+    \\
+    Los resultados experimentales muestran que \textit{Value Iteration} alcanza la política óptima con una tasa de éxito del 100\% y una recompensa media de -64.29, aunque requiere un tiempo de entrenamiento de 29.91 segundos. Por su parte, \textit{Direct Estimation} logra una tasa de éxito del 99.78\% con una recompensa media de -66.39, pero es el más lento con 41.96 segundos. Finalmente, \textit{Q-learning} obtiene una tasa de éxito del 99.74\% y una recompensa media de -69.10, siendo el más rápido con solo 12.66 segundos de entrenamiento, lo que lo convierte en la opción más eficiente cuando el tiempo es un factor crítico.
 \end{abstract}
