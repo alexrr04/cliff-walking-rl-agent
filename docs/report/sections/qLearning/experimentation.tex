@@ -154,6 +154,7 @@ Del análisis experimental se pueden extraer las siguientes conclusiones:
         \item Una recompensa media de -70.95.
         \item Un tiempo de entrenamiento de 1.68 segundos.
     \end{itemize}
+    \item Los resultados obtenidos confirman la hipótesis inicial de que un mayor factor de descuento y una tasa de aprendizaje más lenta mejoran el rendimiento del algoritmo.
 \end{enumerate}
 
 Aunque los parámetros seleccionados no minimizan el tiempo de entrenamiento, las diferencias temporales observadas son mínimas. En este estudio se ha priorizado la optimización de la tasa de aciertos y la recompensa sobre el tiempo de entrenamiento, ya que estos criterios son más relevantes para evaluar la efectividad del algoritmo.
@@ -172,7 +173,7 @@ El objetivo de este experimento es analizar cómo la tasa de exploración y su d
         \\ \hline 
         \textbf{Planteamiento} & Para cada combinación de \(\epsilon\) y decaimiento de \(\epsilon\), se compara la tasa de acierto (llegar al estado final), la recompensa media, número de pasos y tiempo de entrenamiento del algoritmo.
         \\ \hline 
-        \textbf{Hipótesis} & Un mayor valor de \(\epsilon\) y un decaimiento más lento mejorarán el rendimiento del algoritmo.
+        \textbf{Hipótesis} & Un mayor valor de \(\epsilon\) y un decaimiento moderado mejorarán el rendimiento del algoritmo.
         \\ \hline 
         \textbf{Método} & 
         \begin{itemize}
@@ -297,10 +298,12 @@ Del análisis experimental se pueden extraer las siguientes conclusiones:
         \item Una recompensa media de -68.89.
         \item Un tiempo de entrenamiento de 1.63 segundos.
     \end{itemize}
+    \item Los resultados obtenidos confirman la hipótesis inicial de que un mayor valor de \(\epsilon\) y un decaimiento moderado mejoran el rendimiento del algoritmo. 
 \end{enumerate}
 
 Aunque los parámetros seleccionados no minimizan el tiempo de entrenamiento, las diferencias temporales observadas son mínimas. En este estudio se ha priorizado la optimización de la tasa de aciertos y la recompensa sobre el tiempo de entrenamiento, ya que estos criterios son más relevantes para evaluar la efectividad del algoritmo.
 
+\newpage
 \subsubsection{Experimento tasa de aprendizaje \& decaimiento de la tasa de aprendizaje}
 
 \paragraph{Diseño experimental}
@@ -322,7 +325,8 @@ El objetivo de este experimento es analizar cómo la tasa de aprendizaje y su de
             \item Se eligen los siguientes valores para $\alpha$ y su decaimiento: $\alpha \in \{0.1, 0.2, 0.5, 0.8\}$ y decaimiento de $\alpha \in \{0.95, 0.99, 0.995, 0.999\}$.
             \item Para cada combinación de $\alpha$ y su decaimiento, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada combinación de $\alpha$ y su decaimiento 20 veces.
+            \item Se repite el proceso para cada combinación de $\alpha$ y su decaimiento 20 veces para obtener una muestra representativa (debido a la estocasticidad del entorno).
+            \item (en este experimento se refina el valor de \alpha)
         \end{itemize}
         \\ \hline
     \end{tabularx}
@@ -331,6 +335,116 @@ El objetivo de este experimento es analizar cómo la tasa de aprendizaje y su de
 \end{table}
 
 \paragraph{Resultados}
+Los resultados del experimento se han representado mediante heatmaps para facilitar la visualización de los datos. En cada gráfico, el eje X representa la tasa de aprendizaje ($\alpha$) y el eje Y representa el decaimiento de la tasa de aprendizaje. Los colores indican el valor de la métrica correspondiente. Cada valor representa la media de las 20 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+\\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../experiments/qlearning/experiment-3/results/success.png}
+    \caption{Tasa de éxito para diferentes combinaciones de $\alpha$ y su decaimiento}
+    \label{fig:qlearning-success}
+\end{figure}
+La tasa de éxito también es muy elevada en este caso y no se observa ninguna tendencia clara. Todos los valores se encuentran entre el 99.17\% y el 99.88\%. 
+
+A pesar de la poca diferencia, la mejor combinación se alcanza con $\alpha = 0.5$ y su decaimiento = 0.99, logrando una tasa de éxito del 99.88\%.
+
+
+\newpage
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-3/results/reward.png}
+        \caption{Recompensa media para diferentes combinaciones de $\alpha$ y su decaimiento}
+        \label{fig:qlearning-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-3/results/steps.png}
+        \caption{Número de pasos para diferentes combinaciones de $\alpha$ y su decaimiento}
+        \label{fig:qlearning-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:qlearning-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos tampoco revela una tendencia clara. Lo que si que se puede observar es que todas las configuraciones se encuentran entre -73.78 y -68.84 de recompensa, lo que indica que ninguna de ellas se desvia ni obtiene resultados muy negativos. 
+\\
+
+Se puede observar también que el número medio de pasos corresponde exactamente con la recompensa media en cada configuración. Esto nos indica que el agente no cae por el barranco en ningún momento, ya que sino la recompensa media sería más negativa.
+\\
+
+Las combinación óptima es $\alpha = 0.5$ y su decaimiento = 0.99, logrando una recompensa media de -68.84.
+\\
+
+\textbf{Tiempo de entrenamiento}
+\\
+
+Para el tiempo de entrenamiento, se han elegido las tres combinaciones que mejor rendimiento han dado. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/qlearning/experiment-3/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes combinaciones de $\alpha$ y su decaimiento}
+    \label{fig:qlearning-time}
+\end{figure}
+
+En este caso se puede observar como una de las combinaciones tiene un tiempo de entrenamiento más bajo, concretamente la que tiene un decaimiento más lento. Esto puede ser debdido a que \alpha disminuye más lentamente y por lo tanto el algoritmo converge más rápido. Aún así, el tiempo de entrenamiento varia en pocas decimas de segundo.
+\\
+
+\newpage
+\textbf{Tabla resumen}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|l|r|c|}
+    \hline
+    $\alpha$ & $decay$ & Métrica        & Media    & Intervalo de Confianza del 95\% \\
+    \hline
+    0.10 & 0.95 & Success-rate  & 0.997   & [0.995, 1.000] \\
+         &      & Rew. media    & -69.945 & [-72.926, -66.964] \\
+         &      & Steps medios  & 69.9    & [67.0, 72.9] \\
+         &      & Time (s)      & 1.62    & [1.60, 1.63] \\
+    \hline
+    0.50 & 0.99 & Success-rate  & 0.999   & [0.997, 1.000] \\
+         &      & Rew. media    & -68.836 & [-71.366, -66.305] \\
+         &      & Steps medios  & 68.8    & [66.3, 71.4] \\
+         &      & Time (s)      & 1.61    & [1.58, 1.63] \\
+    \hline
+    0.50 & 0.999 & Success-rate  & 0.997   & [0.995, 1.000] \\
+         &       & Rew. media    & -70.240 & [-73.155, -67.326] \\
+         &       & Steps medios  & 70.2    & [67.3, 73.2] \\
+         &       & Time (s)      & 1.51    & [1.48, 1.54] \\
+    \hline
+    \end{tabular}
+    \caption{Resultados para combinaciones seleccionadas de $\alpha$ y $decay$}
+    \label{tab:resultados_seleccionados}
+\end{table}
+
+    
+\textbf{Conclusiones}
+\\
+
+Del análisis experimental se pueden extraer las siguientes conclusiones:
+
+\begin{enumerate}
+    \item La tasa de aprendizaje refinada y su decaimiento no parecen tener un impacto significativo en el rendimiento del algoritmo Q-Learning.
+    \item La mejor combinación general considerando todas los métricas es $\alpha = \textbf{0.5}$ y su decaimiento = \textbf{0.99}, que proporciona:
+    \begin{itemize}
+        \item Una tasa de éxito del 99.88\%.
+        \item Una recompensa media de -68.84.
+        \item Un tiempo de entrenamiento de 1.61 segundos.
+    \end{itemize}
+    \item Los resultados obtenidos difieren ligeramente de la hipótesis inicial, ya que ha dado mejor resultado una tasa de aprendizaje moderada con un decaimiento lento. 
+\end{enumerate}
+
+Aunque los parámetros seleccionados no minimizan el tiempo de entrenamiento, las diferencias temporales observadas son mínimas. En este estudio se ha priorizado la optimización de la tasa de aciertos y la recompensa sobre el tiempo de entrenamiento, ya que estos criterios son más relevantes para evaluar la efectividad del algoritmo.
 
 \subsubsection{Experimento número de episodios}
 
@@ -352,17 +466,128 @@ El objetivo de este experimento es analizar cómo el número de episodios de ent
             \item Se eligen los siguientes \textit{números de episodios de entrenamiento}: \{500, 1000, 5000, 10000\}.
             \item Para cada \textit{número de episodios}, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada número de episodios 20 veces.
+            \item Se repite el proceso para cada número de episodios 20 veces para obtener una muestra maś representativa (debido a la estocasticidad del entorno).
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Q-Learning - Experimento 3 - Número de episodios}
+    \caption{Q-Learning - Experimento 4 - Número de episodios}
     \label{tab:diseñoQLEarningExp3}
 \end{table}
 
 
 \paragraph{Resultados}
 
+En este experimento, los resultados se han representado mediante boxplots ya que solo se está variando un parámetro. 
+\\
+
+\newpage
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../../experiments/qlearning/experiment-4/results/success.png}
+    \caption{Tasa de éxito para diferentes números de episodios de entrenamiento}
+    \label{fig:qlearning-success}
+\end{figure}
+
+ Se puede observar una ligera tendencia a mejorar la tasa de éxito al aumentar el número de episodios de entrenamiento. Además, se observa que la variabilidad de los valores también disminuye al aumentar el número de episodios.
+\\
+
+Según estos resultados, el mejor número de episodios de entrenamiento es 10000, con una tasa media de éxito del 99.87\%.
+\\
+
+\newpage
+\textbf{Recompensa media y número de pasos medios}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-4/results/reward.png}
+        \caption{Recompensa media para diferentes números de episodios de entrenamiento}
+        \label{fig:qlearning-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-4/results/steps.png}
+        \caption{Número de pasos para diferentes números de episodios de entrenamiento}
+        \label{fig:qlearning-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:qlearning-reward}
+\end{figure}
+
+Con estos resultados se observa la misma tendencia que en la tasa de éxito. La recompensa media mejora conforme aumentan los episodios de entrenamiento y el número de pasos disminuyen. También se observa el "salto" significativo de 500 a 1000 episodios de entrenamiento, donde los resultados mejora notablemente. A partir de 1000 episodios, la mejora es más gradual. 
+\\
+
+\newpage
+
+\textbf{Tiempo de entrenamiento}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../../experiments/qlearning/experiment-4/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes números de episodios de entrenamiento}
+    \label{fig:qlearning-time}
+\end{figure}
+
+Como es lógico, el tiempo de entrenamiento aumenta conforme aumentan los episodios de entrenamiento. El más costoso es el de 10000 episodios, con un tiempo medio de 12.8 segundos, el doble que el de 5000 (6.54 segundos).
+\\
+
+\textbf{Tabla resumen}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|l|r|c|}
+    \hline
+    Episodios & Métrica        & Media    & Intervalo de Confianza del 95\% \\
+    \hline
+    500   & Success-rate  & 0.988   & [0.984, 0.992] \\
+          & Rew. media    & -79.584 & [-82.496, -76.671] \\
+          & Pasos medios  & 79.6    & [76.7, 82.5] \\
+          & Tiempo (s)    & 0.93    & [0.93, 0.94] \\
+    \hline
+    1000  & Success-rate  & 0.996   & [0.993, 0.998] \\
+          & Rew. media    & -71.112 & [-72.871, -69.354] \\
+          & Pasos medios  & 71.1    & [69.4, 72.9] \\
+          & Tiempo (s)    & 1.58    & [1.57, 1.59] \\
+    \hline
+    5000  & Success-rate  & 0.996   & [0.994, 0.998] \\
+          & Rew. media    & -71.358 & [-72.781, -69.934] \\
+          & Pasos medios  & 71.4    & [69.9, 72.8] \\
+          & Tiempo (s)    & 6.54    & [6.52, 6.57] \\
+    \hline
+    10000 & Success-rate  & 0.998   & [0.997, 0.999] \\
+          & Rew. media    & -69.626 & [-70.662, -68.591] \\
+          & Pasos medios  & 69.6    & [68.6, 70.7] \\
+          & Tiempo (s)    & 12.80   & [12.75, 12.84] \\
+    \hline
+    \end{tabular}
+    \caption{Resultados del algoritmo cantidades de episodios de entrenamiento}
+    \label{tab:qlearning_episodios}
+\end{table}
+    
+
+\textbf{Conclusiones}
+\\
+
+Del análisis experimental se pueden extraer las siguientes conclusiones:
+
+\begin{enumerate}
+    \item El número de episodios de entrenamiento afecta considerablemente al rendimiento del algoritmo.
+    \item El número de episodios de entrenamiento afecta considerablemente al tiempo de entrenamiento.
+    \item El número de episodios con mejor trade off entre rendimiento y tiempo de entrenamiento es \textbf{5000}, que proporciona:
+    \begin{itemize}
+        \item Una tasa de éxito del 99.6\%.
+        \item Una recompensa media de -71.112.
+        \item Un tiempo de entrenamiento de 6.54 segundos.
+    \end{itemize}
+    \item Los resultados obtenidos confirman la hipótesis inicial de que un mayor número de episodios de entrenamiento mejora el rendimiento del algoritmo.
+\end{enumerate}
+
+\newpage
 \subsubsection{Experimento penalización de la acción izquierda}
 
 \paragraph{Diseño experimental}
@@ -383,12 +608,116 @@ El objetivo de este experimento es analizar si penalizar acciones poco favorable
             \item Se eligen los siguientes valores para la penalización de la acción ``moverse a la izquierda'': \{-1, -2, -10, -50\}.
             \item Para cada penalización, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada penalización 20 veces.
+            \item Se repite el proceso para cada penalización 20 veces para obtener una muestra más significativa (debido a la estocasticidad del entorno).
         \end{itemize}
         \\ \hline
     \end{tabularx}
-    \caption{Q-Learning - Experimento 4 - Penalización de la acción ``moverse a la izquierda''}
+    \caption{Q-Learning - Experimento 5 - Penalización de la acción ``moverse a la izquierda''}
     \label{tab:diseñoQLEarningExp4}
 \end{table}
 
 \paragraph{Resultados}
+En este experimento, los resultados se han representado mediante boxplots ya que solo se está variando un parámetro. 
+\\
+
+\newpage
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/qlearning/experiment-5/results/success.png}
+    \caption{Tasa de éxito para diferentes valores de penalización a la acción ``moverse a la izquierda''}
+    \label{fig:qlearning-success}
+\end{figure}
+
+No se aprecia una gran diferencia en cuanto a la tasa de éxito. Todas las medias se encuentran por encima del 99\% y la variabilidad es muy baja. 
+\\
+
+\newpage
+\textbf{Recompensa media y número de pasos medios}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-5/results/reward.png}
+        \caption{Recompensa media para diferentes valores de penalización a la acción ``moverse a la izquierda''}
+        \label{fig:qlearning-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-5/results/steps.png}
+        \caption{Número de pasos para diferentes valores de penalización a la acción ``moverse a la izquierda''}
+        \label{fig:qlearning-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:qlearning-reward}
+\end{figure}
+
+Para seguir con la estructura de los experimentos anteriores, se muestran los boxplots de la recompensa media y el número de pasos medios. En este caso, del boxplot de la recompensa media no se puede deducir nada, ya que al haber modificado la penalización, cada recompensa media es relativa a la penalización. Sin embargo, se puede medir el rendimiento mediante el número de pasos medios. En este caso, se observa una muy ligera tendencia a mejorar el rendimiento al aumentar la penalización. 
+\\
+
+\textbf{Tiempo de entrenamiento}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/qlearning/experiment-5/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes valores de penalización a la acción ``moverse a la izquierda''}
+    \label{fig:qlearning-time}
+\end{figure}
+
+El tiempo de se un poco reducido con penalizaciones más altas que 1, pero no se observa una tendencia clara. 
+\\
+
+\newpage
+\textbf{Tabla resumen}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|l|r|c|}
+    \hline
+    Left penalty & Métrica        & Media    & Intervalo de Confianza del 95\% \\
+    \hline
+    -50  & Success-rate  & 0.998     & [0.998, 0.999] \\
+         & Rew. media    & -173.343  & [-179.002, -167.685] \\
+         & Pasos medios  & 69.4      & [68.4, 70.3] \\
+         & Tiempo (s)    & 12.56     & [12.51, 12.61] \\
+    \hline
+    -10  & Success-rate  & 0.997     & [0.995, 0.998] \\
+         & Rew. media    & -97.021   & [-98.710, -95.332] \\
+         & Pasos medios  & 69.8      & [68.2, 71.3] \\
+         & Tiempo (s)    & 12.46     & [12.43, 12.50] \\
+    \hline
+    -2   & Success-rate  & 0.997     & [0.996, 0.998] \\
+         & Rew. media    & -74.077   & [-75.488, -72.666] \\
+         & Pasos medios  & 71.0      & [69.6, 72.5] \\
+         & Tiempo (s)    & 12.48     & [12.44, 12.53] \\
+    \hline
+    -1   & Success-rate  & 0.992     & [0.986, 0.998] \\
+         & Rew. media    & -73.278   & [-76.204, -70.352] \\
+         & Pasos medios  & 73.3      & [70.4, 76.2] \\
+         & Tiempo (s)    & 12.74     & [12.71, 12.78] \\
+    \hline
+    \end{tabular}
+    \caption{Resultados del algoritmo para diferentes valores de penalización por ir a la izquierda}
+    \label{tab:qlearning_penalizaciones}
+    \end{table}
+    
+
+\textbf{Conclusiones}
+\\
+
+Del análisis experimental se pueden extraer las siguientes conclusiones:
+
+\begin{enumerate}
+    \item La penalización de la acción ``moverse a la izquierda'' no parece tener un impacto significativo en el rendimiento del algoritmo.
+    \item El mejor valor de penalización obtenido es \textbf{-50}, que proporciona:
+    \begin{itemize}
+        \item Una tasa de éxito del 99.8\%.
+        \item Un número medio de pasos de 69.4.
+        \item Un tiempo de entrenamiento de 12.56 segundos.
+    \end{itemize}
+    \item Los resultados obtenidos difieren ligeramente de la hipótesis inicial, ya que no se observa una mejora muy significativa al penalizar la acción ``moverse a la izquierda''.
+\end{enumerate}
