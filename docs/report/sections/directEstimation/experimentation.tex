@@ -34,6 +34,81 @@ El objetivo de este experimento es analizar el rendimiento del algoritmo \textit
 
 \paragraph{Resultados}
 
+Los resultados del experimento se han representado mediante heatmaps para facilitar la visualización de los datos. En cada gráfico, el eje X representa el factor de descuento ($\gamma$) y el eje Y representa la el \textit{número de trayectorias}. Los colores indican el valor de la métrica correspondiente. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+
+\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../experiments/directEstimation/experiment-1/results/success.png}
+    \caption{Tasa de éxito para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
+    \label{fig:directEstimation-success}
+\end{figure}
+
+Se puede observar que el parámetro que más afecta a la tasa de éxito es el \textit{número de trayectorias}. A medida que aumenta el número de trayectorias, la tasa de éxito también aumenta. Sin embargo, el factor de descuento no parece tener un efecto significativo en la tasa de éxito.
+
+\
+
+El mejor resultado se obtiene con un \textit{número de trayectorias} de 1000 y un factor de descuento de 0.99, donde el algoritmo alcanza una tasa de éxito de aproximadamente el 99.9\%.
+
+\
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-1/results/reward.png}
+        \caption{Recompensa media para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
+        \label{fig:directEstimation-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-1/results/steps.png}
+        \caption{Número de pasos para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
+        \label{fig:directEstimation-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:directEstimation-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos revela que:
+
+\begin{itemize}
+    \item Las recompensas mejoran significativamente (son menos negativas) al aumentar el \textit{número de trayectorias} y, por lo tanto, el número de pasos también se reduce. 
+    \item El factor de descuento tiene un efecto menos significativo en la recompensa media y el número de pasos, todo y que se observa que $\gamma$ inferiores a 0.9 tienden a tener una recompensa media mejor.
+    \item Las mejores recompensas se obtienen con $\gamma \geq 0.99$, y con un \textit{número de trayectorias} de 1000.
+\end{itemize}
+
+La combinación óptima es $\gamma = 0.99$, \textit{número de trayectorias} = 1000 y logra una recompensa media de -66.28. Corresponde con la combinación que obtiene mejor tasa de éxito. 
+\\
+
+Se puede observar que el número medio de pasos corresponde exactamente con la recompensa media en cada configuración. Esto nos indica que el agente no cae por el barranco en ningún momento, ya que sino la recompensa media sería más negativa (-100 de recompensa por caer en 1 paso, perderia la correspondencia de -1 de recompensa por cada paso).
+
+\
+
+La hipótesis inicial de que un mayor número de trayectorias y un mayor factor de descuento mejoran el rendimiento del algoritmo se confirma. Sin embargo, el número de trayectorias parece tener un efecto más significativo que el factor de descuento.
+
+\
+
+\textbf{Tiempo de entrenamiento}
+
+\
+
+Para el tiempo de entrenamiento, se han elegido las tres combinaciones que mejor rendimiento han dado. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-1/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
+    \label{fig:directEstimation-time}
+\end{figure}
+
+
 \subsubsection{Experimento número de episodios de entrenamiento}
 
 \paragraph{Diseño experimental}
