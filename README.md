@@ -114,6 +114,12 @@ Cada archivo de configuración tiene un nombre que indica el algoritmo y el núm
 python scripts/run_experiment.py --config experiments/qlearning/qlearning-1.yaml
 ```
 
+En el caso del experimento final de comparación de algoritmos, puedes usar:
+
+```bash
+python scripts/run_experiment.py --config experiments/algorithmComparison/[config-file].yaml
+```
+
 ## Resultados
 
 Después de ejecutar un experimento, los resultados se almacenan en `experiments/[algoritmo]/experiment_[timestamp]` con:
