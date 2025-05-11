@@ -301,6 +301,7 @@ Del análisis experimental se pueden extraer las siguientes conclusiones:
 
 Aunque los parámetros seleccionados no minimizan el tiempo de entrenamiento, las diferencias temporales observadas son mínimas. En este estudio se ha priorizado la optimización de la tasa de aciertos y la recompensa sobre el tiempo de entrenamiento, ya que estos criterios son más relevantes para evaluar la efectividad del algoritmo.
 
+\newpage
 \subsubsection{Experimento tasa de aprendizaje \& decaimiento de la tasa de aprendizaje}
 
 \paragraph{Diseño experimental}
@@ -322,7 +323,8 @@ El objetivo de este experimento es analizar cómo la tasa de aprendizaje y su de
             \item Se eligen los siguientes valores para $\alpha$ y su decaimiento: $\alpha \in \{0.1, 0.2, 0.5, 0.8\}$ y decaimiento de $\alpha \in \{0.95, 0.99, 0.995, 0.999\}$.
             \item Para cada combinación de $\alpha$ y su decaimiento, se ejecuta el algoritmo Q-Learning en el entorno.
             \item Se evalúa la política obtenida probándola con 500 episodios.
-            \item Se repite el proceso para cada combinación de $\alpha$ y su decaimiento 20 veces.
+            \item Se repite el proceso para cada combinación de $\alpha$ y su decaimiento 20 veces para obtener una muestra representativa (debido a la estocasticidad del entorno).
+            \item (en este experimento se refina el valor de \alpha)
         \end{itemize}
         \\ \hline
     \end{tabularx}
@@ -331,6 +333,117 @@ El objetivo de este experimento es analizar cómo la tasa de aprendizaje y su de
 \end{table}
 
 \paragraph{Resultados}
+Los resultados del experimento se han representado mediante heatmaps para facilitar la visualización de los datos. En cada gráfico, el eje X representa la tasa de aprendizaje ($\alpha$) y el eje Y representa el decaimiento de la tasa de aprendizaje. Los colores indican el valor de la métrica correspondiente. Cada valor representa la media de las 20 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+\\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../experiments/qlearning/experiment-3/results/success.png}
+    \caption{Tasa de éxito para diferentes combinaciones de $\alpha$ y su decaimiento}
+    \label{fig:qlearning-success}
+\end{figure}
+La tasa de éxito también es muy elevada en este caso y no se observa ninguna tendencia clara. Todos los valores se encuentran entre el 99.17\% y el 99.88\%. 
+
+A pesar de la poca diferencia, la mejor combinación se alcanza con $\alpha = 0.5$ y su decaimiento = 0.99, logrando una tasa de éxito del 99.88\%.
+
+
+\newpage
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-3/results/reward.png}
+        \caption{Recompensa media para diferentes combinaciones de $\alpha$ y su decaimiento}
+        \label{fig:qlearning-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/qlearning/experiment-3/results/steps.png}
+        \caption{Número de pasos para diferentes combinaciones de $\alpha$ y su decaimiento}
+        \label{fig:qlearning-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:qlearning-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos tampoco revela una tendencia clara. Lo que si que se puede observar es que todas las configuraciones se encuentran entre -73.78 y -68.84 de recompensa, lo que indica que ninguna de ellas se desvia ni obtiene resultados muy negativos. 
+\\
+
+Se puede observar también que el número medio de pasos corresponde exactamente con la recompensa media en cada configuración. Esto nos indica que el agente no cae por el barranco en ningún momento, ya que sino la recompensa media sería más negativa.
+\\
+
+Las combinación óptima es $\alpha = 0.5$ y su decaimiento = 0.99, logrando una recompensa media de -68.84.
+\\
+
+\textbf{Tiempo de entrenamiento}
+\\
+
+Para el tiempo de entrenamiento, se han elegido las tres combinaciones que mejor rendimiento han dado. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/qlearning/experiment-3/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes combinaciones de $\alpha$ y su decaimiento}
+    \label{fig:qlearning-time}
+\end{figure}
+
+El análisis del tiempo de ejecución muestra que para las tres combinaciones, el tiempo se mueve entorno a los 1.62 segundos. Hay poca diferencia entre ellos, con una pequeña variabilidad en las colas. 
+\\
+
+\newpage
+\textbf{Tabla resumen}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|l|r|c|}
+    \hline
+    $\alpha$ & $decay$ & Métrica        & Media    & Intervalo de Confianza del 95\% \\
+    \hline
+    0.10 & 0.95 & Success-rate  & 0.997   & [0.995, 1.000] \\
+         &      & Rew. media    & -69.945 & [-72.926, -66.964] \\
+         &      & Steps medios  & 69.9    & [67.0, 72.9] \\
+         &      & Time (s)      & 1.62    & [1.60, 1.63] \\
+    \hline
+    0.50 & 0.99 & Success-rate  & 0.999   & [0.997, 1.000] \\
+         &      & Rew. media    & -68.836 & [-71.366, -66.305] \\
+         &      & Steps medios  & 68.8    & [66.3, 71.4] \\
+         &      & Time (s)      & 1.61    & [1.58, 1.63] \\
+    \hline
+    0.50 & 0.999 & Success-rate  & 0.995   & [0.988, 1.003] \\
+         &       & Rew. media    & -71.791 & [-76.743, -66.839] \\
+         &       & Steps medios  & 71.8    & [66.8, 76.7] \\
+         &       & Time (s)      & 1.58    & [1.56, 1.61] \\
+    \hline
+    \end{tabular}
+    \caption{Resultados para combinaciones seleccionadas de $\alpha$ y $decay$}
+    \label{tab:resultados_seleccionados}
+\end{table}
+
+    
+    
+
+\textbf{Conclusiones}
+\\
+
+Del análisis experimental se pueden extraer las siguientes conclusiones:
+
+\begin{enumerate}
+    \item La tasa de aprendizaje refinada y su decaimiento no parecen tener un impacto significativo en el rendimiento del algoritmo Q-Learning.
+    \item La mejor combinación general considerando todas los métricas es $\alpha = \textbf{0.5}$ y su decaimiento = \textbf{0.99}, que proporciona:
+    \begin{itemize}
+        \item Una tasa de éxito del 99.88\%.
+        \item Una recompensa media de -68.84.
+        \item Un tiempo de entrenamiento de 1.61 segundos.
+    \end{itemize}
+\end{enumerate}
+
+Aunque los parámetros seleccionados no minimizan el tiempo de entrenamiento, las diferencias temporales observadas son mínimas. En este estudio se ha priorizado la optimización de la tasa de aciertos y la recompensa sobre el tiempo de entrenamiento, ya que estos criterios son más relevantes para evaluar la efectividad del algoritmo.
 
 \subsubsection{Experimento número de episodios}
 
