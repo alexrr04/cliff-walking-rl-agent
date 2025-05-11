@@ -1,0 +1,2 @@
+run,gamma,learning_rate,initial_epsilon,epsilon_decay,learning_rate_decay,training_episodes,left_penalty,mean_reward,mean_steps,success_rate,training_time
+18,0.99,0.5,0.95,0.8,0.95,10000,-1.0,-73.734,73.734,0.992,12.441175937652588
