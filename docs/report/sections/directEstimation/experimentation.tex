@@ -192,7 +192,7 @@ El análisis de la recompensa media y el número medio de pasos revela que:
 
 \begin{itemize}
     \item Las recompensas y número de pasos son parecidos para todos los \textit{números de episodios de entrenamiento} y son muy similares a las del experimento anterior.
-    \item Si miramos los intervalos de confianza del 95\% para cada \textit{número de episodios de entrenamiento} y su valor medio:
+    \item Si miramos los intervalos de confianza del 95\% de recompensa para cada \textit{número de episodios de entrenamiento} y su valor medio:
     \begin{itemize}
         \item 100 episodios: -66.585 con IC 95\% [-68.044, -65.126]
         \item 500 episodios: -66.497 con IC 95\% [-67.732, -65.262]
@@ -259,3 +259,83 @@ El objetivo de este experimento es ver si el algoritmo \textit{Direct Estimation
 \end{table}
 
 \paragraph{Resultados}
+
+Los resultados del experimento se han representado mediante boxplots para facilitar la visualización de los datos. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+
+\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-3/results/success.png}
+    \caption{Tasa de éxito para diferentes \textit{patience}}
+    \label{fig:directEstimation3-success}
+\end{figure}
+
+A continuación se muestran los intervalos de confianza del 95\% para cada \textit{patience} y su valor medio:
+\begin{itemize}
+    \item patience = 10: 0.6 con IC 95\% [0.405,  0.796]
+    \item patience = 100: 0.999 con IC 95\% [0.998,  1.000]
+    \item patience = 1000: 0.999 con IC 95\% [0.999,  0.999]
+\end{itemize}
+
+Se puede ver que un valor de \textit{patience} bajo (10) afecta negativamente a la tasa de éxito, ya que el algoritmo no tiene tiempo suficiente para converger. Sin embargo, un valor de \textit{patience} alto (100 o 1000) permite al algoritmo converger y alcanzar una tasa de éxito del 99.9\%.
+
+\
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-3/results/reward.png}
+        \caption{Recompensa media para diferentes \textit{patience}}
+        \label{fig:directEstimation3-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-3/results/steps.png}
+        \caption{Número de pasos para diferentes \textit{patience}}
+        \label{fig:directEstimation3-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:directEstimation3-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos revela que:
+
+\begin{itemize}
+    \item Las recompensas y número de pasos con \textit{patience} = 10 son mucho peores que con \textit{patience} = 100 o 1000.
+    \item Si miramos los intervalos de confianza del 95\% de recompensa para cada \textit{patience} y su valor medio:
+    \begin{itemize}
+        \item patience = 10: -193.435 con IC 95\% [-244.839, -142.031]
+        \item patience = 100: -67.009 con IC 95\% [-68.083, -65.935]
+        \item patience = 1000: -65.944 con IC 95\% [-66.970, -64.919]
+    \end{itemize}
+    \item Los valores con \textit{patience} = 100 y 1000 son muy similares, lo que indica que el algoritmo se puede detener antes de que se alcance el número máximo de episodios de entrenamiento sin afectar significativamente el rendimiento.
+\end{itemize}
+
+\
+
+\textbf{Tiempo de entrenamiento}
+
+\ 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-3/results/time.png}
+    \caption{Tiempo de entrenamiento para diferentes \textit{patience}}
+    \label{fig:directEstimation3-time}
+\end{figure}
+
+El gráfico muestra lo esperado: a medida que aumenta el valor de \textit{patience}, el tiempo de entrenamiento también aumenta. Los tiempos de entrenamiento son los siguientes:
+\begin{itemize}
+    \item patience = 10: 6.86 segundos con IC 95\% [5.38, 8.34]
+    \item patience = 100: 44.74 segundos con IC 95\% [39.24, 50.24]
+    \item patience = 1000: 74.24 segundos con IC 95\% [73.11, 75.38]
+\end{itemize}
+
+El tiempo de entrenamiento con \textit{patience} = 100 es entorno a 30 segundos más bajo que con \textit{patience} = 1000, lo cual corrobora la hipótesis inicial de que un valor de \textit{patience} más bajo permitirá al algoritmo detenerse antes y reducir el tiempo de entrenamiento sin afectar significativamente el rendimiento. Con un valor de 10 es demasiado bajo, pero con 100 se obtiene un buen equilibrio entre rendimiento y tiempo de entrenamiento.
