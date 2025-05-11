@@ -32,6 +32,7 @@ El objetivo de este experimento es analizar el rendimiento del algoritmo \textit
     \label{tab:diseñoDirectEstimationExp1}
 \end{table}
 
+\newpage
 \paragraph{Resultados}
 
 Los resultados del experimento se han representado mediante heatmaps para facilitar la visualización de los datos. En cada gráfico, el eje X representa el factor de descuento ($\gamma$) y el eje Y representa la el \textit{número de trayectorias}. Los colores indican el valor de la métrica correspondiente. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
@@ -54,7 +55,7 @@ Se puede observar que el parámetro que más afecta a la tasa de éxito es el \t
 El mejor resultado se obtiene con un \textit{número de trayectorias} de 1000 y un factor de descuento de 0.99, donde el algoritmo alcanza una tasa de éxito de aproximadamente el 99.9\%.
 
 \
-
+\newpage
 \textbf{Recompensa media y número de pasos medios}
 
 \begin{figure}[H]
@@ -140,6 +141,7 @@ El objetivo de este experimento es analizar el rendimiento del algoritmo \textit
     \label{tab:diseñoDirectEstimationExp2}
 \end{table}
 
+\newpage
 \paragraph{Resultados}
 
 Los resultados del experimento se han representado mediante boxplots para facilitar la visualización de los datos. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
@@ -166,7 +168,7 @@ A continuación se muestran los intervalos de confianza del 95\% para cada \text
 Se puede observar que el número de episodios de entrenamiento no afecta significativamente a la tasa de éxito. Todos los intervalos de confianza son muy similares y están por encima del 99\%. De todas formas, el número de episodios de entrenamiento de 500 parece ser el que mejor rendimiento ha dado, ya que es el que menos varía y el más alto.
 
 \
-
+\newpage
 \textbf{Recompensa media y número de pasos medios}
 
 \begin{figure}[H]
@@ -227,7 +229,7 @@ El tiempo de entrenamiento medio también es muy similar ya que como se ha fijad
 \end{itemize}
 
 Como la diferencia de tiempos es mínima, elegimos fijar 500 episodios de entrenamiento como el número óptimo, ya que es el que guarda una tasa de éxito más alta y su tiempo de entrenamiento es aceptable en relación a los demás.
-
+\newpage
 \subsubsection{Experimento Patience}
 
 \paragraph{Diseño experimental}
@@ -263,7 +265,7 @@ El objetivo de este experimento es ver si el algoritmo \textit{Direct Estimation
 Los resultados del experimento se han representado mediante boxplots para facilitar la visualización de los datos. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
 
 \
-
+\newpage
 \textbf{Tasa de Éxito}
 
 \begin{figure}[H]
@@ -283,7 +285,7 @@ A continuación se muestran los intervalos de confianza del 95\% para cada \text
 Se puede ver que un valor de \textit{patience} bajo (10) afecta negativamente a la tasa de éxito, ya que el algoritmo no tiene tiempo suficiente para converger. Sin embargo, un valor de \textit{patience} alto (100 o 1000) permite al algoritmo converger y alcanzar una tasa de éxito del 99.9\%.
 
 \
-
+\newpage
 \textbf{Recompensa media y número de pasos medios}
 
 \begin{figure}[H]
@@ -319,7 +321,7 @@ El análisis de la recompensa media y el número medio de pasos revela que:
 \end{itemize}
 
 \
-
+\newpage
 \textbf{Tiempo de entrenamiento}
 
 \ 
