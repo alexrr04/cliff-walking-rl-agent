@@ -94,31 +94,31 @@ h = heatmap( ...
     'Colormap', parula, ...
     'ColorLimits', [0 1] ...   % success_rate ∈ [0,1]
 );
-xlabel('\alpha')
-ylabel('\alpha decay')
+xlabel('α')
+ylabel('α decay')
 title('Success-rate medio por combinación')
 
 figure
 h1 = heatmap(Learning_rateU, Learning_rate_decayU, RewMat, ...
     'Colormap', parula, ...
     'ColorLimits', [min(RewMat(:)) max(RewMat(:))]);
-xlabel('\alpha')
-ylabel('\alpha decay')
+xlabel('α')
+ylabel('α decay')
 title('Recompensa media por combinación')
 
 figure
 h1 = heatmap(Learning_rateU, Learning_rate_decayU, StepMat, ...
     'Colormap', parula, ...
     'ColorLimits', [min(StepMat(:)) max(StepMat(:))]);
-xlabel('\alpha')
-ylabel('\alpha decay')
+xlabel('α')
+ylabel('α decay')
 title('Número de pasos medio por combinación')
 
 %% 6. Boxplots de tiempo medio para las 3 mejores configuraciones
 % Configuraciones hardcodeadas: [learning_rate, alpha]
-best = [0.5, 0.99;
-        0.5, 0.95;
-        0.1,  0.995];
+best = [0.1,  0.95;
+        0.5, 0.99;
+        0.5, 0.999];
 
 % Prepara vectores para el boxplot
 times  = [];
@@ -126,16 +126,16 @@ groups = [];
 labels = cell(size(best,1),1);
 
 for i = 1:size(best,1)
-    g = best(i,1);
-    a = best(i,2);
+    a = best(i,1);
+    ad = best(i,2);
     % Filtra en 'All' los runs de la config actual
-    mask = All.learning_rate==g & All.learning_rate_decay==a;
+    mask = All.learning_rate==a & All.learning_rate_decay==ad;
     t   = All.training_time(mask);
     % Acumula
     times  = [times;  t];
     groups = [groups; repmat(i, numel(t), 1)];
-    % Etiqueta "γ=… / a=…"
-    labels{i} = sprintf('γ=%.2f, a=%.2f', g, a);
+    % Etiqueta "alpha=… / alpha decay=…"
+    labels{i} = sprintf('α=%.3f, α decay=%.3f', a, ad);
 end
 
 % Dibuja el boxplot
