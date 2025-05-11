@@ -1,7 +1,7 @@
 
 %% 1. Localiza todos los metrics.csv partiendo de la carpeta “results” al lado de tu script
 scriptDir  = fileparts(mfilename('fullpath'));
-resultsDir = fullfile(scriptDir, 'experiment-1');      
+resultsDir = fullfile(scriptDir, 'experiment-2');      
 files      = dir(fullfile(resultsDir, '**', 'metrics.csv'));
 
 %% 2. Lee y concatena todas las tablas
@@ -34,38 +34,38 @@ fprintf('  epsilon     epsilon decay     Métrica       Media      IC_lower    I
 fprintf('----------------------------------------------------------------------\n');
 
 for i = 1:height(Summary)
-    g  = Summary.initial_epsilon(i);
-    lr = Summary.epsilon_decay(i);
+    e  = Summary.initial_epsilon(i);
+    ed = Summary.epsilon_decay(i);
     % máscara para esta combinación
-    mask = All.initial_epsilon==g & All.epsilon_decay==lr;
+    mask = All.initial_epsilon==e & All.epsilon_decay==ed;
 
     % Success rate
     x = All.success_rate(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Success-rate  %7.3f   [%6.3f, %6.3f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            e, ed, mu, mu-h, mu+h);
 
     % Recompensa media
     x = All.mean_reward(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Rew. media    %7.3f   [%6.3f, %6.3f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            e, ed, mu, mu-h, mu+h);
 
     % Pasos medios
     x = All.mean_steps(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Steps medios  %7.1f   [%6.1f, %6.1f]\n', ...
-            g, lr, mu, mu-h, mu+h);
+            e, ed, mu, mu-h, mu+h);
 
     % Tiempo medio
     x = All.training_time(mask);
     mu = mean(x); s = std(x);
     h = tVal * s / sqrt(n);
     fprintf(' %.2f   %.2f   Time (s)      %7.2f   [%6.2f, %6.2f]\n\n', ...
-            g, lr, mu, mu-h, mu+h);
+            e, ed, mu, mu-h, mu+h);
 end
 
 %% 4. Pivota para la heat-map
@@ -80,7 +80,7 @@ for i = 1:height(Summary)
     xi = find(Initial_epsilonU == Summary.initial_epsilon(i));
     yi = find(EpsilonDecayU  == Summary.epsilon_decay(i));
     SuccMat(yi, xi) = Summary.succMean(i);
-    RewMat(yi,xi) = Summary.rewMean(i);
+    RewMat(yi, xi) = Summary.rewMean(i);
     StepMat(yi, xi) = Summary.stepsMean(i);
     TimeMat(yi, xi) = Summary.timeMean(i);
 end
@@ -89,13 +89,13 @@ end
 figure
 h = heatmap( ...
     Initial_epsilonU, ...                % etiquetas X = initial_epsilon
-    EpsilonDecayU, ...                 % etiquetas Y = alpha
+    EpsilonDecayU, ...                 % etiquetas Y = epsilon_decay
     SuccMat, ...               % matriz de valores
     'Colormap', parula, ...
     'ColorLimits', [0 1] ...   % success_rate ∈ [0,1]
 );
 xlabel('\epsilon')
-ylabel('\alpha')
+ylabel('\epsilon decay')
 title('Success-rate medio por combinación')
 
 figure
@@ -103,7 +103,7 @@ h1 = heatmap(Initial_epsilonU, EpsilonDecayU, RewMat, ...
     'Colormap', parula, ...
     'ColorLimits', [min(RewMat(:)) max(RewMat(:))]);
 xlabel('\epsilon')
-ylabel('\alpha')
+ylabel('\epsilon decay')
 title('Recompensa media por combinación')
 
 figure
@@ -111,7 +111,7 @@ h1 = heatmap(Initial_epsilonU, EpsilonDecayU, StepMat, ...
     'Colormap', parula, ...
     'ColorLimits', [min(StepMat(:)) max(StepMat(:))]);
 xlabel('\epsilon')
-ylabel('\alpha')
+ylabel('\epsilon decay')
 title('Número de pasos medio por combinación')
 
 %% 6. Boxplots de tiempo medio para las 3 mejores configuraciones
@@ -126,16 +126,16 @@ groups = [];
 labels = cell(size(best,1),1);
 
 for i = 1:size(best,1)
-    g = best(i,1);
-    a = best(i,2);
+    e = best(i,1);
+    ed = best(i,2);
     % Filtra en 'All' los runs de la config actual
-    mask = All.initial_epsilon==g & All.epsilon_decay==a;
+    mask = All.initial_epsilon==e & All.epsilon_decay==ed;
     t   = All.training_time(mask);
     % Acumula
     times  = [times;  t];
     groups = [groups; repmat(i, numel(t), 1)];
-    % Etiqueta "γ=… / a=…"
-    labels{i} = sprintf('γ=%.2f, a=%.2f', g, a);
+    % Etiqueta "e=… / ed=…"
+    labels{i} = sprintf('e=%.2f, ed=%.2f', e, ed);
 end
 
 % Dibuja el boxplot
