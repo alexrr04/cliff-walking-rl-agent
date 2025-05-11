@@ -44,7 +44,7 @@ Los resultados del experimento se han representado mediante heatmaps para facili
     \centering
     \includegraphics[width=0.7\textwidth]{../../experiments/directEstimation/experiment-1/results/success.png}
     \caption{Tasa de éxito para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
-    \label{fig:directEstimation-success}
+    \label{fig:directEstimation1-success}
 \end{figure}
 
 Se puede observar que el parámetro que más afecta a la tasa de éxito es el \textit{número de trayectorias}. A medida que aumenta el número de trayectorias, la tasa de éxito también aumenta. Sin embargo, el factor de descuento no parece tener un efecto significativo en la tasa de éxito.
@@ -63,17 +63,17 @@ El mejor resultado se obtiene con un \textit{número de trayectorias} de 1000 y 
         \centering
         \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-1/results/reward.png}
         \caption{Recompensa media para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
-        \label{fig:directEstimation-subfig-reward}
+        \label{fig:directEstimation1-subfig-reward}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.7\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-1/results/steps.png}
         \caption{Número de pasos para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
-        \label{fig:directEstimation-subfig-steps}
+        \label{fig:directEstimation1-subfig-steps}
     \end{subfigure}
     \caption{Análisis de la recompensa media y número de pasos}
-    \label{fig:directEstimation-reward}
+    \label{fig:directEstimation1-reward}
 \end{figure}
 
 El análisis de la recompensa media y el número medio de pasos revela que:
@@ -105,7 +105,7 @@ Para el tiempo de entrenamiento, se han elegido las tres combinaciones que mejor
     \centering
     \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-1/results/time.png}
     \caption{Tiempo de entrenamiento para diferentes combinaciones de $\gamma$ y \textit{número de trayectorias}}
-    \label{fig:directEstimation-time}
+    \label{fig:directEstimation1-time}
 \end{figure}
 
 El tiempo de entrenamiento medio resulta ser el mejor para la solución con mejor tasa de éxito y recompensa media. Este es de media de 42.42 segundos, con un intervalo de confianza del 95\% de [34.75,  50.09] segundos. Los demás tiempos del gráfico son los siguientes: 44.95 segundos con IC 95\% [33.92,  55.99] para $\gamma = 0.95$ y \textit{número de trayectorias} = 1000, y 53.89 segundos con IC 95\% [47.35,  60.44] para $\gamma = 0.99$ y \textit{número de trayectorias} = 500.
@@ -141,6 +141,59 @@ El objetivo de este experimento es analizar el rendimiento del algoritmo \textit
 \end{table}
 
 \paragraph{Resultados}
+
+Los resultados del experimento se han representado mediante boxplots para facilitar la visualización de los datos. Cada valor representa la media de las 10 ejecuciones del algoritmo (cada ejecución está representada por la media de 500 episodios) de la correspondiente combinación de parámetros. 
+
+\
+
+\textbf{Tasa de Éxito}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../experiments/directEstimation/experiment-2/results/success.png}
+    \caption{Tasa de éxito para diferentes \textit{números de episodios de entrenamiento}}
+    \label{fig:directEstimation2-success}
+\end{figure}
+
+A continuación se muestran los intervalos de confianza del 95\% para cada \textit{número de episodios de entrenamiento} y su valor medio:
+\begin{itemize}
+    \item 100 episodios: 0.998 con IC 95\% [0.996,  1.000]
+    \item 500 episodios: 0.999 con IC 95\% [0.999,  1.000]
+    \item 1000 episodios: 0.997 con IC 95\% [0.996,  0.999]
+    \item 5000 episodios: 0.998 con IC 95\% [0.997,  1.000]
+\end{itemize}
+
+Se puede observar que el número de episodios de entrenamiento no afecta significativamente a la tasa de éxito. Todos los intervalos de confianza son muy similares y están por encima del 99\%. De todas formas, el número de episodios de entrenamiento de 500 parece ser el que mejor rendimiento ha dado, ya que es el que menos varía y el más alto.
+
+\
+
+\textbf{Recompensa media y número de pasos medios}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-2/results/reward.png}
+        \caption{Recompensa media para diferentes \textit{números de episodios de entrenamiento}}
+        \label{fig:directEstimation2-subfig-reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../experiments/directEstimation/experiment-2/results/steps.png}
+        \caption{Número de pasos para diferentes \textit{números de episodios de entrenamiento}}
+        \label{fig:directEstimation2-subfig-steps}
+    \end{subfigure}
+    \caption{Análisis de la recompensa media y número de pasos}
+    \label{fig:directEstimation2-reward}
+\end{figure}
+
+El análisis de la recompensa media y el número medio de pasos revela que:
+
+\begin{itemize}
+    \item 
+\end{itemize}
+
 
 \subsubsection{Experimento Patience}
 
